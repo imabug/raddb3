@@ -1,8 +1,15 @@
 {
-    "name": "laravel/laravel",
+    "name": "imabug/raddb",
     "type": "project",
-    "description": "The Laravel Framework.",
-    "keywords": ["framework", "laravel"],
+    "description": "Radiology Equipment Database.",
+    "keywords": ["radiology", "equipment", "inventory", "laravel"],
+    "authors": [
+        {
+            "name": "Eugene Mah",
+            "email": "eugenemah@gmail.com",
+            "homepage": "https://v16.imablog.net/"
+        }
+    ],
     "license": "MIT",
     "require": {
         "php": "^8.1",
