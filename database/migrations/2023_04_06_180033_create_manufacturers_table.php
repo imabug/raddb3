@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('manufacturers', function (Blueprint $table) {
             $table->id();
+            $table->string('manufacturer', 50)->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

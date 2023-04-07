@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('modalities', function (Blueprint $table) {
             $table->id();
+            $table->string('modality', 50)->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('testers', function (Blueprint $table) {
             $table->id();
+            $table->string('name', 50)->nullable();
+            $table->string('initials', 4)->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

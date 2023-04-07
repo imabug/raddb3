@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('test_types', function (Blueprint $table) {
             $table->id();
+            $table->string('test_type', 50)->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }
