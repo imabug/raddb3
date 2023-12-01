@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Facade;
+use Illuminate\Support\ServiceProvider;
 
 return [
 
@@ -154,7 +155,7 @@ return [
     |
     */
 
-    'providers' => [
+    'providers' => ServiceProvider::defaultProviders()->merge([
 
         /*
          * Laravel Framework Service Providers...
@@ -195,7 +196,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
-    ],
+    ])->toArray(),
 
     /*
     |--------------------------------------------------------------------------
