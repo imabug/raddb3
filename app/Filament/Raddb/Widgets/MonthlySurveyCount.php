@@ -5,7 +5,7 @@ namespace App\Filament\Raddb\Widgets;
 use App\Models\TestDate;
 use Filament\Widgets\ChartWidget;
 
-class MontlySurveyCount extends ChartWidget
+class MonthlySurveyCount extends ChartWidget
 {
     protected ?string $heading = 'Monthly Survey Counts';
     protected ?string $pollingInterval = null;
