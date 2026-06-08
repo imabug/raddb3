@@ -75,7 +75,62 @@ class Machine extends Model implements HasMedia
             'manuf_date'   => 'date:Y-m-d',
             'install_date' => 'date:Y-m-d',
             'remove_date'  => 'date:Y-m-d',
-        ];
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            ];
     }
 
     /**
