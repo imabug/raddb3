@@ -1,0 +1,50 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
+class Manufacturer extends Model
+{
+    /** @use HasFactory<\Database\Factories\ManufacturerFactory> */
+    use HasFactory;
+    use SoftDeletes;
+
+    /**
+     * Attributes that are mass assignable.
+     *
+     * @var array<string>
+     */
+    protected $fillable = ['manufacturer'];
+
+    /*
+     * Attribute casting
+     */
+    protected function casts(): array
+    {
+        return [
+            'created_at'   => 'datetime',
+            'deleted_at'   => 'datetime',
+            'updated_at'   => 'datetime',
+        ];
+    }
+
+    // Relationships
+    public function machine(): HasMany
+    {
+        return $this->hasMany(Machine::class);
+    }
+
+    public function tubeHousingManuf(): HasMany
+    {
+        return $this->hasMany(Tube::class);
+    }
+
+    public function tubeInsManuf(): HasMany
+    {
+        return $this->hasMany(Tube::class);
+    }
+}
