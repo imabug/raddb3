@@ -2,12 +2,13 @@
 
 namespace App\Filament\Admin\Resources\Manufacturers\Tables;
 
+use App\Filament\Actions\TableDeleteAction;
+use App\Filament\Actions\TableEditAction;
+use App\Filament\Actions\TableViewAction;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
-use Filament\Actions\EditAction;
 use Filament\Actions\ForceDeleteBulkAction;
 use Filament\Actions\RestoreBulkAction;
-use Filament\Actions\ViewAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
@@ -23,12 +24,16 @@ class ManufacturersTable
                     ->sortable()
                     ->searchable(),
             ])
+            ->defaultSort('manufacturer', 'asc')
+            ->paginated([10, 50, 'all'])
+            ->defaultPaginationPageOption(10)
             ->filters([
                 TrashedFilter::make(),
             ])
             ->recordActions([
-                ViewAction::make(),
-                EditAction::make(),
+                TableViewAction::make(),
+                TableEditAction::make(),
+                TableDeleteAction::make(),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([
@@ -36,7 +41,6 @@ class ManufacturersTable
                     ForceDeleteBulkAction::make(),
                     RestoreBulkAction::make(),
                 ]),
-            ])
-            ->defaultSort('manufacturer', 'asc');
+            ]);
     }
 }

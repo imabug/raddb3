@@ -3,7 +3,7 @@
 namespace App\Filament\Admin\Resources\Users\Schemas;
 
 use App\Enums\Role;
-use Filament\Forms\Components\DateTimePicker;
+// use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
@@ -26,7 +26,6 @@ class UserForm
                 //     ->required(),
                 Select::make('role')
                     ->options(Role::class)
-                    ->default(null)
                     ->required(),
             ]);
     }

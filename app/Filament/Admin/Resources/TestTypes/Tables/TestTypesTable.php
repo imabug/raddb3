@@ -2,6 +2,9 @@
 
 namespace App\Filament\Admin\Resources\TestTypes\Tables;
 
+use App\Filament\Actions\TableDeleteAction;
+use App\Filament\Actions\TableEditAction;
+use App\Filament\Actions\TableViewAction;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
@@ -37,8 +40,9 @@ class TestTypesTable
                 TrashedFilter::make(),
             ])
             ->recordActions([
-                ViewAction::make(),
-                EditAction::make(),
+                TableViewAction::make(),
+                TableEditAction::make(),
+                TableDeleteAction::make(),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([

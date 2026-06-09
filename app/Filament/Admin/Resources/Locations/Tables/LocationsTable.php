@@ -2,12 +2,13 @@
 
 namespace App\Filament\Admin\Resources\Locations\Tables;
 
+use App\Filament\Actions\TableDeleteAction;
+use App\Filament\Actions\TableEditAction;
+use App\Filament\Actions\TableViewAction;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
-use Filament\Actions\EditAction;
 use Filament\Actions\ForceDeleteBulkAction;
 use Filament\Actions\RestoreBulkAction;
-use Filament\Actions\ViewAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Filters\TrashedFilter;
@@ -21,9 +22,6 @@ class LocationsTable
         return $table
             ->columns([
                 TextColumn::make('id'),
-                TextColumn::make('facility.facility')
-                    ->collapsible()
-                    ->searchable(),
                 TextColumn::make('location')
                     ->searchable(),
             ])
@@ -38,9 +36,12 @@ class LocationsTable
                 TrashedFilter::make(),
             ])
             ->deferFilters(false)
+            ->paginated([10, 50, 'all'])
+            ->defaultPaginationPageOption(10)
             ->recordActions([
-                ViewAction::make(),
-                EditAction::make(),
+                TableViewAction::make(),
+                TableEditAction::make(),
+                TableDeleteAction::make(),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([

@@ -2,6 +2,9 @@
 
 namespace App\Filament\Admin\Resources\Modalities\Tables;
 
+use App\Filament\Actions\TableDeleteAction;
+use App\Filament\Actions\TableEditAction;
+use App\Filament\Actions\TableViewAction;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
@@ -23,12 +26,16 @@ class ModalitiesTable
                     ->searchable()
                     ->sortable(),
             ])
+            ->defaultSort('modality', 'asc')
+            ->paginated([10, 50, 'all'])
+            ->defaultPaginationPageOption('all')
             ->filters([
                 TrashedFilter::make(),
             ])
             ->recordActions([
-                ViewAction::make(),
-                EditAction::make(),
+                TableViewAction::make(),
+                TableEditAction::make(),
+                TableDeleteAction::make(),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([

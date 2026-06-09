@@ -22,7 +22,7 @@ class ModalityResource extends Resource
 {
     protected static ?string $model = Modality::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedCamera;
 
     protected static ?string $recordTitleAttribute = 'Modality';
 
