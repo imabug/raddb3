@@ -9,12 +9,12 @@ use App\Filament\Raddb\Resources\SurveyScheduleViews\Pages\ViewSurveyScheduleVie
 use App\Filament\Raddb\Resources\SurveyScheduleViews\Schemas\SurveyScheduleViewForm;
 use App\Filament\Raddb\Resources\SurveyScheduleViews\Schemas\SurveyScheduleViewInfolist;
 use App\Filament\Raddb\Resources\SurveyScheduleViews\Tables\SurveyScheduleViewsTable;
+use App\Models\SurveyScheduleView;
 use BackedEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
-use SurveyScheduleView;
 
 class SurveyScheduleViewResource extends Resource
 {
