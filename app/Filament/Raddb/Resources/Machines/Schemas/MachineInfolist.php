@@ -25,23 +25,27 @@ class MachineInfolist
                     ->label('Modality')
                     ->placeholder('-'),
                 TextEntry::make('description')
-                    ->placeholder('-'),
+                    ->placeholder('-')
+                    ->columnSpanFull(),
                 TextEntry::make('model')
-                    ->placeholder('-'),
+                    ->placeholder('-')
+                    ->columnSpanFull(),
                 TextEntry::make('serial_number')
-                    ->placeholder('-'),
+                    ->placeholder('-')
+                    ->columnSpanFull(),
                 TextEntry::make('vend_site_id')
-                    ->placeholder('-'),
+                    ->placeholder('-')
+                    ->columnSpanFull(),
                 TextEntry::make('room')
                     ->placeholder('-'),
                 TextEntry::make('install_date')
-                    ->date('Y-m-d')
+                    ->date()
                     ->placeholder('-'),
                 TextEntry::make('manuf_date')
-                    ->date('Y-m-d')
+                    ->date()
                     ->placeholder('-'),
                 TextEntry::make('remove_date')
-                    ->date('Y-m-d')
+                    ->date()
                     ->placeholder('-'),
                 TextEntry::make('machine_status')
                     ->badge()

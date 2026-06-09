@@ -19,59 +19,61 @@ class MachineForm
             ->components([
                 Select::make('facility_id')
                     ->label('Facility')
-                    ->relationship('facility', titleAttribute:'facility')
+                    ->relationship('facility', 'facility')
                     ->required()
                     ->live(),
                 Select::make('location_id')
                     ->label('Location')
                     ->relationship(
-                        'location',
+                        name: 'location', 
                         titleAttribute: 'location',
-                        modifyQueryUsing: fn (Builder $query, Get $get) => $query->where('facility_id', $get('facility_id')),
+                        modifyQueryUsing: fn(Builder $query, Get $get) =>
+                        $query->where('facility_id', $get('facility_id')),
                     )
                     ->required(),
-                Textarea::make('description')
-                    ->string()
-                    ->maxLength(255)
-                    ->default(null),
                 Select::make('modality_id')
                     ->label('Modality')
-                    ->relationship('modality', titleAttribute: 'modality')
-                    ->required(),
+                    ->relationship('modality', 'modality')
+                    ->default(null),
                 Select::make('manufacturer_id')
-                    ->label('MManufacturer')
-                    ->relationship('manufacturer', titleAttribute:'manufacturer')
-                    ->required(),
+                    ->label('Manufacturer')
+                    ->relationship('manufacturer', 'manufacturer')
+                    ->default(null),
+                Textarea::make('description')
+                    ->default(null),
                 Textarea::make('model')
                     ->string()
-                    ->maxLength(255)
+                    ->maxLength(100)
                     ->default(null),
                 Textarea::make('serial_number')
                     ->string()
-                    ->maxLength(255)
+                    ->maxLength(50)
                     ->default(null),
                 Textarea::make('vend_site_id')
                     ->label('Vendor site ID')
                     ->string()
-                    ->maxLength(255)
+                    ->maxLength(25)
                     ->default(null),
                 TextInput::make('room')
                     ->string()
                     ->maxLength(20)
                     ->default(null),
-                DatePicker::make('install_date')
-                    ->label('Install date')
-                    ->format('Y-m-d')
-                    ->displayFormat('Y-m-d'),
                 DatePicker::make('manuf_date')
                     ->label('Manufacture date')
                     ->format('Y-m-d')
-                    ->displayFormat('Y-m-d'),
+                    ->displayFormat('Y-m-d')
+                    ->default(null),
+                DatePicker::make('install_date')
+                    ->label('Install date')
+                    ->format('Y-m-d')
+                    ->displayFormat('Y-m-d')
+                    ->default(null),
                 DatePicker::make('remove_date')
                     ->label('Removal date')
                     ->format('Y-m-d')
-                    ->displayFormat('Y-m-d'),
-                Select::make('machine_status')
+                    ->displayFormat('Y-m-d')
+                    ->default(null),
+            Select::make('machine_status')
                     ->options(Status::class)
                     ->default(Status::Active)
                     ->required(),
