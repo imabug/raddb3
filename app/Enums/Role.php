@@ -4,7 +4,6 @@ namespace App\Enums;
 
 use Filament\Support\Contracts\HasDescription;
 use Filament\Support\Contracts\HasLabel;
-use Filament\Support\Icons\Heroicon;
 
 enum Role: string implements HasDescription, HasLabel
 {
