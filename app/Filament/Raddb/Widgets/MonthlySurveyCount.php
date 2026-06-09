@@ -19,9 +19,9 @@ class MonthlySurveyCount extends ChartWidget
 
     protected function getFilters(): ?array
     {
-        $yearFilter[] = 0;
         // Get a collection of all the survey years in the database
-        $years = TestDate::selectRaw('year(test_date) as years')
+        $years = TestDate::without('machine', 'testType')
+            ->selectRaw('year(test_date) as years')
             ->distinct()
             ->orderBy('years', 'desc')
             ->get();
@@ -49,7 +49,8 @@ class MonthlySurveyCount extends ChartWidget
         //                     ->get()
         //                     ->all();
 
-        $monthlyCount = TestDate::year($this->filter)
+        $monthlyCount = TestDate::without('machine', 'testType')
+            ->year($this->filter)
             ->orderBy('test_date')
             ->get()
             // Count by month
