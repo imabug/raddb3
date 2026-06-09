@@ -2,14 +2,14 @@
 
 namespace App\Filament\Admin\Resources\Users\Tables;
 
+use App\Filament\Actions\TableDeleteAction;
+use App\Filament\Actions\TableEditAction;
+use App\Filament\Actions\TableViewAction;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
-use Filament\Actions\EditAction;
 use Filament\Actions\ForceDeleteBulkAction;
 use Filament\Actions\RestoreBulkAction;
-use Filament\Actions\ViewAction;
 use Filament\Tables\Columns\TextColumn;
-use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
 
 class UsersTable
@@ -23,9 +23,6 @@ class UsersTable
                 TextColumn::make('email')
                     ->label('Email address')
                     ->searchable(),
-                TextColumn::make('email_verified_at')
-                    ->dateTime()
-                    ->sortable(),
                 TextColumn::make('role')
                     ->badge()
                     ->searchable(),
@@ -38,12 +35,10 @@ class UsersTable
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
-            ->filters([
-                TrashedFilter::make(),
-            ])
             ->recordActions([
-                ViewAction::make(),
-                EditAction::make(),
+                TableViewAction::make(),
+                TableEditAction::make(),
+                TableDeleteAction::make(),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([
