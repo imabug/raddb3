@@ -32,8 +32,8 @@ class MachinesTable
                     ->visible(function ($livewire) {
                         $filterState = $livewire->getTableFilterState('modality');
                         if (
-                            $filterState == null ||
-                            (is_array($filterState) && $filterState['value'] == "")
+                            $filterState == null
+                            || (is_array($filterState) && $filterState['value'] == "")
                         ) {
                             return true;
                         } else {
@@ -44,12 +44,12 @@ class MachinesTable
                 TextColumn::make('manufacturer.manufacturer')
                     ->visible(function ($livewire) {
                         $filterState = $livewire->getTableFilterState('manufacturer');
-                        if ($filterState == null ||
-                            (is_array($filterState) && $filterState['value'] == "")) {
-                                return true;
-                            } else {
-                                return false;
-                            }
+                        if ($filterState == null
+                            || (is_array($filterState) && $filterState['value'] == "")) {
+                            return true;
+                        } else {
+                            return false;
+                        }
                     })
                     ->searchable(),
                 TextColumn::make('model')

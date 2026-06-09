@@ -32,7 +32,7 @@ class LocationsTable
             ->defaultGroup('facility.facility')
             ->filters([
                 SelectFilter::make('facility')
-                    ->relationship('facility', titleAttribute:'facility'),
+                    ->relationship('facility', titleAttribute: 'facility'),
                 TrashedFilter::make(),
             ])
             ->deferFilters(false)

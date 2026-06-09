@@ -15,7 +15,7 @@ class TestTypeInfolist
                 TextEntry::make('test_type'),
                 TextEntry::make('deleted_at')
                     ->dateTime()
-                    ->visible(fn (TestType $record): bool => $record->trashed()),
+                    ->visible(fn(TestType $record): bool => $record->trashed()),
                 TextEntry::make('created_at')
                     ->dateTime()
                     ->placeholder('-'),

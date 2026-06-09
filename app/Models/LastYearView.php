@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Attributes\Table;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-#[Table('lastyear_view', key:'survey_id', incrementing:false)]
+#[Table('lastyear_view', key: 'survey_id', incrementing: false)]
 class LastYearView extends Model
 {
     /**

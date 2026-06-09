@@ -25,10 +25,10 @@ class MachineForm
                 Select::make('location_id')
                     ->label('Location')
                     ->relationship(
-                        name: 'location', 
+                        name: 'location',
                         titleAttribute: 'location',
-                        modifyQueryUsing: fn(Builder $query, Get $get) =>
-                        $query->where('facility_id', $get('facility_id')),
+                        modifyQueryUsing: fn(Builder $query, Get $get)
+                        => $query->where('facility_id', $get('facility_id')),
                     )
                     ->required(),
                 Select::make('modality_id')
@@ -73,10 +73,10 @@ class MachineForm
                     ->format('Y-m-d')
                     ->displayFormat('Y-m-d')
                     ->default(null),
-            Select::make('machine_status')
-                    ->options(Status::class)
-                    ->default(Status::Active)
-                    ->required(),
+                Select::make('machine_status')
+                        ->options(Status::class)
+                        ->default(Status::Active)
+                        ->required(),
                 TextInput::make('software_version')
                     ->string()
                     ->maxLength(50)

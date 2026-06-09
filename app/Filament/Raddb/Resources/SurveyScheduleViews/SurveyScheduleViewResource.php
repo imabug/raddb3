@@ -20,7 +20,7 @@ use Illuminate\Database\Eloquent\Builder;
 class SurveyScheduleViewResource extends Resource
 {
     protected static ?string $model = SurveyScheduleView::class;
-    protected static ?string $navigationLabel = 'Survey Schedule'; 
+    protected static ?string $navigationLabel = 'Survey Schedule';
     protected static string|BackedEnum|null $navigationIcon = Heroicon::CalendarDays;
     protected static ?string $modelLabel = 'Survey Schedule';
     protected static ?string $pluralModelLabel = 'Survey Schedule';

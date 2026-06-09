@@ -39,7 +39,7 @@ class TestDatesTable
                 ->default(),
                 Filter::make('activeMachines')
                 ->label('Active machines')
-                ->query(fn (Builder $query): Builder => $query->activeMachines())
+                ->query(fn(Builder $query): Builder => $query->activeMachines())
                 ->toggle(),
             ])
             ->deferFilters(false)

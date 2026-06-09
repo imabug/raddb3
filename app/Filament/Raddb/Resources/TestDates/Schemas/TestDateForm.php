@@ -18,7 +18,7 @@ class TestDateForm
                 Select::make('machine_id')
                     ->label('Machine')
                     ->relationship(
-                        name: 'machine', 
+                        name: 'machine',
                         titleAttribute: 'description',
                         modifyQueryUsing: fn(Builder $query) => $query->active(),
                     )
@@ -26,8 +26,9 @@ class TestDateForm
                 Select::make('test_type_id')
                     ->label('Test type')
                     ->relationship(
-                        name: 'testType', 
-                        titleAttribute: 'test_type')
+                        name: 'testType',
+                        titleAttribute: 'test_type',
+                    )
                     ->required(),
                 DateTimePicker::make('test_date')
                     ->label('Survey date')

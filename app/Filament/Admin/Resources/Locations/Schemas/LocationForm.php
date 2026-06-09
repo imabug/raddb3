@@ -13,7 +13,7 @@ class LocationForm
         return $schema
             ->components([
                 Select::make('facility_id')
-                    ->relationship('facility', titleAttribute:'facility')
+                    ->relationship('facility', titleAttribute: 'facility')
                     ->required(),
                 TextInput::make('location')
                     ->required()

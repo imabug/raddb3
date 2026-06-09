@@ -60,7 +60,7 @@ class MonthlySurveyCount extends ChartWidget
                 },
             );
 
-            return [
+        return [
             'datasets' => [
                 [
                     'label' => 'Monthly survey counts',

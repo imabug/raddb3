@@ -42,31 +42,31 @@ class SurveyScheduleViewsTable
             ->paginated(false)
             ->striped()
             ->filters([
-            SelectFilter::make('facility')
-                ->label('Facility')
-                ->multiple()
-                ->options(fn(): array => Facility::query()
-                    ->pluck('facility', 'id')
-                    ->all()),
-            Filter::make('surveyDateRange')
-                ->label('Survey date range')
-                ->schema([
-                    DatePicker::make('surveyStart')
-                        ->label('Survey start date'),
-                    DatePicker::make('surveyEnd')
-                        ->label('Survey end date'),
-                ])
-                ->query(function (Builder $query, array $data): Builder {
-                    return $query
-                        ->when(
-                            $data['surveyStart'],
-                            fn(Builder $query, $date): Builder => $query->whereDate('currSurveyDate', '>=', $date),
-                        )
-                        ->when(
-                            $data['surveyEnd'],
-                            fn(Builder $query, $date): Builder => $query->whereDate('currSurveyDate', '<=', $date),
-                        );
-                }),
+                SelectFilter::make('facility')
+                    ->label('Facility')
+                    ->multiple()
+                    ->options(fn(): array => Facility::query()
+                        ->pluck('facility', 'id')
+                        ->all()),
+                Filter::make('surveyDateRange')
+                    ->label('Survey date range')
+                    ->schema([
+                        DatePicker::make('surveyStart')
+                            ->label('Survey start date'),
+                        DatePicker::make('surveyEnd')
+                            ->label('Survey end date'),
+                    ])
+                    ->query(function (Builder $query, array $data): Builder {
+                        return $query
+                            ->when(
+                                $data['surveyStart'],
+                                fn(Builder $query, $date): Builder => $query->whereDate('currSurveyDate', '>=', $date),
+                            )
+                            ->when(
+                                $data['surveyEnd'],
+                                fn(Builder $query, $date): Builder => $query->whereDate('currSurveyDate', '<=', $date),
+                            );
+                    }),
             ])
             ->recordActions([
                 TableViewAction::make(),
