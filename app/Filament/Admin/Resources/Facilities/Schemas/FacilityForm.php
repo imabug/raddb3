@@ -2,6 +2,8 @@
 
 namespace App\Filament\Admin\Resources\Facilities\Schemas;
 
+use App\Enums\USState;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Schemas\Schema;
@@ -25,10 +27,9 @@ class FacilityForm
                     ->string()
                     ->maxLength(255)
                     ->default(null),
-                TextInput::make('state')
-                    ->string()
-                    ->maxLength(255)
-                    ->default(null),
+                Select::make('state')
+                    ->options(USState::class)
+                    ->required(),
                 TextInput::make('zip_code')
                     ->string()
                     ->maxLength(10)
