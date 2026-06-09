@@ -2,11 +2,11 @@
 
 namespace App\Filament\Raddb\Resources\SurveyScheduleViews\Tables;
 
+use App\Filament\Actions\TableEditAction;
+use App\Filament\Actions\TableViewAction;
 use App\Models\Facility;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
-use Filament\Actions\EditAction;
-use Filament\Actions\ViewAction;
 use Filament\Forms\Components\DatePicker;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\Filter;
@@ -30,13 +30,13 @@ class SurveyScheduleViewsTable
                     ->label('Prev Survey ID'),
                 TextColumn::make('prevSurveyDate')
                     ->label('Prev Survey Date')
-                    ->dateTime()
+                    ->date()
                     ->sortable(),
                 TextColumn::make('currSurveyId')
                     ->label('Current Survey ID'),
                 TextColumn::make('currSurveyDate')
                     ->label('Current Survey Date')
-                    ->dateTime()
+                    ->date()
                     ->sortable(),
             ])
             ->paginated(false)
@@ -69,8 +69,8 @@ class SurveyScheduleViewsTable
                 }),
             ])
             ->recordActions([
-                ViewAction::make(),
-                EditAction::make(),
+                TableViewAction::make(),
+                TableEditAction::make(),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([
