@@ -4,65 +4,121 @@ namespace App\Enums;
 
 use Filament\Support\Contracts\HasDescription;
 use Filament\Support\Contracts\HasLabel;
-use Filament\Support\Icons\Heroicon;
+use Illuminate\Contracts\Support\Htmlable;
 
-enum USState: string implements HasLabel
+enum USState: string implements HasLabel, HasDescription
 {
-    case ARIZONA = 'AZ';
-    case ARKANSAS = 'AR';
-    case CALIFORNIA = 'CA';
-    case COLORADO = 'CO';
-    case CONNECTICUT = 'CT';
-    case DELAWARE = 'DE';
-    case FLORIDA = 'FL';
-    case GEORGIA = 'GA';
-    case HAWAII = 'HI';
-    case IDAHO = 'ID';
-    case ILLINOIS = 'IL';
-    case INDIANA = 'IN';
-    case IOWA = 'IA';
-    case KANSAS = 'KS';
-    case KENTUCKY = 'KY';
-    case LOUISIANA = 'LA';
-    case MAINE = 'ME';
-    case MARYLAND = 'MD';
-    case MASSACHUSETTS = 'MA';
-    case MICHIGAN = 'MI';
-    case MINNESOTA = 'MN';
-    case MISSISSIPPI = 'MS';
-    case MISSOURI = 'MO';
-    case MONTANA = 'MT';
-    case NEBRASKA = 'NE';
-    case NEVADA = 'NV';
-    case NEW_HAMPSHIRE = 'NH';
-    case NEW_JERSEY = 'NJ';
-    case NEW_MEXICO = 'NM';
-    case NEW_YORK = 'NY';
-    case NORTH_CAROLINA = 'NC';
-    case NORTH_DAKOTA = 'ND';
-    case OHIO = 'OH';
-    case OKLAHOMA = 'OK';
-    case OREGON = 'OR';
-    case PENNSYLVANIA = 'PA';
-    case RHODE_ISLAND = 'RI';
-    case SOUTH_CAROLINA = 'SC';
-    case SOUTH_DAKOTA = 'SD';
-    case TENNESSEE = 'TN';
-    case TEXAS = 'TX';
-    case UTAH = 'UT';
-    case VERMONT = 'VT';
-    case VIRGINIA = 'VA';
-    case WASHINGTON = 'WA';
-    case WEST_VIRGINIA = 'WV';
-    case WISCONSIN = 'WI';
-    case WYOMING = 'WY';
+    case AK = 'AK';
+    case AL = 'AL';
+    case AZ = 'AZ';
+    case AR = 'AR';
+    case CA = 'CA';
+    case CO = 'CO';
+    case CT = 'CT';
+    case DC = 'DC';
+    case DE = 'DE';
+    case FL = 'FL';
+    case GA = 'GA';
+    case HI = 'HI';
+    case ID = 'ID';
+    case IL = 'IL';
+    case IN = 'IN';
+    case IA = 'IA';
+    case KS = 'KS';
+    case KY = 'KY';
+    case LA = 'LA';
+    case ME = 'ME';
+    case MD = 'MD';
+    case MA = 'MA';
+    case MI = 'MI';
+    case MN = 'MN';
+    case MS = 'MS';
+    case MO = 'MO';
+    case MT = 'MT';
+    case NE = 'NE';
+    case NV = 'NV';
+    case NH = 'NH';
+    case NJ = 'NJ';
+    case NM = 'NM';
+    case NY = 'NY';
+    case NC = 'NC';
+    case ND = 'ND';
+    case OH = 'OH';
+    case OK = 'OK';
+    case OR = 'OR';
+    case PA = 'PA';
+    case RI = 'RI';
+    case SC = 'SC';
+    case SD = 'SD';
+    case TN = 'TN';
+    case TX = 'TX';
+    case UT = 'UT';
+    case VT = 'VT';
+    case VA = 'VA';
+    case WA = 'WA';
+    case WV = 'WV';
+    case WI = 'WI';
+    case WY = 'WY';
 
-    public function getDescription(): ?string
+    public function getDescription(): string|Htmlable|null
     {
-        return ucwords($this->name);
+        return match ($this) {
+            self::AK => 'Alaska',
+            self::AL => 'Alabama',
+            self::AZ => 'Arizona',
+            self::AR => 'Arkansas',
+            self::CA => 'California',
+            self::CO => 'Colorado',
+            self::CT => 'Connecticut',
+            self::DC => 'District of Columbia',
+            self::DE => 'Delaware',
+            self::FL => 'Florida',
+            self::GA => 'Georgia',
+            self::HI => 'Hawaii',
+            self::ID => 'Idaho',
+            self::IL => 'Illinois',
+            self::IN => 'Indiana',
+            self::IA => 'Iowa',
+            self::KS => 'Kansas',
+            self::KY => 'Kentucky',
+            self::LA => 'Louisiana',
+            self::ME => 'Maine',
+            self::MD => 'Maryland',
+            self::MA => 'Massachussets',
+            self::MI => 'Michigan',
+            self::MN => 'Minnesota',
+            self::MS => 'Mississippi',
+            self::MO => 'Missouri',
+            self::MT => 'Montana',
+            self::NE => 'Nebraska',
+            self::NV => 'Nevada',
+            self::NH => 'New Hampshire',
+            self::NJ => 'New Jersey',
+            self::NM => 'New Mexico',
+            self::NY => 'New York',
+            self::NC => 'North Carolina',
+            self::ND => 'North Dakota',
+            self::OH => 'Ohio',
+            self::OK => 'Oklahoma',
+            self::OR => 'Oregon',
+            self::PA => 'Pennsylvania',
+            self::RI => 'Rhode Island',
+            self::SC => 'South Carolina',
+            self::SD => 'South Dakota',
+            self::TN => 'Tennessee',
+            self::TX => 'Texas',
+            self::UT => 'Utah',
+            self::VT => 'Vermont',
+            self::VA => 'Virginia',
+            self::WA => 'Washington',
+            self::WV => 'West Virginia',
+            self::WI => 'Wisconsin',
+            self::WY => 'Wyoming',
+
+        };
     }
 
-    public function getLabel(): ?string
+    public function getLabel(): string|Htmlable|null
     {
         return $this->name;
     }
