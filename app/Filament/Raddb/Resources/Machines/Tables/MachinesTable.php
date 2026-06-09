@@ -3,14 +3,15 @@
 namespace App\Filament\Raddb\Resources\Machines\Tables;
 
 use App\Enums\Status;
+use App\Filament\Actions\TableEditAction;
+use App\Filament\Actions\TableViewAction;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
-use Filament\Actions\EditAction;
 use Filament\Actions\ForceDeleteBulkAction;
 use Filament\Actions\RestoreBulkAction;
-use Filament\Actions\ViewAction;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Enums\PaginationMode;
 use Filament\Tables\Filters\Filter;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Filters\TrashedFilter;
@@ -67,11 +68,14 @@ class MachinesTable
                     ->sortable(),
                 TextColumn::make('remove_date')
                     ->date()
-                    ->sortable(),
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('software_version')
-                    ->searchable(),
+                    ->searchable()
+                    ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('pacs_station')
-                    ->searchable(),
+                    ->searchable()
+                    ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('deleted_at')
                     ->dateTime()
                     ->sortable()
@@ -110,9 +114,12 @@ class MachinesTable
                     ->relationship('manufacturer', 'manufacturer'),
             ])
             ->deferFilters(false)
+            ->paginated([10, 50, 'all'])
+            ->defaultPaginationPageOption(10)
+            ->extremePaginationLinks()
             ->recordActions([
-                ViewAction::make(),
-                EditAction::make(),
+                TableViewAction::make(),
+                TableEditAction::make(),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([
