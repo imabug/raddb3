@@ -2,12 +2,17 @@
 
 namespace App\Filament\Raddb\Resources\SurveyScheduleViews\Tables;
 
+use App\Models\Facility;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
+use Filament\Forms\Components\DatePicker;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\Filter;
+use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
 
 class SurveyScheduleViewsTable
 {
@@ -16,24 +21,52 @@ class SurveyScheduleViewsTable
         return $table
             ->columns([
                 TextColumn::make('id')
-                    ->label('ID')
+                    ->label('Machine ID')
                     ->numeric()
                     ->sortable(),
+                TextColumn::make('description')
+                    ->label('Machine'),
                 TextColumn::make('prevSurveyId')
-                    ->numeric()
-                    ->sortable(),
+                    ->label('Prev Survey ID'),
                 TextColumn::make('prevSurveyDate')
+                    ->label('Prev Survey Date')
                     ->dateTime()
                     ->sortable(),
                 TextColumn::make('currSurveyId')
-                    ->numeric()
-                    ->sortable(),
+                    ->label('Current Survey ID'),
                 TextColumn::make('currSurveyDate')
+                    ->label('Current Survey Date')
                     ->dateTime()
                     ->sortable(),
             ])
+            ->paginated(false)
+            ->striped()
             ->filters([
-                //
+            SelectFilter::make('facility')
+                ->label('Facility')
+                ->multiple()
+                ->options(fn(): array => Facility::query()
+                    ->pluck('facility', 'id')
+                    ->all()),
+            Filter::make('surveyDateRange')
+                ->label('Survey date range')
+                ->schema([
+                    DatePicker::make('surveyStart')
+                        ->label('Survey start date'),
+                    DatePicker::make('surveyEnd')
+                        ->label('Survey end date'),
+                ])
+                ->query(function (Builder $query, array $data): Builder {
+                    return $query
+                        ->when(
+                            $data['surveyStart'],
+                            fn(Builder $query, $date): Builder => $query->whereDate('currSurveyDate', '>=', $date),
+                        )
+                        ->when(
+                            $data['surveyEnd'],
+                            fn(Builder $query, $date): Builder => $query->whereDate('currSurveyDate', '<=', $date),
+                        );
+                }),
             ])
             ->recordActions([
                 ViewAction::make(),
