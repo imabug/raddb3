@@ -56,9 +56,7 @@ class SurveyScheduleViewResource extends Resource
     {
         return [
             'index' => ListSurveyScheduleViews::route('/'),
-            'create' => CreateSurveyScheduleView::route('/create'),
             'view' => ViewSurveyScheduleView::route('/{record}'),
-            'edit' => EditSurveyScheduleView::route('/{record}/edit'),
         ];
     }
 }
