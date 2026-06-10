@@ -27,6 +27,7 @@ class MachinesTable
             ->columns([
                 IconColumn::make('machine_status'),
                 TextColumn::make('location.location')
+                    ->wrap()
                     ->searchable(),
                 TextColumn::make('modality.modality')
                     ->visible(function ($livewire) {
@@ -53,6 +54,7 @@ class MachinesTable
                     })
                     ->searchable(),
                 TextColumn::make('model')
+                    ->wrap()
                     ->searchable(),
                 TextColumn::make('serial_number')
                     ->searchable(),
