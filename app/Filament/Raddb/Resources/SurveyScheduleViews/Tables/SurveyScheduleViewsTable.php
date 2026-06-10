@@ -73,7 +73,7 @@ class SurveyScheduleViewsTable
             ->groups([
                 Group::make('machine.facility.facility')
                     ->label('Facility')
-                    ->collapsible()
+                    ->collapsible(),
             ])
             ->recordActions([
                 TableViewAction::make(),
