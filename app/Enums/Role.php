@@ -26,6 +26,6 @@ enum Role: string implements HasDescription, HasLabel
 
     public function getLabel(): ?string
     {
-        return $this->name;
+        return $this->value;
     }
 }
