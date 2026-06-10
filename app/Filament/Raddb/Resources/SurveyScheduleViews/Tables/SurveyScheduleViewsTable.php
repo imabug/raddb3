@@ -80,9 +80,6 @@ class SurveyScheduleViewsTable
                 TableEditAction::make(),
             ])
             ->toolbarActions([
-                BulkActionGroup::make([
-                    DeleteBulkAction::make(),
-                ]),
             ]);
     }
 }
