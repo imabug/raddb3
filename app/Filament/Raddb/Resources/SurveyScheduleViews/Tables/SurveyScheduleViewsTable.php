@@ -11,6 +11,7 @@ use Filament\Forms\Components\DatePicker;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\Filter;
 use Filament\Tables\Filters\SelectFilter;
+use Filament\Tables\Grouping\Group;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 
@@ -25,7 +26,8 @@ class SurveyScheduleViewsTable
                     ->numeric()
                     ->sortable(),
                 TextColumn::make('description')
-                    ->label('Machine'),
+                    ->label('Machine')
+                    ->wrap(),
                 TextColumn::make('prevSurveyId')
                     ->label('Prev Survey ID'),
                 TextColumn::make('prevSurveyDate')
@@ -42,12 +44,12 @@ class SurveyScheduleViewsTable
             ->paginated(false)
             ->striped()
             ->filters([
-                SelectFilter::make('facility')
-                    ->label('Facility')
-                    ->multiple()
-                    ->options(fn(): array => Facility::query()
-                        ->pluck('facility', 'id')
-                        ->all()),
+                // SelectFilter::make('machine.facility.facility')
+                //     ->label('Facility')
+                //     ->multiple()
+                //     ->options(fn(): array => Facility::query()
+                //         ->pluck('facility', 'id')
+                //         ->all()),
                 Filter::make('surveyDateRange')
                     ->label('Survey date range')
                     ->schema([
@@ -67,6 +69,11 @@ class SurveyScheduleViewsTable
                                 fn(Builder $query, $date): Builder => $query->whereDate('currSurveyDate', '<=', $date),
                             );
                     }),
+            ])
+            ->groups([
+                Group::make('machine.facility.facility')
+                    ->label('Facility')
+                    ->collapsible()
             ])
             ->recordActions([
                 TableViewAction::make(),
