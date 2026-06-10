@@ -35,7 +35,7 @@ class MachineInfolist
                         TextEntry::make('remove_date')
                             ->date()
                             ->placeholder('-')
-                            ->visible(fn (Get $get): bool => ($get('machine_status') == 'Active') ? true : false),
+                            ->visible(fn(Get $get): bool => ($get('machine_status') == 'Active') ? true : false),
                         TextEntry::make('machine_status')
                             ->badge()
                             ->placeholder('-'),
@@ -89,7 +89,7 @@ class MachineInfolist
                                 TableColumn::make('Accession'),
                                 TableColumn::make('Notes'),
                             ])
-                            ->schema([])
+                            ->schema([]),
                         // MachineSurveyList::make(),
                     ]),
             ]);
