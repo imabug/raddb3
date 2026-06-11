@@ -76,7 +76,6 @@ class MachineInfolist
                     ->schema([
                         RepeatableEntry::make('Operational notes')
                             ->schema([
-                                TextEntry::make('opnote.note'),
                             ]),
                     ]),
                 Section::make('Surveys')
@@ -89,7 +88,13 @@ class MachineInfolist
                                 TableColumn::make('Accession'),
                                 TableColumn::make('Notes'),
                             ])
-                            ->schema([]),
+                            ->schema([
+                                TextEntry::make('testDate.id'),
+                                TextEntry::make('testDate.test_date'),
+                                TextEntry::make('testDate.testType.test_type'),
+                                TextEntry::make('testDate.accession'),
+                                TextEntry::make('testDate.notes'),
+                            ]),
                         // MachineSurveyList::make(),
                     ]),
             ]);
