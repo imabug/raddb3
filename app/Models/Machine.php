@@ -35,7 +35,7 @@ class Machine extends Model implements HasMedia
         'modality',
         'manufacturer',
         'tube',
-        'opnote',
+//        'opnote',
     ];
 
     /**
@@ -69,6 +69,7 @@ class Machine extends Model implements HasMedia
     {
         return [
             'machine_status' => Status::class,
+            'op_notes'     => 'array',
             'created_at'   => 'datetime',
             'deleted_at'   => 'datetime',
             'updated_at'   => 'datetime',
