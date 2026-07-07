@@ -85,6 +85,7 @@ class MachineInfolist
                 Section::make('Surveys')
                     ->schema([
                         RepeatableEntry::make('testDate')
+                            ->hiddenLabel()
                             ->table([
                                 TableColumn::make('Survey ID'),
                                 TableColumn::make('Survey date'),
