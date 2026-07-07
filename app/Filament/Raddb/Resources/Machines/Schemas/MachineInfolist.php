@@ -2,9 +2,8 @@
 
 namespace App\Filament\Raddb\Resources\Machines\Schemas;
 
-use App\Filament\Schemas\Components\MachineSurveyList;
-use Filament\Forms\Components\Repeater\TableColumn;
 use Filament\Infolists\Components\RepeatableEntry;
+use Filament\Infolists\Components\RepeatableEntry\TableColumn;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Components\Utilities\Get;
@@ -75,13 +74,17 @@ class MachineInfolist
                 Section::make('Operational Notes')
                     ->schema([
                         RepeatableEntry::make('op_notes')
+                            ->hiddenLabel()
                             ->schema([
-                                TextEntry::make('note'),
-                            ]),
-                    ]),
+                                TextEntry::make('note')
+                                    ->hiddenLabel(),
+                            ])
+                            ->grid(2),
+                    ])
+                    ->columnSpanFull(),
                 Section::make('Surveys')
                     ->schema([
-                        RepeatableEntry::make('Surveys')
+                        RepeatableEntry::make('testDate')
                             ->table([
                                 TableColumn::make('Survey ID'),
                                 TableColumn::make('Survey date'),
@@ -90,14 +93,16 @@ class MachineInfolist
                                 TableColumn::make('Notes'),
                             ])
                             ->schema([
-                                TextEntry::make('testDate.id'),
-                                TextEntry::make('testDate.test_date'),
-                                TextEntry::make('testDate.testType.test_type'),
-                                TextEntry::make('testDate.accession'),
-                                TextEntry::make('testDate.notes'),
+                                TextEntry::make('id')
+                                    ->label('ID'),
+                                TextEntry::make('test_date')
+                                    ->date('Y-m-d'),
+                                TextEntry::make('testType.test_type'),
+                                TextEntry::make('accession'),
+                                TextEntry::make('notes'),
                             ]),
-                        // MachineSurveyList::make(),
-                    ]),
+                    ])
+                    ->columnSpanFull(),
             ]);
     }
 }
