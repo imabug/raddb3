@@ -26,6 +26,7 @@ class MachinesTable
         return $table
             ->columns([
                 IconColumn::make('machine_status'),
+                TextColumn::make('description'),
                 TextColumn::make('location.location')
                     ->wrap()
                     ->searchable(),
@@ -68,28 +69,7 @@ class MachinesTable
                 TextColumn::make('manuf_date')
                     ->date()
                     ->sortable(),
-                TextColumn::make('remove_date')
-                    ->date()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                TextColumn::make('software_version')
-                    ->searchable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                TextColumn::make('pacs_station')
-                    ->searchable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                TextColumn::make('deleted_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                TextColumn::make('created_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                TextColumn::make('updated_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('age'),
             ])
             ->groups([
                 Group::make('facility.facility')
