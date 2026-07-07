@@ -72,10 +72,11 @@ class MachineInfolist
                             ->placeholder('-'),
                     ])
                     ->columns(2),
-                Section::make('Operational notes')
+                Section::make('Operational Notes')
                     ->schema([
-                        RepeatableEntry::make('Operational notes')
+                        RepeatableEntry::make('op_notes')
                             ->schema([
+                                TextEntry::make('note'),
                             ]),
                     ]),
                 Section::make('Surveys')
