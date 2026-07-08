@@ -45,7 +45,7 @@ return new class extends Migration
                 ->constrained(table: 'facilities')
                 ->noActionOnUpdate()
                 ->noActionOnDelete();
-            $table->string('location', 100)->nullable(false);
+            $table->string('location', 100)->nullable(false)->index();
             $table->softDeletes();
             $table->timestamps();
         });

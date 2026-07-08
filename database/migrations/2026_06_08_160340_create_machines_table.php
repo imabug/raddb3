@@ -49,9 +49,9 @@ return new class extends Migration
                 ->nullable()
                 ->index();
             $table->string('model', 255)->nullable()->index();
-            $table->tinyText('serial_number')->nullable();
-            $table->tinyText('vend_site_id')->nullable();
-            $table->string('room', length: 20)->nullable();
+            $table->tinyText('serial_number')->nullable()->index();
+            $table->tinyText('vend_site_id')->nullable()->index();
+            $table->string('room', length: 20)->nullable()->index();
             $table->date('install_date')->index()->nullable();
             $table->date('manuf_date')->index()->nullable();
             $table->date('remove_date')->index()->nullable();
@@ -59,7 +59,7 @@ return new class extends Migration
                 ->nullable()
                 ->index();
             $table->string('software_version', length: 50)->nullable();
-            $table->string('pacs_station', length: 50)->nullable();
+            $table->string('pacs_station', length: 50)->nullable()->index();
             $table->text('notes')->nullable()->fulltext();
             $table->softDeletes();
             $table->timestamps();

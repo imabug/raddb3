@@ -29,7 +29,7 @@ return new class extends Migration
                 ->noActionOnDelete();
             $table->dateTime('test_date', precision: 0)->nullable(false)->index();
             $table->string('accession', length: 50)->nullable()->index();
-            $table->text('notes')->nullable();
+            $table->text('notes')->nullable()->fulltext();
             $table->softDeletes();
             $table->timestamps();
         });
