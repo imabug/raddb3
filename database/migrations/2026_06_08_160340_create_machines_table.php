@@ -48,7 +48,7 @@ return new class extends Migration
                 ->comment('Commonly understood unit identifier')
                 ->nullable()
                 ->index();
-            $table->tinyText('model')->nullable()->index();
+            $table->string('model', 255)->nullable()->index();
             $table->tinyText('serial_number')->nullable();
             $table->tinyText('vend_site_id')->nullable();
             $table->string('room', length: 20)->nullable();
