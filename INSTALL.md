@@ -1,12 +1,18 @@
 Clone the repository
 
-`git clone https://github.com/imabug/raddb-filament.git`
+`git clone https://github.com/imabug/raddb3.git`
 
 Install the PHP stuff
 
 `cd raddb-filament; composer install`
 
-Create the database and Run the database migrations
+Install the nodejs stuff
+
+`npm install; npm run build`
+
+Create the database.
+
+Run the database migrations
 
 `php artisan migrate`
 
