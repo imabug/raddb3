@@ -21,7 +21,7 @@ return new class extends Migration
          */
         Schema::create('facilities', function (Blueprint $table) {
             $table->id();
-            $table->tinyText('facility')->nullable(false)->index();
+            $table->string('facility', 255)->nullable(false)->index();
             $table->string('street_address')->nullable()->index();
             $table->string('city')->nullable()->index();
             $table->string('state')->nullable()->index();

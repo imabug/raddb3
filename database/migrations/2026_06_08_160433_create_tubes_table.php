@@ -27,10 +27,10 @@ return new class extends Migration
                 ->constrained(table: 'manufacturers')
                 ->noActionOnUpdate()
                 ->noActionOnDelete();
-            $table->tinyText('housing_model')
+            $table->string('housing_model', 255)
                 ->index()
                 ->nullable();
-            $table->tinyText('housing_sn')
+            $table->string('housing_sn', 255)
                 ->index()
                 ->nullable();
             $table->foreignId('insert_manuf_id')
@@ -40,8 +40,8 @@ return new class extends Migration
                 ->constrained(table: 'manufacturers')
                 ->noActionOnUpdate()
                 ->noActionOnDelete();
-            $table->tinyText('insert_model')->index()->nullable();
-            $table->tinyText('insert_sn')->index()->nullable();
+            $table->string('insert_model', 255)->index()->nullable();
+            $table->string('insert_sn', 255)->index()->nullable();
             $table->date('manuf_date')->index()->nullable();
             $table->date('install_date')->index()->nullable();
             $table->date('remove_date')->index()->nullable();

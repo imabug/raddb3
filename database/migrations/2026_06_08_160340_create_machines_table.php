@@ -44,7 +44,7 @@ return new class extends Migration
                 ->constrained(table: 'modalities')
                 ->noActionOnUpdate()
                 ->noActionOnDelete();
-            $table->tinyText('description')
+            $table->string('description', 255)
                 ->comment('Commonly understood unit identifier')
                 ->nullable()
                 ->index();
