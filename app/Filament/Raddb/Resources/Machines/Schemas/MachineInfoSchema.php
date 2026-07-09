@@ -39,21 +39,12 @@ class MachineInfoSchema
                         ->string()
                         ->maxLength(20)
                         ->default(null),
-                    TextInput::make('pacs_station')
-                        ->string()
-                        ->maxLength(50)
-                        ->default(null),
                     Select::make('machine_status')
                         ->options(Status::class)
                         ->default(Status::Active)
                         ->required(),
                     DatePicker::make('install_date')
                         ->label('Install date')
-                        ->format('Y-m-d')
-                        ->displayFormat('Y-m-d')
-                        ->default(null),
-                    DatePicker::make('remove_date')
-                        ->label('Removal date')
                         ->format('Y-m-d')
                         ->displayFormat('Y-m-d')
                         ->default(null),
@@ -94,6 +85,10 @@ class MachineInfoSchema
                         ->displayFormat('Y-m-d')
                         ->default(null),
                     TextInput::make('software_version')
+                        ->string()
+                        ->maxLength(50)
+                        ->default(null),
+                    TextInput::make('pacs_station')
                         ->string()
                         ->maxLength(50)
                         ->default(null),
