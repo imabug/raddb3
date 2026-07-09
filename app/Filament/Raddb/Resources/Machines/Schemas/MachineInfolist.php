@@ -107,9 +107,11 @@ class MachineInfolist
                                 TextEntry::make('id'),
                                 TextEntry::make('test_date')
                                     ->date('Y-m-d'),
-                                TextEntry::make('testType.test_type'),
+                                TextEntry::make('testType.test_type')
+                                    ->wrap(false),
                                 TextEntry::make('accession'),
-                                TextEntry::make('notes'),
+                                TextEntry::make('notes')
+                                    ->wrap(),
                             ]),
                     ])
                     ->columnSpanFull(),
