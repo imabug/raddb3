@@ -25,8 +25,12 @@ class MachinesTable
     {
         return $table
             ->columns([
-                IconColumn::make('machine_status'),
-                TextColumn::make('description'),
+                TextColumn::make('id')
+                    ->label('ID'),
+                IconColumn::make('machine_status')
+                    ->label('Status'),
+                TextColumn::make('description')
+                    ->wrap(),
                 TextColumn::make('location.location')
                     ->wrap()
                     ->searchable(),
@@ -53,6 +57,7 @@ class MachinesTable
                             return false;
                         }
                     })
+                    ->wrap()
                     ->searchable(),
                 TextColumn::make('model')
                     ->wrap()
