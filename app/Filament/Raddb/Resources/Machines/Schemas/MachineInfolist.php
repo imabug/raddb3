@@ -16,58 +16,68 @@ class MachineInfolist
         return $schema
             ->components([
                 Section::make('Site information')
+                    ->inlineLabel()
                     ->schema([
+                        TextEntry::make('id')
+                            ->label('Machine ID: '),
                         TextEntry::make('facility.facility')
-                            ->label('Facility')
+                            ->label('Facility: ')
                             ->placeholder('-'),
                         TextEntry::make('location.location')
-                            ->label('Location')
+                            ->label('Location: ')
                             ->placeholder('-'),
-                        TextEntry::make('description')
-                            ->placeholder('-')
-                            ->columnSpanFull(),
                         TextEntry::make('room')
+                            ->label('Room: ')
                             ->placeholder('-'),
                         TextEntry::make('install_date')
-                            ->date()
+                            ->label('Install date: ')
+                            ->date('Y-m-d')
                             ->placeholder('-'),
                         TextEntry::make('remove_date')
-                            ->date()
+                            ->label('Removal date: ')
+                            ->date('Y-m-d')
                             ->placeholder('-')
                             ->visible(fn(Get $get): bool => ($get('machine_status') == 'Active') ? true : false),
                         TextEntry::make('machine_status')
+                            ->label('Status: ')
                             ->badge()
                             ->placeholder('-'),
                         TextEntry::make('software_version')
+                            ->label('Software version: ')
                             ->placeholder('-'),
                         TextEntry::make('pacs_station')
-                            ->placeholder('-'),
-                        TextEntry::make('age')
-                            ->label('Age (years)')
+                            ->label('PACS station: ')
                             ->placeholder('-'),
                         TextEntry::make('notes')
+                            ->label('Notes: ')
                             ->placeholder('-')
                             ->columnSpanFull(),
                     ])
                     ->columns(2),
                 Section::make('Machine information')
+                    ->inlineLabel()
                     ->schema([
                         TextEntry::make('manufacturer.manufacturer')
-                            ->label('Manufacturer')
+                            ->label('Manufacturer: ')
                             ->placeholder('-'),
                         TextEntry::make('modality.modality')
-                            ->label('Modality')
+                            ->label('Modality: ')
                             ->placeholder('-'),
                         TextEntry::make('model')
+                            ->label('Model: ')
                             ->placeholder('-'),
                         TextEntry::make('serial_number')
+                            ->label('Serial #: ')
                             ->placeholder('-'),
                         TextEntry::make('vend_site_id')
-                            ->label('Vendor site ID')
+                            ->label('Vendor site ID: ')
                             ->placeholder('-'),
                         TextEntry::make('manuf_date')
-                            ->label('Manufacture date')
-                            ->date()
+                            ->label('Manufacture date: ')
+                            ->date('Y-m-d')
+                            ->placeholder('-'),
+                        TextEntry::make('age')
+                            ->label('Age (years): ')
                             ->placeholder('-'),
                     ])
                     ->columns(2),
@@ -94,8 +104,7 @@ class MachineInfolist
                                 TableColumn::make('Notes'),
                             ])
                             ->schema([
-                                TextEntry::make('id')
-                                    ->label('ID'),
+                                TextEntry::make('id'),
                                 TextEntry::make('test_date')
                                     ->date('Y-m-d'),
                                 TextEntry::make('testType.test_type'),
