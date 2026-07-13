@@ -3,10 +3,12 @@
     :entry="$entry"
 >
     <div {{ $getExtraAttributeBag() }}>
+        @if ($record->hasMedia('survey_reports'))
         <x-filament::icon-button
             icon="heroicon-m-document"
             tag="a"
             href="{{ $record->getFirstMediaUrl('survey_reports') }}"
-         />
+         />            
+        @endif
     </div>
 </x-dynamic-component>
