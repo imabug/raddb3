@@ -156,7 +156,6 @@ class MachineInfolist
                                     TableColumn::make('Survey date'),
                                     TableColumn::make('Test type'),
                                     TableColumn::make('Accession'),
-                                    TableColumn::make('Survey Report'),
                                     TableColumn::make('Notes'),
                                 ])
                                 ->schema([
@@ -165,8 +164,8 @@ class MachineInfolist
                                         ->date('Y-m-d'),
                                     TextEntry::make('testType.test_type')
                                         ->wrap(false),
-                                    TextEntry::make('accession'),
-                                    SurveyReportEntry::make('surveyReport'),
+                                    TextEntry::make('accession')
+                                        ->beforeContent(SurveyReportEntry::make('surveyReport')),
                                     TextEntry::make('notes')
                                         ->wrap(),
                                 ]),
