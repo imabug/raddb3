@@ -93,10 +93,6 @@ class MachineInfolist
                                     TextEntry::make('id')
                                         ->label('Tube ID')
                                         ->placeholder('-'),
-                                    TextEntry::make('tube_status')
-                                        ->label('Status')
-                                        ->badge()
-                                        ->placeholder('-'),
                                     TextEntry::make('housing_manuf.manufacturer')
                                         ->label('Housing Manufacturer')
                                         ->placeholder('-'),
@@ -136,7 +132,7 @@ class MachineInfolist
                                         ->placeholder('-')
                                         ->columnSpanFull(),
                                 ])
-                                ->columns(3),
+                                ->columns(4),
                         ])
                         ->columnSpanFull(),
                     Tab::make('Operational Notes')
