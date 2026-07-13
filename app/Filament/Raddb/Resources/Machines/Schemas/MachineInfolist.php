@@ -93,7 +93,7 @@ class MachineInfolist
                                     TextEntry::make('id')
                                         ->label('Tube ID')
                                         ->placeholder('-'),
-                                    TextEntry::make('housing_manuf.manufacturer')
+                                    TextEntry::make('housingManuf.manufacturer')
                                         ->label('Housing Manufacturer')
                                         ->placeholder('-'),
                                     TextEntry::make('housing_model')
@@ -102,7 +102,7 @@ class MachineInfolist
                                     TextEntry::make('housing_sn')
                                         ->label('Housing SN')
                                         ->placeholder('-'),
-                                    TextEntry::make('insert_manuf.manufacturer')
+                                    TextEntry::make('insertManuf.manufacturer')
                                         ->label('Insert Manufacturer')
                                         ->placeholder('-'),
                                     TextEntry::make('insert_model')
