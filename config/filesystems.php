@@ -62,8 +62,8 @@ return [
 
         'SurveyReports' => [
             'driver' => 'local',
-            'root' => public_path('SurveyReports'),
-            'url' => env('APP_URL') . 'SurveyReports',
+            'root' => storage_path('app/public/SurveyReports'),
+            'url' => env('APP_URL') . '/storage/SurveyReports',
             'visibility' => 'public',
             'throw' => false,
         ],

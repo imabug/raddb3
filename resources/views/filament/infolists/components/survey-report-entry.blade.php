@@ -6,7 +6,7 @@
         <x-filament::icon-button
             icon="heroicon-m-document"
             tag="a"
-            href="{{ $getSurveyLink($record->id) }}"
+            href="{{ $record->getFirstMediaUrl('survey_reports') }}"
          />
     </div>
 </x-dynamic-component>
