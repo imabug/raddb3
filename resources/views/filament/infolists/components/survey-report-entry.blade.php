@@ -5,7 +5,7 @@
     <div {{ $getExtraAttributeBag() }}>
         @if ($record->hasMedia('survey_reports'))
         <x-filament::icon-button
-            icon="heroicon-m-document"
+            icon="heroicon-o-document"
             tag="a"
             href="{{ $record->getFirstMediaUrl('survey_reports') }}"
          />            
