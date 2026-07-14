@@ -2,12 +2,12 @@
 
 namespace App\Filament\Raddb\Resources\Machines\Resources\Tubes\Tables;
 
+use App\Filament\Actions\TableEditAction;
+use App\Filament\Actions\TableViewAction;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
-use Filament\Actions\EditAction;
 use Filament\Actions\ForceDeleteBulkAction;
 use Filament\Actions\RestoreBulkAction;
-use Filament\Actions\ViewAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
@@ -18,60 +18,49 @@ class TubesTable
     {
         return $table
             ->columns([
-                TextColumn::make('machine.id')
-                    ->searchable(),
-                TextColumn::make('housingManuf.id')
+                TextColumn::make('housingManuf.manufacturer')
+                    ->label('Housing Manufacturer')
                     ->searchable(),
                 TextColumn::make('housing_model')
                     ->searchable(),
                 TextColumn::make('housing_sn')
+                    ->label('Housing SN')
                     ->searchable(),
-                TextColumn::make('insertManuf.id')
+                TextColumn::make('insertManuf.manufacturer')
+                    ->label('Insert Manufacturer')
                     ->searchable(),
                 TextColumn::make('insert_model')
                     ->searchable(),
                 TextColumn::make('insert_sn')
+                    ->label('Insert SN')
                     ->searchable(),
                 TextColumn::make('manuf_date')
-                    ->date()
+                    ->label('Manufacture date')
+                    ->date('Y-m-d')
                     ->sortable(),
                 TextColumn::make('install_date')
-                    ->date()
-                    ->sortable(),
-                TextColumn::make('remove_date')
-                    ->date()
+                    ->label('Install date')
+                    ->date('Y-m-d')
                     ->sortable(),
                 TextColumn::make('lfs')
+                    ->label('Large FS (mm)')
                     ->numeric()
                     ->sortable(),
                 TextColumn::make('mfs')
+                    ->label('Med FS (mm)')
                     ->numeric()
                     ->sortable(),
                 TextColumn::make('sfs')
+                    ->label('Small FS (mm)')
                     ->numeric()
                     ->sortable(),
-                TextColumn::make('tube_status')
-                    ->badge()
-                    ->searchable(),
-                TextColumn::make('deleted_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                TextColumn::make('created_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                TextColumn::make('updated_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
                 TrashedFilter::make(),
             ])
             ->recordActions([
-                ViewAction::make(),
-                EditAction::make(),
+                TableViewAction::make(),
+                TableEditAction::make(),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([
