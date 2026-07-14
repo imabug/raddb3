@@ -2,8 +2,6 @@
 
 namespace App\Filament\Raddb\Resources\SurveyScheduleViews;
 
-use App\Filament\Raddb\Resources\SurveyScheduleViews\Pages\CreateSurveyScheduleView;
-use App\Filament\Raddb\Resources\SurveyScheduleViews\Pages\EditSurveyScheduleView;
 use App\Filament\Raddb\Resources\SurveyScheduleViews\Pages\ListSurveyScheduleViews;
 use App\Filament\Raddb\Resources\SurveyScheduleViews\Pages\ViewSurveyScheduleView;
 use App\Filament\Raddb\Resources\SurveyScheduleViews\Schemas\SurveyScheduleViewForm;
@@ -28,11 +26,6 @@ class SurveyScheduleViewResource extends Resource
     public static function getEloquentQuery(): Builder
     {
         return parent::getEloquentQuery()->orderBy('prevSurveyDate', 'asc');
-    }
-
-    public static function form(Schema $schema): Schema
-    {
-        return SurveyScheduleViewForm::configure($schema);
     }
 
     public static function infolist(Schema $schema): Schema
