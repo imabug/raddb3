@@ -2,18 +2,16 @@
 
 namespace App\Filament\Raddb\Resources\SurveyScheduleViews\Tables;
 
-use App\Filament\Actions\TableEditAction;
-use App\Filament\Actions\TableViewAction;
-use App\Models\Facility;
-use Filament\Actions\BulkActionGroup;
-use Filament\Actions\DeleteBulkAction;
+use App\Filament\Tables\Columns\SurveySchedReportLink;
+use App\Models\SurveyScheduleView;
 use Filament\Forms\Components\DatePicker;
+use Filament\Schemas\Components\Utilities\Get;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\Filter;
-use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Grouping\Group;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 
 class SurveyScheduleViewsTable
 {
@@ -31,6 +29,8 @@ class SurveyScheduleViewsTable
                     ->wrap(),
                 TextColumn::make('prevSurveyId')
                     ->label('Prev Survey ID'),
+                SurveySchedReportLink::make('prevSurvLink')
+                    ->surveyLink(fn (SurveyScheduleView $record): int => $record->prevSurveyId),
                 TextColumn::make('prevSurveyDate')
                     ->label('Prev Survey Date')
                     ->date()
