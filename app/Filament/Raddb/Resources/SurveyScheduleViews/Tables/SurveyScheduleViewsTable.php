@@ -27,6 +27,7 @@ class SurveyScheduleViewsTable
                     ->sortable(),
                 TextColumn::make('description')
                     ->label('Machine')
+                    ->searchable()
                     ->wrap(),
                 TextColumn::make('prevSurveyId')
                     ->label('Prev Survey ID'),
@@ -76,8 +77,6 @@ class SurveyScheduleViewsTable
                     ->collapsible(),
             ])
             ->recordActions([
-                TableViewAction::make(),
-                TableEditAction::make(),
             ])
             ->toolbarActions([
             ]);
