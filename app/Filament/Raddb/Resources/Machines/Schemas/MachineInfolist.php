@@ -47,9 +47,6 @@ class MachineInfolist
                                 ->label('Status: ')
                                 ->badge()
                                 ->placeholder('-'),
-                            TextEntry::make('software_version')
-                                ->label('Software version: ')
-                                ->placeholder('-'),
                             TextEntry::make('pacs_station')
                                 ->label('PACS station: ')
                                 ->placeholder('-'),
@@ -73,6 +70,9 @@ class MachineInfolist
                                 ->placeholder('-'),
                             TextEntry::make('serial_number')
                                 ->label('Serial #: ')
+                                ->placeholder('-'),
+                            TextEntry::make('software_version')
+                                ->label('Software version: ')
                                 ->placeholder('-'),
                             TextEntry::make('vend_site_id')
                                 ->label('Vendor site ID: ')
@@ -115,7 +115,8 @@ class MachineInfolist
                                     TextEntry::make('testType.test_type')
                                         ->wrap(false),
                                     TextEntry::make('accession')
-                                        ->beforeContent(SurveyReportEntry::make('surveyReport')),
+                                        ->beforeContent(SurveyReportEntry::make('surveyReport'))
+                                        ->wrap(false),
                                     TextEntry::make('notes')
                                         ->wrap(),
                                 ]),
