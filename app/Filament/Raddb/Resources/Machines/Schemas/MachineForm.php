@@ -17,8 +17,6 @@ class MachineForm
                     ->tabs([
                         Tab::make('Machine info')
                             ->schema(MachineInfoSchema::make()),
-                        Tab::make('X-ray Tube')
-                            ->schema(MachineTubeSchema::make()),
                         Tab::make('Operational notes')
                             ->schema(MachineOpNotesSchema::make())
                             ->icon(Heroicon::OutlinedClipboardDocumentList),
