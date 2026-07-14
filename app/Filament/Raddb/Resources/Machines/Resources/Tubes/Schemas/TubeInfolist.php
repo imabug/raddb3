@@ -12,36 +12,46 @@ class TubeInfolist
     {
         return $schema
             ->components([
-                TextEntry::make('machine.id')
+                TextEntry::make('machine.description')
                     ->label('Machine'),
-                TextEntry::make('housingManuf.id')
-                    ->label('Housing manuf')
+                TextEntry::make('housingManuf.manufacturer')
+                    ->label('Housing Manufacturer')
                     ->placeholder('-'),
                 TextEntry::make('housing_model')
+                    ->label('Housing Model')
                     ->placeholder('-'),
                 TextEntry::make('housing_sn')
+                    ->label('Housing SN')
                     ->placeholder('-'),
-                TextEntry::make('insertManuf.id')
-                    ->label('Insert manuf')
+                TextEntry::make('insertManuf.manufacturer')
+                    ->label('Insert Manufacturer')
                     ->placeholder('-'),
                 TextEntry::make('insert_model')
+                    ->label('Insert Model')
                     ->placeholder('-'),
                 TextEntry::make('insert_sn')
+                    ->label('Insert SN')
                     ->placeholder('-'),
                 TextEntry::make('manuf_date')
-                    ->date()
+                    ->label('Manufacture date')
+                    ->date('Y-m-d')
                     ->placeholder('-'),
                 TextEntry::make('install_date')
-                    ->date()
+                    ->label('Install date')
+                    ->date('Y-m-d')
                     ->placeholder('-'),
                 TextEntry::make('remove_date')
-                    ->date()
+                    ->label('Removal date')
+                    ->date('Y-m-d')
                     ->placeholder('-'),
                 TextEntry::make('lfs')
+                    ->label('Large FS (mm)')
                     ->numeric(),
                 TextEntry::make('mfs')
+                    ->label('Medium FS (mm)')
                     ->numeric(),
                 TextEntry::make('sfs')
+                    ->label('Small FS (mm)')
                     ->numeric(),
                 TextEntry::make('tube_status')
                     ->badge(),
