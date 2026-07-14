@@ -54,7 +54,7 @@ class MachineResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            'tube' => RelationManagers\TubeRelationManager::class,
         ];
     }
 
