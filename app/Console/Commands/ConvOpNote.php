@@ -27,7 +27,8 @@ class ConvOpNote extends Command
                                    ->map(
                                        function (OpNote $item) {
                                            return ['note' => $item->note,];
-                                       });
+                                       },
+                                   );
                 $this->info('Opnotes for machine ' . $m->description . ' converted');
                 $m->save();
             }

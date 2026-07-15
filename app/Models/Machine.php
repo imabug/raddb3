@@ -35,7 +35,7 @@ class Machine extends Model implements HasMedia
         'modality',
         'manufacturer',
         'tube',
-//        'opnote',
+        //        'opnote',
     ];
 
     /**

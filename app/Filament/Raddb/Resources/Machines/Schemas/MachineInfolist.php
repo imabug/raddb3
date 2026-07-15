@@ -56,73 +56,73 @@ class MachineInfolist
                                 ->columnSpanFull(),
                         ])
                         ->columns(2),
-                    Tab::make('Machine information')
-                        ->inlineLabel()
-                        ->schema([
-                            TextEntry::make('manufacturer.manufacturer')
-                                ->label('Manufacturer: ')
-                                ->placeholder('-'),
-                            TextEntry::make('modality.modality')
-                                ->label('Modality: ')
-                                ->placeholder('-'),
-                            TextEntry::make('model')
-                                ->label('Model: ')
-                                ->placeholder('-'),
-                            TextEntry::make('serial_number')
-                                ->label('Serial #: ')
-                                ->placeholder('-'),
-                            TextEntry::make('software_version')
-                                ->label('Software version: ')
-                                ->placeholder('-'),
-                            TextEntry::make('vend_site_id')
-                                ->label('Vendor site ID: ')
-                                ->placeholder('-'),
-                            TextEntry::make('manuf_date')
-                                ->label('Manufacture date: ')
-                                ->date('Y-m-d')
-                                ->placeholder('-'),
-                            TextEntry::make('age')
-                                ->label('Age (years): ')
-                                ->placeholder('-'),
-                        ])
-                        ->columns(2),
-                    Tab::make('Operational Notes')
-                        ->schema([
-                            RepeatableEntry::make('op_notes')
-                                ->hiddenLabel()
-                                ->schema([
-                                    TextEntry::make('note')
-                                        ->hiddenLabel(),
-                                ])
-                                ->grid(2),
-                        ])
-                        ->columnSpanFull(),
-                    Tab::make('Surveys')
-                        ->schema([
-                            RepeatableEntry::make('testDate')
-                                ->hiddenLabel()
-                                ->table([
-                                    TableColumn::make('Survey ID'),
-                                    TableColumn::make('Survey date'),
-                                    TableColumn::make('Test type'),
-                                    TableColumn::make('Accession'),
-                                    TableColumn::make('Notes'),
-                                ])
-                                ->schema([
-                                    TextEntry::make('id'),
-                                    TextEntry::make('test_date')
-                                        ->date('Y-m-d'),
-                                    TextEntry::make('testType.test_type')
-                                        ->wrap(false),
-                                    TextEntry::make('accession')
-                                        ->beforeContent(SurveyReportEntry::make('surveyReport'))
-                                        ->wrap(false),
-                                    TextEntry::make('notes')
-                                        ->wrap(),
-                                ]),
-                        ])
-                        ->columnSpanFull(),
-                        ])
+                        Tab::make('Machine information')
+                            ->inlineLabel()
+                            ->schema([
+                                TextEntry::make('manufacturer.manufacturer')
+                                    ->label('Manufacturer: ')
+                                    ->placeholder('-'),
+                                TextEntry::make('modality.modality')
+                                    ->label('Modality: ')
+                                    ->placeholder('-'),
+                                TextEntry::make('model')
+                                    ->label('Model: ')
+                                    ->placeholder('-'),
+                                TextEntry::make('serial_number')
+                                    ->label('Serial #: ')
+                                    ->placeholder('-'),
+                                TextEntry::make('software_version')
+                                    ->label('Software version: ')
+                                    ->placeholder('-'),
+                                TextEntry::make('vend_site_id')
+                                    ->label('Vendor site ID: ')
+                                    ->placeholder('-'),
+                                TextEntry::make('manuf_date')
+                                    ->label('Manufacture date: ')
+                                    ->date('Y-m-d')
+                                    ->placeholder('-'),
+                                TextEntry::make('age')
+                                    ->label('Age (years): ')
+                                    ->placeholder('-'),
+                            ])
+                            ->columns(2),
+                        Tab::make('Operational Notes')
+                            ->schema([
+                                RepeatableEntry::make('op_notes')
+                                    ->hiddenLabel()
+                                    ->schema([
+                                        TextEntry::make('note')
+                                            ->hiddenLabel(),
+                                    ])
+                                    ->grid(2),
+                            ])
+                            ->columnSpanFull(),
+                        Tab::make('Surveys')
+                            ->schema([
+                                RepeatableEntry::make('testDate')
+                                    ->hiddenLabel()
+                                    ->table([
+                                        TableColumn::make('Survey ID'),
+                                        TableColumn::make('Survey date'),
+                                        TableColumn::make('Test type'),
+                                        TableColumn::make('Accession'),
+                                        TableColumn::make('Notes'),
+                                    ])
+                                    ->schema([
+                                        TextEntry::make('id'),
+                                        TextEntry::make('test_date')
+                                            ->date('Y-m-d'),
+                                        TextEntry::make('testType.test_type')
+                                            ->wrap(false),
+                                        TextEntry::make('accession')
+                                            ->beforeContent(SurveyReportEntry::make('surveyReport'))
+                                            ->wrap(false),
+                                        TextEntry::make('notes')
+                                            ->wrap(),
+                                    ]),
+                            ])
+                            ->columnSpanFull(),
+                    ]),
             ]);
     }
 }

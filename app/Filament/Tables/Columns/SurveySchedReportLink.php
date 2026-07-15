@@ -14,7 +14,7 @@ class SurveySchedReportLink extends Column
 
     public function surveyLink(int|Closure|null $surveyId): static
     {
-        $survey = $surveyId  ? TestDate::find($surveyId) : null;
+        $survey = $surveyId ? TestDate::find($surveyId) : null;
 
         if (!is_null($survey) && $survey->hasMedia('survey_reports')) {
             $this->surveyLink = $survey->getFirstMediaUrl('survey_reports');

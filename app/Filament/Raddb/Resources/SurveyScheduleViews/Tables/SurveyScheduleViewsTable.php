@@ -30,7 +30,7 @@ class SurveyScheduleViewsTable
                 TextColumn::make('prevSurveyId')
                     ->label('Prev Survey ID'),
                 SurveySchedReportLink::make('prevSurvLink')
-                    ->surveyLink(fn (SurveyScheduleView $record): int => $record->prevSurveyId),
+                    ->surveyLink(fn(SurveyScheduleView $record): int => $record->prevSurveyId),
                 TextColumn::make('prevSurveyDate')
                     ->label('Prev Survey Date')
                     ->date()
