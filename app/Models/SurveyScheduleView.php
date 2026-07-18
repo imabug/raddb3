@@ -43,12 +43,12 @@ class SurveyScheduleView extends Model
 
     public function prevSurvey(): BelongsTo
     {
-        return $this->belongsTo(TestDate::class, 'prevSurveyID');
+        return $this->belongsTo(TestDate::class, 'prevSurveyId');
     }
 
     public function currSurvey(): BelongsTo
     {
-        return $this->belongsTo(TestDate::class, 'currSurveyID');
+        return $this->belongsTo(TestDate::class, 'currSurveyId');
     }
 
     /*
