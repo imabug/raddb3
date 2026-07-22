@@ -22,6 +22,10 @@ class TestDateForm
                         titleAttribute: 'description',
                         modifyQueryUsing: fn(Builder $query) => $query->active(),
                     )
+                    ->searchable()
+                    ->noSearchResultsMessage('No machines found')
+                    ->searchPrompt('Search by machine description')
+                    ->preload()
                     ->required(),
                 Select::make('test_type_id')
                     ->label('Test type')
@@ -29,11 +33,13 @@ class TestDateForm
                         name: 'testType',
                         titleAttribute: 'test_type',
                     )
+                    ->default(1) // Would prefer to not hardcode this
                     ->required(),
                 DateTimePicker::make('test_date')
                     ->label('Survey date')
-                    ->format('Y-m-d H:i:s')
-                    ->displayFormat('Y-m-d H:i:s')
+                    ->format('Y-m-d H:i')
+                    ->displayFormat('Y-m-d H:i')
+                    ->seconds(false)
                     ->required(),
                 TextInput::make('accession')
                     ->string()
