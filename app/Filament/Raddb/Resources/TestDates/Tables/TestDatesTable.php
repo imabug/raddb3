@@ -8,6 +8,7 @@ use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\ForceDeleteBulkAction;
 use Filament\Actions\RestoreBulkAction;
+use Filament\Forms\Components\DatePicker;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\Filter;
 use Filament\Tables\Filters\SelectFilter;
@@ -52,8 +53,28 @@ class TestDatesTable
                     ->toggle(),
                 SelectFilter::make('testType')
                     ->relationship('testType', 'test_type'),
+                Filter::make('surveyDateRange')
+                ->label('Survey date range')
+                ->schema([
+                    DatePicker::make('surveyStart')
+                        ->label('Survey start date'),
+                    DatePicker::make('surveyEnd')
+                        ->label('Survey end date'),
+                ])
+                ->query(function (Builder $query, array $data): Builder {
+                    return $query
+                        ->when(
+                            $data['surveyStart'],
+                            fn(Builder $query, $date): Builder => $query->whereDate('test_date', '>=', $date),
+                        )
+                        ->when(
+                            $data['surveyEnd'],
+                            fn(Builder $query, $date): Builder => $query->whereDate('test_date', '<=', $date),
+                        );
+                }),
             ])
             ->deferFilters(false)
+            ->paginated([10, 25, 50, 'all'])
             ->recordActions([
                 TableViewAction::make(),
                 TableEditAction::make(),
