@@ -41,6 +41,6 @@ class User extends Authenticatable
      */
     public function testDates(): BelongsToMany
     {
-        return $this->belongsToMany(TestDate::class);
+        return $this->belongsToMany(TestDate::class, 'test_date_users', 'user_id', 'test_date_id');
     }
 }

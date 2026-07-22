@@ -89,7 +89,7 @@ class TestDate extends Model implements HasMedia
 
     public function users(): BelongsToMany
     {
-        return $this->belongsToMany(User::class);
+        return $this->belongsToMany(User::class, 'test_date_users', 'test_date_id', 'user_id');
     }
 
     /**
