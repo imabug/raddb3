@@ -120,6 +120,11 @@ class Machine extends Model implements HasMedia
         return $this->hasMany(Tube::class);
     }
 
+    public function tubes(): HasMany
+    {
+        return $this->hasMany(Tube::class);
+    }
+
     public function opNote(): HasMany
     {
         return $this->hasMany(OpNote::class);
