@@ -8,6 +8,7 @@ use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Schemas\Schema;
+use Illuminate\Database\Eloquent\Builder;
 
 class TubeForm
 {
@@ -16,17 +17,21 @@ class TubeForm
         return $schema
             ->components([
                 Select::make('machine_id')
-                    ->relationship('machine', 'id')
+                    ->relationship(
+                        name: 'machine',
+                        titleAttribute: 'description',
+                        modifyQueryUsing: fn(Builder $query) => $query->active(),
+                    )
                     ->required(),
                 Select::make('housing_manuf_id')
-                    ->relationship('housingManuf', 'id')
+                    ->relationship('housingManuf', 'manufacturer')
                     ->default(null),
                 TextInput::make('housing_model')
                     ->default(null),
                 TextInput::make('housing_sn')
                     ->default(null),
                 Select::make('insert_manuf_id')
-                    ->relationship('insertManuf', 'id')
+                    ->relationship('insertManuf', 'manufacturer')
                     ->default(null),
                 TextInput::make('insert_model')
                     ->default(null),
@@ -38,18 +43,18 @@ class TubeForm
                 DatePicker::make('install_date')
                     ->format('Y-m-d')
                     ->displayFormat('Y-m-d'),
-                DatePicker::make('remove_date')
-                    ->format('Y-m-d')
-                    ->displayFormat('Y-m-d'),
                 TextInput::make('lfs')
+                    ->label('Large focal spot (mm)')
                     ->required()
                     ->numeric()
                     ->default(0.0),
                 TextInput::make('mfs')
+                    ->label('Medium focal spot (mm)')
                     ->required()
                     ->numeric()
                     ->default(0.0),
                 TextInput::make('sfs')
+                    ->label('Small focal spot (mm)')
                     ->required()
                     ->numeric()
                     ->default(0.0),
