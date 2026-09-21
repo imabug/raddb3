@@ -60,6 +60,7 @@ class Machine extends Model implements HasMedia
         'software_version',
         'pacs_station',
         'notes',
+        'op_notes',
     ];
 
     /**
