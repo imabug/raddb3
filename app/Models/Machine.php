@@ -26,6 +26,11 @@ class Machine extends Model implements HasMedia
 
     /**
      * Eager loaded relationships
+     * Warniing: Don't eager load the testDate() relationship.  It might seems like a good
+     * idea, but this will cause a recursive loop because the TestDate model
+     * is eager loading the machine() relationship
+     * Probably should just load the relationships as needed instead of doing
+     * automatic eager loading
      *
      * @var array
      */
