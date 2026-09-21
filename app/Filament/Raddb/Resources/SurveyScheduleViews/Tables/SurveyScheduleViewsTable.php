@@ -2,7 +2,6 @@
 
 namespace App\Filament\Raddb\Resources\SurveyScheduleViews\Tables;
 
-use App\Filament\Tables\Columns\SurveySchedReportLink;
 use App\Models\SurveyScheduleView;
 use Filament\Forms\Components\DatePicker;
 use Filament\Schemas\Components\Utilities\Get;
@@ -29,8 +28,6 @@ class SurveyScheduleViewsTable
                     ->wrap(),
                 TextColumn::make('prevSurveyId')
                     ->label('Prev Survey ID'),
-                SurveySchedReportLink::make('prevSurvLink')
-                    ->surveyLink(fn(SurveyScheduleView $record): int => $record->prevSurveyId),
                 TextColumn::make('prevSurveyDate')
                     ->label('Prev Survey Date')
                     ->date()
