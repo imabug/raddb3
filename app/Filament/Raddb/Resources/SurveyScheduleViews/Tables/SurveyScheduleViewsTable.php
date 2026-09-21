@@ -30,13 +30,13 @@ class SurveyScheduleViewsTable
                     ->label('Prev Survey ID'),
                 TextColumn::make('prevSurveyDate')
                     ->label('Prev Survey Date')
-                    ->date()
+                    ->date('Y-m-d')
                     ->sortable(),
                 TextColumn::make('currSurveyId')
                     ->label('Current Survey ID'),
                 TextColumn::make('currSurveyDate')
                     ->label('Current Survey Date')
-                    ->date()
+                    ->date('Y-m-d')
                     ->sortable(),
             ])
             ->paginated(false)
