@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\Status;
 use App\Http\Requests\StoreMachineRequest;
 use App\Http\Requests\UpdateMachineRequest;
 use App\Models\Machine;
@@ -61,6 +62,20 @@ class MachineController extends Controller
      */
     public function destroy(Machine $machine)
     {
-        //
+        // Set the machine status
+        $machine->machine_status = Status::Removed;
+        $machine->remove_date = date('Y-m-d');
+        $machine->save();
+
+        // Get the tubes associated with $machine
+        $tubes = $machine->tube->where('tube_status', Status::Active);
+        foreach ($tubes as $t) {
+            $t->tube_status = Status::Removed;
+            $t->remove_date = date('Y-m-d');
+            $t->save();
+            $t->delete();
+        }
+
+        $machine->delete();
     }
 }
