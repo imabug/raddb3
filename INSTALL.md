@@ -20,3 +20,4 @@ Seed the database
 
 `php artisan db:seed` 
 
+If there is existing data from the old version of RadDB, run the `migrate_db.sql` migration script in the `database/` directory
