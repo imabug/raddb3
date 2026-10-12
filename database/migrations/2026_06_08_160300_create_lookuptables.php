@@ -89,6 +89,10 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('lookuptables');
+        Schema::dropIfExists('facilities');
+        Schema::dropIfExists('locations');
+        Schema::dropIfExists('modalities');
+        Schema::dropIfExists('manufacturers');
+        Schema::dropIfExists('test_types');
     }
 };
