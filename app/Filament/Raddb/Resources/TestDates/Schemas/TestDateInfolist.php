@@ -16,7 +16,7 @@ class TestDateInfolist
                 TextEntry::make('testType.test_type')
                     ->label('Test type'),
                 TextEntry::make('test_date')
-                    ->dateTime(),
+                    ->dateTime('Y-m-d H:i:s'),
                 TextEntry::make('accession')
                     ->placeholder('-'),
                 TextEntry::make('notes')
