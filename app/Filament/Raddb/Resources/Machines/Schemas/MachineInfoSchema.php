@@ -28,7 +28,7 @@ class MachineInfoSchema
                         ->relationship(
                             name: 'location',
                             titleAttribute: 'location',
-                            modifyQueryUsing: fn(Builder $query, Get $get) => $query->where('facility_id', $get('facility_id')),
+                            modifyQueryUsing: fn (Builder $query, Get $get) => $query->where('facility_id', $get('facility_id')),
                         )
                         ->required(),
                     Textarea::make('description')
@@ -40,7 +40,11 @@ class MachineInfoSchema
                         ->maxLength(20)
                         ->default(null),
                     Select::make('machine_status')
-                        ->options(Status::class)
+                        ->options([
+                            Status::Active->value => Status::Active->name,
+                            Status::Inactive->value => Status::Inactive->name,
+                            Status::Removed->value => Status::Removed->name,
+                        ])
                         ->default(Status::Active)
                         ->required(),
                     DatePicker::make('install_date')

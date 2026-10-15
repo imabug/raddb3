@@ -5,8 +5,8 @@ namespace App\Filament\Raddb\Resources\Machines\Resources\Tubes\Schemas;
 use App\Enums\Status;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Select;
-use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
 use Illuminate\Database\Eloquent\Builder;
 
@@ -20,7 +20,7 @@ class TubeForm
                     ->relationship(
                         name: 'machine',
                         titleAttribute: 'description',
-                        modifyQueryUsing: fn(Builder $query) => $query->active(),
+                        modifyQueryUsing: fn (Builder $query) => $query->active(),
                     )
                     ->required(),
                 Select::make('housing_manuf_id')
@@ -59,7 +59,11 @@ class TubeForm
                     ->numeric()
                     ->default(0.0),
                 Select::make('tube_status')
-                    ->options(Status::class)
+                    ->options([
+                        Status::Active->value => Status::Active->name,
+                        Status::Inactive->value => Status::Inactive->name,
+                        Status::Removed->value => Status::Removed->name,
+                    ])
                     ->default(Status::Active)
                     ->required(),
                 Textarea::make('notes')
