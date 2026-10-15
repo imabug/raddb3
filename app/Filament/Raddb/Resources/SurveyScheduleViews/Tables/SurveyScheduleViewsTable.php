@@ -5,6 +5,7 @@ namespace App\Filament\Raddb\Resources\SurveyScheduleViews\Tables;
 use App\Models\SurveyScheduleView;
 use BackedEnum;
 use Filament\Forms\Components\DatePicker;
+use Filament\Support\Enums\IconPosition;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\Filter;
@@ -28,14 +29,16 @@ class SurveyScheduleViewsTable
                     ->wrap(),
                 TextColumn::make('prevSurveyId')
                     ->label('Prev Survey ID')
-                    ->icon(fn (SurveyScheduleView $record): ?BackedEnum => $record->prevSurvey->hasMedia() ? Heroicon::DocumentText : null),
+                    ->icon(fn (SurveyScheduleView $record): ?BackedEnum => $record->prevSurvey->hasMedia('survey_reports') ? Heroicon::DocumentText : null)
+                    ->iconPosition(IconPosition::After),
                 TextColumn::make('prevSurveyDate')
                     ->label('Prev Survey Date')
                     ->date('Y-m-d')
                     ->sortable(),
                 TextColumn::make('currSurveyId')
                     ->label('Current Survey ID')
-                    ->icon(fn (SurveyScheduleView $record): ?BackedEnum => $record->currSurvey->hasMedia() ? Heroicon::DocumentText : null),
+                    ->icon(fn (SurveyScheduleView $record): ?BackedEnum => $record->currSurvey->hasMedia('survey_reports') ? Heroicon::DocumentText : null)
+                    ->iconPosition(IconPosition::After),
                 TextColumn::make('currSurveyDate')
                     ->label('Current Survey Date')
                     ->date('Y-m-d')
