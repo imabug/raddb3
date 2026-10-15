@@ -3,10 +3,12 @@
 namespace App\Filament\Raddb\Resources\Machines\Resources\Tubes\Schemas;
 
 use App\Enums\Status;
+use App\Models\Tube;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
+use Filament\Schemas\Components\Utilities\Get;
 use Filament\Schemas\Schema;
 use Illuminate\Database\Eloquent\Builder;
 
@@ -27,6 +29,14 @@ class TubeForm
                     ->relationship('housingManuf', 'manufacturer')
                     ->default(null),
                 TextInput::make('housing_model')
+                    ->datalist(function (Get $get): array {
+                        return Tube::where('housing_manuf_id', $get('housing_manuf_id'))
+                            ->get()
+                            ->pluck('housing_model')
+                            ->unique()
+                            ->values()
+                            ->all();
+                    })
                     ->default(null),
                 TextInput::make('housing_sn')
                     ->default(null),
@@ -34,6 +44,14 @@ class TubeForm
                     ->relationship('insertManuf', 'manufacturer')
                     ->default(null),
                 TextInput::make('insert_model')
+                    ->datalist(function (Get $get): array {
+                        return Tube::where('insert_manuf_id', $get('insert_manuf_id'))
+                            ->get()
+                            ->pluck('insert_model')
+                            ->unique()
+                            ->values()
+                            ->all();
+                    })
                     ->default(null),
                 TextInput::make('insert_sn')
                     ->default(null),
