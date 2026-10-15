@@ -44,13 +44,13 @@ return new class extends Migration
                 ->constrained(table: 'modalities')
                 ->noActionOnUpdate()
                 ->noActionOnDelete();
-            $table->string('description', 255)
+            $table->string('description')
                 ->comment('Commonly understood unit identifier')
                 ->nullable()
                 ->index();
-            $table->string('model', 255)->nullable()->index();
-            $table->string('serial_number', 255)->nullable()->index();
-            $table->string('vend_site_id', 255)->nullable()->index();
+            $table->string('model')->nullable()->index();
+            $table->string('serial_number')->nullable()->index();
+            $table->string('vend_site_id')->nullable()->index();
             $table->string('room', length: 20)->nullable()->index();
             $table->date('install_date')->index()->nullable();
             $table->date('manuf_date')->index()->nullable();

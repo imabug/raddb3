@@ -21,7 +21,7 @@ return new class extends Migration
          */
         Schema::create('facilities', function (Blueprint $table) {
             $table->id();
-            $table->string('facility', 255)->nullable(false)->index();
+            $table->string('facility')->nullable(false)->index();
             $table->string('street_address')->nullable()->index();
             $table->string('city')->nullable()->index();
             $table->string('state')->nullable()->index();
@@ -45,7 +45,7 @@ return new class extends Migration
                 ->constrained(table: 'facilities')
                 ->noActionOnUpdate()
                 ->noActionOnDelete();
-            $table->string('location', 100)->nullable(false)->index();
+            $table->string('location')->nullable(false)->index();
             $table->softDeletes();
             $table->timestamps();
         });
@@ -56,7 +56,7 @@ return new class extends Migration
          */
         Schema::create('modalities', function (Blueprint $table) {
             $table->id();
-            $table->string('modality', 50)->nullable(false)->index();
+            $table->string('modality')->nullable(false)->index();
             $table->softDeletes();
             $table->timestamps();
         });
@@ -67,7 +67,7 @@ return new class extends Migration
          */
         Schema::create('manufacturers', function (Blueprint $table) {
             $table->id();
-            $table->string('manufacturer', 50)->nullable(false)->index();
+            $table->string('manufacturer')->nullable(false)->index();
             $table->softDeletes();
             $table->timestamps();
         });
@@ -78,7 +78,7 @@ return new class extends Migration
          */
         Schema::create('test_types', function (Blueprint $table) {
             $table->id();
-            $table->string('test_type', 30)->nullable(false)->index();
+            $table->string('test_type')->nullable(false)->index();
             $table->softDeletes();
             $table->timestamps();
         });

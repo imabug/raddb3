@@ -1,8 +1,7 @@
 <?php
 
 use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
 
 return new class extends Migration
 {
@@ -19,7 +18,7 @@ return new class extends Migration
          * accordingly.
          * Should find a better way to do this.
          */
-        DB::statement("
+        DB::statement('
 CREATE VIEW lastyear_view (machine_id, survey_id, test_date) AS
 SELECT machine_id, id as survey_id, test_date
 FROM test_dates
@@ -27,9 +26,9 @@ WHERE test_date
 BETWEEN MAKEDATE(YEAR(CURDATE())-1, 1) AND MAKEDATE(YEAR(CURDATE()), 1)
 AND deleted_at IS NULL
 AND (test_type_id=1 OR test_type_id=2)
-");
+');
 
-        DB::statement("
+        DB::statement('
 CREATE VIEW thisyear_view (machine_id, survey_id, test_date) AS
 SELECT machine_id, id as survey_id, test_date
 FROM test_dates
@@ -37,7 +36,7 @@ WHERE test_date BETWEEN
 MAKEDATE(YEAR(CURDATE()), 1) AND MAKEDATE(YEAR(CURDATE())+1, 1)
 AND deleted_at IS NULL
 AND (test_type_id=1 OR test_type_id=2)
-");
+');
 
         // surveyschedule view
         DB::statement("
@@ -58,6 +57,6 @@ ORDER BY prevSurveyDate, id ASC
      */
     public function down(): void
     {
-        Schema::dropIfExists('views');
+        DB::statement('drop view if exists lastyear_view,thisyear_view,surveyschedule_view');
     }
 };
