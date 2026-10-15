@@ -59,10 +59,14 @@ class TubeForm
                     ->default(null),
                 DatePicker::make('manuf_date')
                     ->format('Y-m-d')
-                    ->displayFormat('Y-m-d'),
+                    ->displayFormat('Y-m-d')
+                    ->maxDate(fn (Get $get) => $get('install_date'))
+                    ->live(),
                 DatePicker::make('install_date')
                     ->format('Y-m-d')
-                    ->displayFormat('Y-m-d'),
+                    ->displayFormat('Y-m-d')
+                    ->minDate(fn (Get $get) => $get('manuf_date'))
+                    ->live(),
                 TextInput::make('lfs')
                     ->label('Large focal spot (mm)')
                     ->required()

@@ -52,7 +52,8 @@ class MachineInfoSchema
                         ->label('Install date')
                         ->format('Y-m-d')
                         ->displayFormat('Y-m-d')
-                        ->default(null),
+                        ->default(null)
+                        ->live(),
                     Textarea::make('notes')
                         ->default(null)
                         ->columnSpanFull(),
@@ -99,7 +100,8 @@ class MachineInfoSchema
                         ->label('Manufacture date')
                         ->format('Y-m-d')
                         ->displayFormat('Y-m-d')
-                        ->default(null),
+                        ->default(null)
+                        ->maxDate(fn (Get $get) => $get('install_date')),
                     TextInput::make('software_version')
                         ->string()
                         ->maxLength(50)
