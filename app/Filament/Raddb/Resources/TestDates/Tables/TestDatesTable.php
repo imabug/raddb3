@@ -28,9 +28,17 @@ class TestDatesTable
             ->columns([
                 TextColumn::make('id')
                     ->label('Survey ID')
-                    ->icon(fn ($state): ?BackedEnum => TestDate::find($state)->hasMedia('survey_reports') ? Heroicon::DocumentText : null)
+                    ->icon(function ($state): ?BackedEnum {
+                        $t = TestDate::find($state)->hasMedia('survey_reports');
+
+                        return $t ? Heroicon::DocumentText : null;
+                    })
                     ->iconPosition(IconPosition::After)
-                    ->url(fn ($state) => TestDate::find($state)->hasMedia('survey_reports') ? TestDate::find($state)->getFirstMediaUrl('survey_reports') : null),
+                    ->url(function ($state) {
+                        $t = TestDate::find($state);
+
+                        return $t->hasMedia('survey_reports') ? $t->getFirstMediaUrl('survey_reports') : null;
+                    }),
                 TextColumn::make('machine.description')
                     ->searchable(),
                 TextColumn::make('testType.test_type')

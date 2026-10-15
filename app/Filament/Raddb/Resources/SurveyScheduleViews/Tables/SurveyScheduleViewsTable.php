@@ -29,18 +29,30 @@ class SurveyScheduleViewsTable
                     ->wrap(),
                 TextColumn::make('prevSurveyId')
                     ->label('Prev Survey ID')
-                    ->icon(fn ($state): ?BackedEnum => TestDate::find($state)->hasMedia('survey_reports') ? Heroicon::DocumentText : null)
+                    ->icon(function ($state): ?BackedEnum {
+                        return TestDate::find($state)->hasMedia('survey_reports') ? Heroicon::DocumentText : null;
+                    })
                     ->iconPosition(IconPosition::After)
-                    ->url(fn ($state) => TestDate::find($state)->hasMedia('survey_reports') ? TestDate::find($state)->getFirstMediaUrl('survey_reports') : null),
+                    ->url(function ($state) {
+                        $t = TestDate::find($state);
+
+                        return $t->hasMedia('survey_reports') ? $t->getFirstMediaUrl('survey_reports') : null;
+                    }),
                 TextColumn::make('prevSurveyDate')
                     ->label('Prev Survey Date')
                     ->date('Y-m-d')
                     ->sortable(),
                 TextColumn::make('currSurveyId')
                     ->label('Current Survey ID')
-                    ->icon(fn ($state): ?BackedEnum => TestDate::find($state)->hasMedia('survey_reports') ? Heroicon::DocumentText : null)
+                    ->icon(function ($state): ?BackedEnum {
+                        return TestDate::find($state)->hasMedia('survey_reports') ? Heroicon::DocumentText : null;
+                    })
                     ->iconPosition(IconPosition::After)
-                    ->url(fn ($state) => TestDate::find($state)->hasMedia('survey_reports') ? TestDate::find($state)->getFirstMediaUrl('survey_reports') : null),
+                    ->url(function ($state) {
+                        $t = TestDate::find($state);
+
+                        return $t->hasMedia('survey_reports') ? $t->getFirstMediaUrl('survey_reports') : null;
+                    }),
                 TextColumn::make('currSurveyDate')
                     ->label('Current Survey Date')
                     ->date('Y-m-d')
