@@ -4,12 +4,15 @@ namespace App\Filament\Raddb\Resources\TestDates\Tables;
 
 use App\Filament\Actions\TableEditAction;
 use App\Filament\Actions\TableViewAction;
+use App\Models\TestDate;
+use BackedEnum;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\ForceDeleteBulkAction;
 use Filament\Actions\RestoreBulkAction;
 use Filament\Forms\Components\DatePicker;
-use Filament\Schemas\Components\Utilities\Get;
+use Filament\Support\Enums\IconPosition;
+use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\Filter;
 use Filament\Tables\Filters\SelectFilter;
@@ -23,6 +26,11 @@ class TestDatesTable
     {
         return $table
             ->columns([
+                TextColumn::make('id')
+                    ->label('Survey ID')
+                    ->icon(fn ($state): ?BackedEnum => TestDate::find($state)->hasMedia('survey_reports') ? Heroicon::DocumentText : null)
+                    ->iconPosition(IconPosition::After)
+                    ->url(fn ($state) => TestDate::find($state)->hasMedia('survey_reports') ? TestDate::find($state)->getFirstMediaUrl('survey_reports') : null),
                 TextColumn::make('machine.description')
                     ->searchable(),
                 TextColumn::make('testType.test_type')
@@ -37,23 +45,23 @@ class TestDatesTable
                 TrashedFilter::make(),
                 Filter::make('pending')
                     ->label('Pending')
-                    ->query(fn(Builder $query): Builder => $query->activeMachines()->pending())
+                    ->query(fn (Builder $query): Builder => $query->activeMachines()->pending())
                     ->toggle()
                     ->default(),
                 Filter::make('activeMachines')
                     ->label('Active machines')
-                    ->query(fn(Builder $query): Builder => $query->activeMachines())
+                    ->query(fn (Builder $query): Builder => $query->activeMachines())
                     ->toggle(),
                 // TODO: Toggle prevYear/currYear filters depending on the state of the other filter
                 // i.e. if prevYear is toggled on, toggling currYear on should toggle prevYear off but
                 // leave prevYear if it's already off.
                 Filter::make('prevYear')
                     ->label('Previous year')
-                    ->query(fn(Builder $query): Builder => $query->year(date('Y') - 1))
+                    ->query(fn (Builder $query): Builder => $query->year(date('Y') - 1))
                     ->toggle(),
                 Filter::make('currYear')
                     ->label('Current year')
-                    ->query(fn(Builder $query): Builder => $query->year(date('Y')))
+                    ->query(fn (Builder $query): Builder => $query->year(date('Y')))
                     ->toggle(),
                 SelectFilter::make('testType')
                     ->relationship('testType', 'test_type'),
@@ -69,11 +77,11 @@ class TestDatesTable
                         return $query
                             ->when(
                                 $data['surveyStart'],
-                                fn(Builder $query, $date): Builder => $query->whereDate('test_date', '>=', $date),
+                                fn (Builder $query, $date): Builder => $query->whereDate('test_date', '>=', $date),
                             )
                             ->when(
                                 $data['surveyEnd'],
-                                fn(Builder $query, $date): Builder => $query->whereDate('test_date', '<=', $date),
+                                fn (Builder $query, $date): Builder => $query->whereDate('test_date', '<=', $date),
                             );
                     }),
             ])
