@@ -9,7 +9,6 @@ use Filament\Support\Enums\IconPosition;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\Filter;
-use Filament\Tables\Grouping\Group;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 
@@ -86,15 +85,6 @@ class SurveyScheduleViewsTable
                                 fn (Builder $query, $date): Builder => $query->whereDate('currSurveyDate', '<=', $date),
                             );
                     }),
-            ])
-            ->groups([
-                Group::make('machine.facility.facility')
-                    ->label('Facility')
-                    ->collapsible(),
-            ])
-            ->recordActions([
-            ])
-            ->toolbarActions([
             ]);
     }
 }
