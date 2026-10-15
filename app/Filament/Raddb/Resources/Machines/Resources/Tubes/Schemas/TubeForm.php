@@ -27,7 +27,8 @@ class TubeForm
                     ->required(),
                 Select::make('housing_manuf_id')
                     ->relationship('housingManuf', 'manufacturer')
-                    ->default(null),
+                    ->default(null)
+                    ->live(),
                 TextInput::make('housing_model')
                     ->datalist(function (Get $get): array {
                         return Tube::where('housing_manuf_id', $get('housing_manuf_id'))
@@ -42,7 +43,8 @@ class TubeForm
                     ->default(null),
                 Select::make('insert_manuf_id')
                     ->relationship('insertManuf', 'manufacturer')
-                    ->default(null),
+                    ->default(null)
+                    ->live(),
                 TextInput::make('insert_model')
                     ->datalist(function (Get $get): array {
                         return Tube::where('insert_manuf_id', $get('insert_manuf_id'))
