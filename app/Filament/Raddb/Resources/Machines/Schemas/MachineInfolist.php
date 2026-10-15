@@ -2,13 +2,12 @@
 
 namespace App\Filament\Raddb\Resources\Machines\Schemas;
 
-use App\Filament\Infolists\Components\SurveyReportEntry;
-use Filament\Infolists\Components\RepeatableEntry;
-use Filament\Infolists\Components\RepeatableEntry\TableColumn;
-use Filament\Infolists\Components\TextEntry;
+
+use App\Filament\Raddb\Resources\Machines\Schemas\Components\MachineInfoTab;
+use App\Filament\Raddb\Resources\Machines\Schemas\Components\MachineOpNotesTab;
+use App\Filament\Raddb\Resources\Machines\Schemas\Components\MachineSiteInfoTab;
+use App\Filament\Raddb\Resources\Machines\Schemas\Components\MachineSurveysTab;
 use Filament\Schemas\Components\Tabs;
-use Filament\Schemas\Components\Tabs\Tab;
-use Filament\Schemas\Components\Utilities\Get;
 use Filament\Schemas\Schema;
 
 class MachineInfolist
@@ -20,108 +19,10 @@ class MachineInfolist
                 Tabs::make()
                     ->columnSpanFull()
                     ->tabs([
-                        Tab::make('Site information')
-                        ->inlineLabel()
-                        ->schema([
-                            TextEntry::make('id')
-                                ->label('Machine ID: '),
-                            TextEntry::make('facility.facility')
-                                ->label('Facility: ')
-                                ->placeholder('-'),
-                            TextEntry::make('location.location')
-                                ->label('Location: ')
-                                ->placeholder('-'),
-                            TextEntry::make('room')
-                                ->label('Room: ')
-                                ->placeholder('-'),
-                            TextEntry::make('install_date')
-                                ->label('Install date: ')
-                                ->date('Y-m-d')
-                                ->placeholder('-'),
-                            TextEntry::make('remove_date')
-                                ->label('Removal date: ')
-                                ->date('Y-m-d')
-                                ->placeholder('-')
-                                ->visible(fn(Get $get): bool => ($get('machine_status') == 'Active') ? true : false),
-                            TextEntry::make('machine_status')
-                                ->label('Status: ')
-                                ->badge()
-                                ->placeholder('-'),
-                            TextEntry::make('pacs_station')
-                                ->label('PACS station: ')
-                                ->placeholder('-'),
-                            TextEntry::make('notes')
-                                ->label('Notes: ')
-                                ->placeholder('-')
-                                ->columnSpanFull(),
-                        ])
-                        ->columns(2),
-                        Tab::make('Machine information')
-                            ->inlineLabel()
-                            ->schema([
-                                TextEntry::make('manufacturer.manufacturer')
-                                    ->label('Manufacturer: ')
-                                    ->placeholder('-'),
-                                TextEntry::make('modality.modality')
-                                    ->label('Modality: ')
-                                    ->placeholder('-'),
-                                TextEntry::make('model')
-                                    ->label('Model: ')
-                                    ->placeholder('-'),
-                                TextEntry::make('serial_number')
-                                    ->label('Serial #: ')
-                                    ->placeholder('-'),
-                                TextEntry::make('software_version')
-                                    ->label('Software version: ')
-                                    ->placeholder('-'),
-                                TextEntry::make('vend_site_id')
-                                    ->label('Vendor site ID: ')
-                                    ->placeholder('-'),
-                                TextEntry::make('manuf_date')
-                                    ->label('Manufacture date: ')
-                                    ->date('Y-m-d')
-                                    ->placeholder('-'),
-                                TextEntry::make('age')
-                                    ->label('Age (years): ')
-                                    ->placeholder('-'),
-                            ])
-                            ->columns(2),
-                        Tab::make('Operational Notes')
-                            ->schema([
-                                RepeatableEntry::make('op_notes')
-                                    ->hiddenLabel()
-                                    ->schema([
-                                        TextEntry::make('note')
-                                            ->hiddenLabel(),
-                                    ])
-                                    ->grid(2),
-                            ])
-                            ->columnSpanFull(),
-                        Tab::make('Surveys')
-                            ->schema([
-                                RepeatableEntry::make('testDate')
-                                    ->hiddenLabel()
-                                    ->table([
-                                        TableColumn::make('Survey ID'),
-                                        TableColumn::make('Survey date'),
-                                        TableColumn::make('Test type'),
-                                        TableColumn::make('Accession'),
-                                        TableColumn::make('Notes'),
-                                    ])
-                                    ->schema([
-                                        TextEntry::make('id'),
-                                        TextEntry::make('test_date')
-                                            ->date('Y-m-d'),
-                                        TextEntry::make('testType.test_type')
-                                            ->wrap(false),
-                                        TextEntry::make('accession')
-                                            ->beforeContent(SurveyReportEntry::make('surveyReport'))
-                                            ->wrap(false),
-                                        TextEntry::make('notes')
-                                            ->wrap(),
-                                    ]),
-                            ])
-                            ->columnSpanFull(),
+                        MachineSiteInfoTab::make(),
+                        MachineInfoTab::make(),
+                        MachineOpNotesTab::make(),
+                        MachineSurveysTab::make(),
                     ]),
             ]);
     }
