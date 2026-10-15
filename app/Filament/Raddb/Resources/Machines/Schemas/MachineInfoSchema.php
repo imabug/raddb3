@@ -3,6 +3,7 @@
 namespace App\Filament\Raddb\Resources\Machines\Schemas;
 
 use App\Enums\Status;
+use App\Models\Machine;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
@@ -62,26 +63,37 @@ class MachineInfoSchema
                     Select::make('modality_id')
                         ->label('Modality')
                         ->relationship('modality', 'modality')
-                        ->default(null),
+                        ->default(null)
+                        ->live(),
                     Select::make('manufacturer_id')
                         ->label('Manufacturer')
                         ->relationship('manufacturer', 'manufacturer')
-                        ->default(null),
-                    Textarea::make('model')
+                        ->default(null)
+                        ->live(),
+                    TextInput::make('model')
                         ->string()
-                        ->maxLength(100)
-                        ->rows(1)
+                        ->maxLength(255)
+                        ->datalist(function (Get $get): array {
+                            $manuf = $get('manufacturer_id');
+                            $modality = $get('modality_id');
+
+                            return Machine::where('manufacturer_id', $manuf)
+                                ->where('modality_id', $modality)
+                                ->get()
+                                ->pluck('model')
+                                ->unique()
+                                ->values()
+                                ->all();
+                        })
                         ->default(null),
-                    Textarea::make('serial_number')
+                    TextInput::make('serial_number')
                         ->string()
-                        ->maxLength(50)
-                        ->rows(1)
+                        ->maxLength(255)
                         ->default(null),
-                    Textarea::make('vend_site_id')
+                    TextInput::make('vend_site_id')
                         ->label('Vendor site ID')
                         ->string()
-                        ->maxLength(25)
-                        ->rows(1)
+                        ->maxLength(255)
                         ->default(null),
                     DatePicker::make('manuf_date')
                         ->label('Manufacture date')
