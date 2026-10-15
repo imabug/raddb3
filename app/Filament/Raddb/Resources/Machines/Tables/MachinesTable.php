@@ -49,8 +49,8 @@ class MachinesTable
                     ->searchable(),
                 TextColumn::make('manufacturer.manufacturer')
                     ->visible(function ($livewire) {
-                        $filterState = $livewire->getTableFilterState('manufacturer');
-                        if ($filterState == null
+                        $filterState = $livewire->getTableFilterState('manufacturer'); 
+                       if ($filterState == null
                             || (is_array($filterState) && $filterState['value'] == "")) {
                             return true;
                         } else {
@@ -78,8 +78,6 @@ class MachinesTable
             ])
             ->groups([
                 Group::make('facility.facility')
-                    ->collapsible(),
-                Group::make('location.location')
                     ->collapsible(),
                 Group::make('modality.modality')
                     ->collapsible(),
