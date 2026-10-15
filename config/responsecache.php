@@ -9,7 +9,7 @@ return [
     /*
      * Determine if the response cache middleware should be enabled.
      */
-    'enabled' => env('RESPONSE_CACHE_ENABLED', false),
+    'enabled' => env('RESPONSE_CACHE_ENABLED', true),
 
     'cache' => [
         /*
@@ -23,7 +23,7 @@ return [
          * The default number of seconds responses will be cached
          * when using the default CacheProfile settings.
          */
-        'lifetime_in_seconds' => (int) env('RESPONSE_CACHE_LIFETIME', 60 * 60 * 2),
+        'lifetime_in_seconds' => (int) env('RESPONSE_CACHE_LIFETIME', 60 * 60 * 24 * 7),
 
         /*
          * If your cache driver supports tags, you may specify a tag
