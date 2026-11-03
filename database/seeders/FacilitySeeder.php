@@ -142,6 +142,18 @@ class FacilitySeeder extends Seeder
             'state' => 'SC',
             'zip_code' => '29486',
         ],
+        'MUSC Health West FSED' => [
+            'street_address' => '2082 Sam Rittenberg Blvd',
+            'city' => 'Charleston',
+            'state' => 'SC',
+            'zip_code' => '29407',
+        ],
+        'MUSC Health Summerville FSED' => [
+            'street_address' => '1310 North Main St',
+            'city' => 'Summerville',
+            'state' => 'SC',
+            'zip_code' => '29483',
+        ],
     ];
     /**
      * Run the database seeds.

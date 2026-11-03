@@ -189,6 +189,14 @@ class LocationSeeder extends Seeder
         21 => [
             'Radiation Oncology',
         ],
+        // MUSC Health West FSED
+        22 => [
+            'Radiology',
+        ],
+        // MUSC Health Summerville FSED
+        23 => [
+            'Radiology',
+        ],
     ];
 
     /**
