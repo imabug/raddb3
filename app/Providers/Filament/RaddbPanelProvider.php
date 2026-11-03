@@ -2,12 +2,12 @@
 
 namespace App\Providers\Filament;
 
+use App\Filament\Raddb\Pages\RaddbDashboard;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
 use Filament\Navigation\NavigationItem;
-use Filament\Pages\Dashboard;
 use Filament\Panel;
 use Filament\PanelProvider;
 use Filament\Support\Colors\Color;
@@ -36,7 +36,7 @@ class RaddbPanelProvider extends PanelProvider
             ->discoverResources(in: app_path('Filament/Raddb/Resources'), for: 'App\Filament\Raddb\Resources')
             ->discoverPages(in: app_path('Filament/Raddb/Pages'), for: 'App\Filament\Raddb\Pages')
             ->pages([
-                Dashboard::class,
+                RaddbDashboard::class,
             ])
             ->discoverWidgets(in: app_path('Filament/Raddb/Widgets'), for: 'App\Filament\Raddb\Widgets')
             ->widgets([
