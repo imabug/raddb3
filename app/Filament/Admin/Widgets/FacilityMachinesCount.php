@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filament\Raddb\Widgets;
+namespace App\Filament\Admin\Widgets;
 
 use App\Models\Machine;
 use Filament\Widgets\ChartWidget;
