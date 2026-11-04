@@ -1,20 +1,19 @@
 <?php
 
-namespace App\Filament\Admin\Widgets;
+namespace App\Filament\Widgets;
 
 use App\Models\Machine;
 use Filament\Widgets\ChartWidget;
-use Illuminate\Contracts\Support\Htmlable;
 
-class FacilityMachinesCount extends ChartWidget
+class ModalityMachineCount extends ChartWidget
 {
-    protected ?string $heading = 'Facility Machines Count';
+    protected ?string $heading = 'Machine count by modality';
     protected ?string $pollingInterval = null;
-    protected static ?int $sort = 5;
+    protected static ?int $sort = 4;
 
-    public function getDescription(): string|Htmlable|null
+    public function getDescription(): ?string
     {
-        return 'Number of machines at each facility.';
+        return 'Count of active machines by modality.';
     }
 
     protected function getOptions(): array
@@ -31,10 +30,9 @@ class FacilityMachinesCount extends ChartWidget
 
     protected function getData(): array
     {
-        $machines = Machine::active()
-            ->get()
-            ->countBy('facility.facility')
-            ->sortDesc();
+        $machines = Machine::get()
+                    ->countBy('modality.modality')
+                    ->sortDesc();
 
         return [
             'datasets' => [
@@ -43,7 +41,6 @@ class FacilityMachinesCount extends ChartWidget
                 ],
             ],
             'labels' => $machines->keys()->all(),
-
         ];
     }
 
