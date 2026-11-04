@@ -2,6 +2,7 @@
 
 namespace App\Providers\Filament;
 
+use App\Filament\Raddb\Pages\RaddbCharts;
 use App\Filament\Raddb\Pages\RaddbDashboard;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
@@ -29,7 +30,7 @@ class RaddbPanelProvider extends PanelProvider
             ->default()
             ->id('raddb')
             ->path('')
-            ->brandName('RadDB Filament')
+            ->brandName('MUSC Health RadDB')
             ->colors([
                 'primary' => Color::Amber,
             ])
