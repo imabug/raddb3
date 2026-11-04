@@ -11,6 +11,7 @@ class MonthlySurveyCount extends ChartWidget
     protected ?string $pollingInterval = null;
     protected static ?int $sort = 2;
     public ?string $filter = '';
+    protected bool $isCollapsible = true;
 
     public function getDescription(): ?string
     {

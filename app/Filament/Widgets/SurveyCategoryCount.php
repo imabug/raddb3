@@ -16,6 +16,7 @@ class SurveyCategoryCount extends ChartWidget
     protected ?string $pollingInterval = null;
     protected static ?int $sort = 3;
     public ?string $filter = '';
+    protected bool $isCollapsible = true;
 
     public function getDescription(): ?string
     {
@@ -84,6 +85,6 @@ class SurveyCategoryCount extends ChartWidget
 
     protected function getType(): string
     {
-        return 'pie';
+        return 'doughnut';
     }
 }

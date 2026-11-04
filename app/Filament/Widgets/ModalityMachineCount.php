@@ -10,6 +10,7 @@ class ModalityMachineCount extends ChartWidget
     protected ?string $heading = 'Machine count by modality';
     protected ?string $pollingInterval = null;
     protected static ?int $sort = 4;
+    protected bool $isCollapsible = true;
 
     public function getDescription(): ?string
     {
@@ -46,6 +47,6 @@ class ModalityMachineCount extends ChartWidget
 
     protected function getType(): string
     {
-        return 'pie';
+        return 'doughnut';
     }
 }

@@ -11,6 +11,7 @@ class FacilityMachinesCount extends ChartWidget
     protected ?string $heading = 'Facility Machines Count';
     protected ?string $pollingInterval = null;
     protected static ?int $sort = 5;
+    protected bool $isCollapsible = true;
 
     public function getDescription(): string|Htmlable|null
     {
@@ -49,6 +50,6 @@ class FacilityMachinesCount extends ChartWidget
 
     protected function getType(): string
     {
-        return 'pie';
+        return 'doughnut';
     }
 }
