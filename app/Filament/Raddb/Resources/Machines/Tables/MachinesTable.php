@@ -48,9 +48,9 @@ class MachinesTable
                     ->searchable(),
                 TextColumn::make('manufacturer.manufacturer')
                     ->visible(function ($livewire) {
-                        $filterState = $livewire->getTableFilterState('manufacturer'); 
-                       if ($filterState == null
-                            || (is_array($filterState) && $filterState['value'] == "")) {
+                        $filterState = $livewire->getTableFilterState('manufacturer');
+                        if ($filterState == null
+                             || (is_array($filterState) && $filterState['value'] == "")) {
                             return true;
                         } else {
                             return false;

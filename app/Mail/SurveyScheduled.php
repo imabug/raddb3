@@ -13,7 +13,8 @@ use Illuminate\Queue\SerializesModels;
 
 class SurveyScheduled extends Mailable
 {
-    use Queueable, SerializesModels;
+    use Queueable;
+    use SerializesModels;
 
     /**
      * Send an email with a JSON body when a survey is scheduled.  The JSON body will have

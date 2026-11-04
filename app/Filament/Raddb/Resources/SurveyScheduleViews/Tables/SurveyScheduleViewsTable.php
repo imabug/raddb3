@@ -78,11 +78,11 @@ class SurveyScheduleViewsTable
                         return $query
                             ->when(
                                 $data['surveyStart'],
-                                fn (Builder $query, $date): Builder => $query->whereDate('currSurveyDate', '>=', $date),
+                                fn(Builder $query, $date): Builder => $query->whereDate('currSurveyDate', '>=', $date),
                             )
                             ->when(
                                 $data['surveyEnd'],
-                                fn (Builder $query, $date): Builder => $query->whereDate('currSurveyDate', '<=', $date),
+                                fn(Builder $query, $date): Builder => $query->whereDate('currSurveyDate', '<=', $date),
                             );
                     }),
             ]);

@@ -2,7 +2,6 @@
 
 namespace App\Filament\Raddb\Resources\Machines\Schemas;
 
-
 use App\Filament\Raddb\Resources\Machines\Schemas\Components\MachineInfoTab;
 use App\Filament\Raddb\Resources\Machines\Schemas\Components\MachineOpNotesTab;
 use App\Filament\Raddb\Resources\Machines\Schemas\Components\MachineSiteInfoTab;

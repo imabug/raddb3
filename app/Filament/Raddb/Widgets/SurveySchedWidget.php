@@ -22,7 +22,7 @@ class SurveySchedWidget extends TableWidget
     public function table(Table $table): Table
     {
         return $table
-            ->query(fn (): Builder => SurveyScheduleView::query()->orderBy('prevSurveyDate', 'asc'))
+            ->query(fn(): Builder => SurveyScheduleView::query()->orderBy('prevSurveyDate', 'asc'))
             ->heading('Survey schedule')
             ->columns([
                 TextColumn::make('id')
@@ -79,11 +79,11 @@ class SurveySchedWidget extends TableWidget
                         return $query
                             ->when(
                                 $data['surveyStart'],
-                                fn (Builder $query, $date): Builder => $query->whereDate('currSurveyDate', '>=', $date),
+                                fn(Builder $query, $date): Builder => $query->whereDate('currSurveyDate', '>=', $date),
                             )
                             ->when(
                                 $data['surveyEnd'],
-                                fn (Builder $query, $date): Builder => $query->whereDate('currSurveyDate', '<=', $date),
+                                fn(Builder $query, $date): Builder => $query->whereDate('currSurveyDate', '<=', $date),
                             );
                     }),
             ])

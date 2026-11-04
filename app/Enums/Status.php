@@ -21,7 +21,7 @@ enum Status: string implements HasColor, HasDescription, HasIcon, HasLabel
     case InProgress = 'In progress';
     case NeedInfo = 'Need info';
     case Complete = 'Complete';
-    
+
     // Survey related status
     case Current = 'Current';
     case Due30d = 'Due within 30 days';
