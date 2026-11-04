@@ -2,29 +2,32 @@
 
 namespace App\Filament\Raddb\Pages;
 
-use App\Filament\Widgets\FacilityMachinesCount;
-use App\Filament\Widgets\ModalityMachineCount;
-use App\Filament\Widgets\MonthlySurveyCount;
-use App\Filament\Widgets\SurveyCategoryCount;
-use App\Filament\Widgets\YearlySurveyCount;
 use BackedEnum;
 use Filament\Pages\Page;
 use Filament\Support\Icons\Heroicon;
+use Filament\Tables\Contracts\HasTable;
 
 class RaddbCharts extends Page
 {
+
     protected string $view = 'filament.raddb.pages.raddb-charts';
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedChartBar;
     protected static ?string $title = "RadDB Charts";
+    protected int | string | array $columnSpan = 1;
+    protected int | string | array $columnStart = 1;
 
-    protected function getHeaderWidgets(): array
+    public function getColumns(): int | array
     {
-        return [
-            FacilityMachinesCount::class,
-            ModalityMachineCount::class,
-            MonthlySurveyCount::class,
-            SurveyCategoryCount::class,
-            YearlySurveyCount::class,
-        ];
+        return 2;
+    }
+
+    public function getColumnSpan(): int
+    {
+        return $this->columnSpan;
+    }
+
+    public function getColumnStart(): int
+    {
+        return $this->columnStart;
     }
 }
