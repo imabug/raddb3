@@ -151,12 +151,6 @@ class Machine extends Model implements HasMedia
         return $this->hasMany(LastYearView::class);
     }
 
-    public function testDateRecent(): HasMany
-    {
-        return $this->hasMany(TestDate::class)
-            ->latest('test_date')->first();
-    }
-
     public function surveySchedule(): HasOne
     {
         return $this->hasOne(SurveyScheduleView::class, 'id');
