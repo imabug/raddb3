@@ -28,7 +28,10 @@ class ModalitiesTable
             ])
             ->defaultSort('modality', 'asc')
             ->paginated([10, 50, 'all'])
-            ->defaultPaginationPageOption('all')
+            ->defaultPaginationPageOption(50)
+            ->extremePaginationLinks()
+            ->striped(true)
+            ->lazyLoaded(true)
             ->filters([
                 TrashedFilter::make(),
             ])

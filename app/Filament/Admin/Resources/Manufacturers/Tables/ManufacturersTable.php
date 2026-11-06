@@ -26,7 +26,10 @@ class ManufacturersTable
             ])
             ->defaultSort('manufacturer', 'asc')
             ->paginated([10, 50, 'all'])
-            ->defaultPaginationPageOption(10)
+            ->defaultPaginationPageOption(50)
+            ->extremePaginationLinks()
+            ->striped(true)
+            ->lazyLoaded(true)
             ->filters([
                 TrashedFilter::make(),
             ])

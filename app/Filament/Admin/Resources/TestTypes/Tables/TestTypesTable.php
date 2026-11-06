@@ -36,6 +36,10 @@ class TestTypesTable
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
+            ->defaultPaginationPageOption(50)
+            ->extremePaginationLinks()
+            ->striped(true)
+            ->lazyLoaded(true)
             ->filters([
                 TrashedFilter::make(),
             ])

@@ -35,6 +35,10 @@ class UsersTable
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
+            ->defaultPaginationPageOption(50)
+            ->extremePaginationLinks()
+            ->striped(true)
+            ->lazyLoaded(true)
             ->recordActions([
                 TableViewAction::make(),
                 TableEditAction::make(),
