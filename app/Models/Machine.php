@@ -3,8 +3,7 @@
 namespace App\Models;
 
 use App\Enums\Status;
-use Carbon\Carbon;
-use DateTimeImmutable;
+use Carbon\CarbonImmutable;
 use Illuminate\Database\Eloquent\Attributes\Scope;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
@@ -212,9 +211,9 @@ class Machine extends Model implements HasMedia
         return Attribute::make(
             get: function ($value, $attributes) {
                 if (!is_null($attributes['manuf_date'])) {
-                    return Carbon::createFromFormat('Y-m-d', $attributes['manuf_date'])->age;
+                    return CarbonImmutable::createFromFormat('Y-m-d', $attributes['manuf_date'])->age;
                 } elseif (!is_null($attributes['install_date'])) {
-                    return Carbon::createFromFormat('Y-m-d', $attributes['install_date'])->age;
+                    return CarbonImmutable::createFromFormat('Y-m-d', $attributes['install_date'])->age;
                 }
             },
         );
@@ -228,13 +227,12 @@ class Machine extends Model implements HasMedia
         // Get the most recent survey date for the machine
         return Attribute::make(
             get: function ($value, $attributes) {
-                $today = new DateTimeImmutable("now");
-                $testDate = new DateTimeImmutable(
-                    TestDate::without('machine')
+                $today = CarbonImmutable::today();
+                $testDate = TestDate::without('machine')
                         ->where('machine_id', $attributes['id'])
                         ->latest()
                         ->first()
-                        ->test_date);
+                        ->test_date;
                 $days = $testDate->diff($today)->format('%a');
                 if ($days < 335) {
                     $status = ($testDate > $today) ? Status::Scheduled : Status::Current;
