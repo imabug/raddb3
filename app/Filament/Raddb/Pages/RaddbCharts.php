@@ -5,7 +5,6 @@ namespace App\Filament\Raddb\Pages;
 use BackedEnum;
 use Filament\Pages\Page;
 use Filament\Support\Icons\Heroicon;
-use Filament\Tables\Contracts\HasTable;
 
 class RaddbCharts extends Page
 {
