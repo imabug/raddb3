@@ -17,6 +17,7 @@ class SurveyScheduleViewsTable
     public static function configure(Table $table): Table
     {
         return $table
+            ->lazyLoaded(true)
             ->columns([
                 TextColumn::make('id')
                     ->label('Machine ID')
@@ -57,7 +58,9 @@ class SurveyScheduleViewsTable
                     ->date('Y-m-d')
                     ->sortable(),
             ])
-            ->paginated(false)
+            ->paginated([50, 100, 'all'])
+            ->defaultPaginationPageOption(50)
+            ->extremePaginationLinks()
             ->striped()
             ->filters([
                 // SelectFilter::make('machine.facility.facility')
