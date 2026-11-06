@@ -19,12 +19,14 @@ use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 
 class TestDatesTable
 {
     public static function configure(Table $table): Table
     {
         return $table
+            ->lazyLoaded(true)
             ->columns([
                 TextColumn::make('id')
                     ->label('Survey ID')
@@ -40,7 +42,10 @@ class TestDatesTable
                         return $t->hasMedia('survey_reports') ? $t->getFirstMediaUrl('survey_reports') : null;
                     }),
                 TextColumn::make('machine.description')
-                    ->searchable(),
+                    ->searchable()
+                    ->url(
+                        fn(Model $record): string => route('filament.raddb.resources.machines.view', ['record' => $record->machine_id])
+                    ),
                 TextColumn::make('testType.test_type')
                     ->searchable(),
                 TextColumn::make('test_date')
@@ -95,6 +100,9 @@ class TestDatesTable
             ])
             ->deferFilters(false)
             ->paginated([10, 50, 'all'])
+            ->defaultPaginationPageOption(10)
+            ->extremePaginationLinks()
+            ->striped(true)
             ->recordActions([
                 TableViewAction::make(),
                 TableEditAction::make(),

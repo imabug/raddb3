@@ -11,6 +11,7 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\Filter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 
 class SurveyScheduleViewsTable
 {
@@ -26,7 +27,10 @@ class SurveyScheduleViewsTable
                 TextColumn::make('description')
                     ->label('Machine')
                     ->searchable()
-                    ->wrap(),
+                    ->wrap()
+                    ->url(
+                        fn(Model $record): string => route('filament.raddb.resources.machines.view', ['record' => $record->id])
+                    ),
                 TextColumn::make('prevSurveyId')
                     ->label('Prev Survey ID')
                     ->icon(function ($state): ?BackedEnum {
@@ -61,7 +65,7 @@ class SurveyScheduleViewsTable
             ->paginated([50, 100, 'all'])
             ->defaultPaginationPageOption(50)
             ->extremePaginationLinks()
-            ->striped()
+            ->striped(true)
             ->filters([
                 // SelectFilter::make('machine.facility.facility')
                 //     ->label('Facility')

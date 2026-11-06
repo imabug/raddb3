@@ -2,6 +2,8 @@
 
 namespace App\Filament\Raddb\Widgets;
 
+use App\Filament\Actions\TableViewAction;
+use App\Filament\Raddb\Resources\Machines\MachineResource;
 use BackedEnum;
 use App\Models\SurveyScheduleView;
 use App\Models\TestDate;
@@ -14,6 +16,7 @@ use Filament\Tables\Filters\Filter;
 use Filament\Tables\Table;
 use Filament\Widgets\TableWidget;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 
 class SurveySchedWidget extends TableWidget
 {
@@ -32,7 +35,10 @@ class SurveySchedWidget extends TableWidget
                     ->sortable(),
                 TextColumn::make('description')
                     ->label('Machine')
-                    ->searchable(),
+                    ->searchable()
+                    ->url(
+                        fn(Model $record): string => route('filament.raddb.resources.machines.view', ['record' => $record->id])
+                    ),
                 TextColumn::make('prevSurveyId')
                     ->label('Prev Survey ID')
                     ->icon(function ($state): ?BackedEnum {
