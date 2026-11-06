@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Enums\Status;
 use Carbon\Carbon;
+use DateTimeImmutable;
 use Illuminate\Database\Eloquent\Attributes\Scope;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
@@ -90,7 +91,7 @@ class Machine extends Model implements HasMedia
      *
      * @var array<string>
      */
-    protected $appends = ['age'];
+    protected $appends = ['age', 'surveyStatus'];
 
     public function registerMediaCollections(?Media $media = null): void
     {
@@ -215,6 +216,38 @@ class Machine extends Model implements HasMedia
                 } elseif (!is_null($attributes['install_date'])) {
                     return Carbon::createFromFormat('Y-m-d', $attributes['install_date'])->age;
                 }
+            },
+        );
+    }
+
+    /**
+     * Add a survey status attribute based on the most recent survey date
+     */
+    protected function surveyStatus(): Attribute
+    {
+        // Get the most recent survey date for the machine
+        return Attribute::make(
+            get: function ($value, $attributes) {
+                $today = new DateTimeImmutable("now");
+                $testDate = new DateTimeImmutable(
+                    TestDate::without('machine')
+                        ->where('machine_id', $attributes['id'])
+                        ->latest()
+                        ->first()
+                        ->test_date);
+                $days = $testDate->diff($today)->format('%a');
+                if ($days < 335) {
+                    $status = ($testDate > $today) ? Status::Scheduled : Status::Current;
+                } elseif (($days >= 335) && ($days < 365)) {
+                    $status = Status::Due30d;
+                } elseif (($days >= 365) && ($days < 395)) {
+                    $status = Status::Overdue13m;
+                } elseif ($days > 395) {
+                    $status = Status::Overdue;
+                } else {
+                    $status = Status::NeedInfo;
+                }
+                return $status;
             },
         );
     }
