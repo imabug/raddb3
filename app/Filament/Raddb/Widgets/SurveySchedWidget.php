@@ -22,6 +22,7 @@ class SurveySchedWidget extends TableWidget
     public function table(Table $table): Table
     {
         return $table
+            ->lazyLoaded(true)
             ->query(fn(): Builder => SurveyScheduleView::query()->orderBy('prevSurveyDate', 'asc'))
             ->heading('Survey schedule')
             ->columns([
@@ -63,9 +64,10 @@ class SurveySchedWidget extends TableWidget
                     ->dateTime('Y-m-d')
                     ->sortable(),
             ])
-            ->striped(true)
-            ->paginated([10, 50, 'all'])
+            ->paginated([50, 100, 'all'])
             ->defaultPaginationPageOption(50)
+            ->extremePaginationLinks()
+            ->striped(true)
             ->filters([
                 Filter::make('surveyDateRange')
                     ->label('Survey date range')
