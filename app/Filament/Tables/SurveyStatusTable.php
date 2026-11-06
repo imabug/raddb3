@@ -2,9 +2,7 @@
 
 namespace App\Filament\Tables;
 
-use App\Enums\Status;
 use App\Models\Machine;
-use DateTimeImmutable;
 use Filament\Actions\BulkActionGroup;
 use Filament\Tables\Columns\Layout\Stack;
 use Filament\Tables\Columns\TextColumn;
@@ -50,23 +48,8 @@ class SurveyStatusTable
                     TextColumn::make('testDate.test_date')
                         ->date('Y-m-d')
                         ->badge()
-                        ->color(function (string $state) {
-                            // Determine badge colour based on survey date and current date
-                            $today = new DateTimeImmutable("now");
-                            $test_date = new DateTimeImmutable($state);
-                            $days = $test_date->diff($today)->format('%a');
-                            if ($days < 335) {
-                                $status = ($test_date > $today) ? Status::Scheduled : Status::Current;
-                            } elseif (($days >= 335) && ($days < 365)) {
-                                $status = Status::Due30d;
-                            } elseif (($days >= 365) && ($days < 395)) {
-                                $status = Status::Overdue13m;
-                            } elseif ($days > 395) {
-                                $status = Status::Overdue;
-                            } else {
-                                $status = Status::NeedInfo;
-                            }
-                            return $status->getColor();
+                        ->color(function (Model $record) {
+                            return $record->surveyStatus->getColor();
                         }),
                 ])
             ])
