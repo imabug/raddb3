@@ -15,7 +15,7 @@ class ThisYearView extends Model
     protected function casts(): array
     {
         return [
-            'test_date' => 'date:Y-m-d H:i:s',
+            'test_date' => 'datetime',
         ];
     }
 
