@@ -90,7 +90,7 @@ class Machine extends Model implements HasMedia
      *
      * @var array<string>
      */
-    protected $appends = ['age', 'surveyStatus'];
+    protected $appends = ['age', 'survey_status'];
 
     public function registerMediaCollections(?Media $media = null): void
     {
@@ -246,7 +246,7 @@ class Machine extends Model implements HasMedia
                     $status = Status::NeedInfo;
                 }
                 return $status;
-            },
+            }
         );
     }
 }
