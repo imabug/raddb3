@@ -20,7 +20,7 @@ class YearlySurveyCount extends ChartWidget
     protected function getData(): array
     {
         $yearCounts = TestDate::without('machine', 'testType')
-            ->whereNotIn('test_type_id', [8, 10])
+            ->whereNotIn('test_type_id', [8, 10]) // Ignore Other and Calibration test types
             ->get()
             ->countBy(
                 function ($item, $key) {
