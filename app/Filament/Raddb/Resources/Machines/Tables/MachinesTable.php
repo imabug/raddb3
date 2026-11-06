@@ -29,10 +29,13 @@ class MachinesTable
                 IconColumn::make('machine_status')
                     ->label('Status'),
                 TextColumn::make('description')
-                    ->wrap(),
+                    ->wrap()
+                    ->sortable()
+                    ->searchable(),
                 TextColumn::make('location.location')
                     ->wrap()
-                    ->searchable(),
+                    ->searchable()
+                    ->sortable(),
                 TextColumn::make('modality.modality')
                     ->visible(function ($livewire) {
                         $filterState = $livewire->getTableFilterState('modality');
@@ -45,7 +48,8 @@ class MachinesTable
                             return false;
                         }
                     })
-                    ->searchable(),
+                    ->searchable()
+                    ->sortable(),
                 TextColumn::make('manufacturer.manufacturer')
                     ->visible(function ($livewire) {
                         $filterState = $livewire->getTableFilterState('manufacturer');
@@ -57,7 +61,8 @@ class MachinesTable
                         }
                     })
                     ->wrap()
-                    ->searchable(),
+                    ->searchable()
+                    ->sortable(),
                 TextColumn::make('model')
                     ->wrap()
                     ->searchable(),
@@ -98,8 +103,8 @@ class MachinesTable
                     ->relationship('manufacturer', 'manufacturer'),
             ])
             ->deferFilters(false)
-            ->paginated([10, 50, 'all'])
-            ->defaultPaginationPageOption(10)
+            ->paginated([10, 50, 100, 'all'])
+            ->defaultPaginationPageOption(50)
             ->extremePaginationLinks()
             ->recordActions([
                 TableViewAction::make(),
