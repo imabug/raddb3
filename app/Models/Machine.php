@@ -246,7 +246,7 @@ class Machine extends Model implements HasMedia
                     $status = Status::NeedInfo;
                 }
                 return $status;
-            }
+            },
         );
     }
 }

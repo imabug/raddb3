@@ -30,7 +30,7 @@ enum Status: string implements HasColor, HasDescription, HasIcon, HasLabel
     case Overdue = 'Overdue > 13 months';
     case Scheduled = 'Scheduled, not tested yet';
 
-    public function getColor(): string | array | null
+    public function getColor(): string|array|null
     {
         return match ($this) {
             self::Active => 'success',
@@ -47,7 +47,7 @@ enum Status: string implements HasColor, HasDescription, HasIcon, HasLabel
         };
     }
 
-    public function getDescription(): string | Htmlable | null
+    public function getDescription(): string|Htmlable|null
     {
         return match ($this) {
             self::Active => 'In use',
@@ -64,7 +64,7 @@ enum Status: string implements HasColor, HasDescription, HasIcon, HasLabel
         };
     }
 
-    public function getIcon(): string | BackedEnum | Htmlable | null
+    public function getIcon(): string|BackedEnum|Htmlable|null
     {
         return match ($this) {
             self::Active => Heroicon::Check,
@@ -81,7 +81,7 @@ enum Status: string implements HasColor, HasDescription, HasIcon, HasLabel
         };
     }
 
-    public function getLabel(): string | Htmlable | null
+    public function getLabel(): string|Htmlable|null
     {
         return $this->name;
     }

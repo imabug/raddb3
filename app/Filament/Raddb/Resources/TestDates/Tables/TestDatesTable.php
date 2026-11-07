@@ -44,7 +44,7 @@ class TestDatesTable
                 TextColumn::make('machine.description')
                     ->searchable()
                     ->url(
-                        fn(Model $record): string => route('filament.raddb.resources.machines.view', ['record' => $record->machine_id])
+                        fn(Model $record): string => route('filament.raddb.resources.machines.view', ['record' => $record->machine_id]),
                     ),
                 TextColumn::make('testType.test_type')
                     ->searchable(),

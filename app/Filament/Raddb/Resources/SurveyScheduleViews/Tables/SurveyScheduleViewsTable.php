@@ -29,7 +29,7 @@ class SurveyScheduleViewsTable
                     ->searchable()
                     ->wrap()
                     ->url(
-                        fn(Model $record): string => route('filament.raddb.resources.machines.view', ['record' => $record->id])
+                        fn(Model $record): string => route('filament.raddb.resources.machines.view', ['record' => $record->id]),
                     ),
                 TextColumn::make('prevSurveyId')
                     ->label('Prev Survey ID')
