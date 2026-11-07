@@ -20,14 +20,14 @@ class SurveyStatusTable
             ->lazyLoaded()
             ->query(fn (): Builder => Machine::query()
                 ->active()
-                ->without(['manufacturer','tube'])
+                ->without(['manufacturer', 'tube'])
                 ->with([
                     // Get the most recent test date through the testDate relationship
                     'testDate' => function ($query) {
-                       $query->where('test_type_id', '1')
-                        ->orWhere('test_type_id', '2')
-                        ->latest('test_date')
-                        ->limit(1);
+                        $query->where('test_type_id', '1')
+                            ->orWhere('test_type_id', '2')
+                            ->latest('test_date')
+                            ->limit(1);
                     },
                 ])
                 ->where('modality_id', '<>', '19') // Exclude test equipment (modality_id 19)
@@ -37,7 +37,7 @@ class SurveyStatusTable
                     TextColumn::make('description')
                         ->searchable()
                         ->url(
-                            fn(Model $record): string => route('filament.raddb.resources.machines.view', ['record' => $record->id])
+                            fn (Model $record): string => route('filament.raddb.resources.machines.view', ['record' => $record->id])
                         ),
                     TextColumn::make('location.location')
                         ->sortable(),
@@ -50,8 +50,11 @@ class SurveyStatusTable
                         ->badge()
                         ->color(function (Model $record) {
                             return $record->surveyStatus->getColor();
+                        })
+                        ->tooltip(function (Model $record) {
+                            return $record->surveyStatus->getDescription();
                         }),
-                ])
+                ]),
             ])
             ->contentGrid([
                 'md' => 3,
@@ -69,7 +72,7 @@ class SurveyStatusTable
                 Group::make('facility.facility')
                     ->collapsible(),
                 Group::make('modality.modality')
-                    ->collapsible()
+                    ->collapsible(),
             ])
             ->defaultGroup('facility.facility')
             ->paginated([10, 50, 100, 'all'])
