@@ -48,12 +48,8 @@ class SurveyStatusTable
                     TextColumn::make('testDate.test_date')
                         ->date('Y-m-d')
                         ->badge()
-                        ->color(function (Model $record) {
-                            return $record->surveyStatus->getColor();
-                        })
-                        ->tooltip(function (Model $record) {
-                            return $record->surveyStatus->getDescription();
-                        }),
+                        ->color(fn (Model $record): string|array => $record->surveyStatus->getColor())
+                        ->tooltip(fn (Model $record): string|array => $record->surveyStatus->getDescription()),
                 ]),
             ])
             ->contentGrid([
