@@ -31,12 +31,14 @@ class TestDatesTable
                 TextColumn::make('id')
                     ->label('Survey ID')
                     ->icon(function ($state): ?BackedEnum {
+                        // Display an icon if a survey report is available
                         $t = TestDate::find($state)->hasMedia('survey_reports');
 
                         return $t ? Heroicon::DocumentText : null;
                     })
                     ->iconPosition(IconPosition::After)
                     ->url(function ($state) {
+                        // Link to the survey report if available
                         $t = TestDate::find($state);
 
                         return $t->hasMedia('survey_reports') ? $t->getFirstMediaUrl('survey_reports') : null;
@@ -80,7 +82,7 @@ class TestDatesTable
                     ->relationship('testType', 'test_type'),
                 Filter::make('surveyDateRange')
                     ->label('Survey date range')
-                    ->schema([
+                    ->form([
                         DatePicker::make('surveyStart')
                             ->label('Survey start date'),
                         DatePicker::make('surveyEnd')

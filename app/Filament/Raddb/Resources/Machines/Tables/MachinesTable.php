@@ -38,6 +38,7 @@ class MachinesTable
                     ->sortable(),
                 TextColumn::make('modality.modality')
                     ->visible(function ($livewire) {
+                        // Don't show the modality column if the modality filter is set
                         $filterState = $livewire->getTableFilterState('modality');
                         if (
                             $filterState == null
@@ -52,6 +53,7 @@ class MachinesTable
                     ->sortable(),
                 TextColumn::make('manufacturer.manufacturer')
                     ->visible(function ($livewire) {
+                        // Don't show the manufacturer column if the manufacturer filter is set
                         $filterState = $livewire->getTableFilterState('manufacturer');
                         if ($filterState == null
                              || (is_array($filterState) && $filterState['value'] == "")) {

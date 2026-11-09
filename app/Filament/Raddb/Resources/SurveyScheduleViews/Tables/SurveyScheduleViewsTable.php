@@ -34,10 +34,12 @@ class SurveyScheduleViewsTable
                 TextColumn::make('prevSurveyId')
                     ->label('Prev Survey ID')
                     ->icon(function ($state): ?BackedEnum {
+                        // Display an icon if a survey report is available
                         return TestDate::find($state)->hasMedia('survey_reports') ? Heroicon::DocumentText : null;
                     })
                     ->iconPosition(IconPosition::After)
                     ->url(function ($state) {
+                        // Link to the survey report if available
                         $t = TestDate::find($state);
 
                         return $t->hasMedia('survey_reports') ? $t->getFirstMediaUrl('survey_reports') : null;
@@ -49,10 +51,12 @@ class SurveyScheduleViewsTable
                 TextColumn::make('currSurveyId')
                     ->label('Current Survey ID')
                     ->icon(function ($state): ?BackedEnum {
+                        // Display an icon if a survey report is available
                         return TestDate::find($state)->hasMedia('survey_reports') ? Heroicon::DocumentText : null;
                     })
                     ->iconPosition(IconPosition::After)
                     ->url(function ($state) {
+                        // Link to the survey report if available
                         $t = TestDate::find($state);
 
                         return $t->hasMedia('survey_reports') ? $t->getFirstMediaUrl('survey_reports') : null;
@@ -75,7 +79,7 @@ class SurveyScheduleViewsTable
                 //         ->all()),
                 Filter::make('surveyDateRange')
                     ->label('Survey date range')
-                    ->schema([
+                    ->form([
                         DatePicker::make('surveyStart')
                             ->label('Survey start date'),
                         DatePicker::make('surveyEnd')
