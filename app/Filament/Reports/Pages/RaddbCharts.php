@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filament\Raddb\Pages;
+namespace App\Filament\Reports\Pages;
 
 use BackedEnum;
 use Filament\Pages\Page;
@@ -8,7 +8,7 @@ use Filament\Support\Icons\Heroicon;
 
 class RaddbCharts extends Page
 {
-    protected string $view = 'filament.raddb.pages.raddb-charts';
+    protected string $view = 'filament.reports.pages.raddb-charts';
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedChartBar;
     protected static ?string $title = "RadDB Charts";
     protected int|string|array $columnSpan = 1;
