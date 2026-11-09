@@ -2,12 +2,12 @@
 
 namespace App\Providers\Filament;
 
+use App\Filament\Reports\Pages\AnnRepDashboard;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
 use Filament\Navigation\NavigationItem;
-use Filament\Pages\Dashboard;
 use Filament\Panel;
 use Filament\PanelProvider;
 use Filament\Support\Colors\Color;
@@ -32,6 +32,10 @@ class ReportsPanelProvider extends PanelProvider
             ->discoverResources(in: app_path('Filament/Reports/Resources'), for: 'App\Filament\Reports\Resources')
             ->discoverPages(in: app_path('Filament/Reports/Pages'), for: 'App\Filament\Reports\Pages')
             ->pages([
+                AnnRepDashboard::class,
+            ])
+            ->discoverWidgets(in: app_path('Filament/Reports/Widgets'), for: 'App\Filament\Reports\Widgets')
+            ->widgets([
             ])
             ->navigationItems([
                 NavigationItem::make('RadDB')
@@ -42,9 +46,6 @@ class ReportsPanelProvider extends PanelProvider
                     ->url('shielding')
                     ->icon(Heroicon::OutlinedShieldCheck)
                     ->sort(3),
-            ])
-            ->discoverWidgets(in: app_path('Filament/Reports/Widgets'), for: 'App\Filament\Reports\Widgets')
-            ->widgets([
             ])
             ->middleware([
                 EncryptCookies::class,
