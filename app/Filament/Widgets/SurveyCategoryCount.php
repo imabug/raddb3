@@ -48,6 +48,8 @@ class SurveyCategoryCount extends ChartWidget
             foreach ($years as $y) {
                 $yearFilter[$y['years']] = $y['years'];
             }
+        } else {
+            $yearFilter = [''];
         }
 
         return $yearFilter;
