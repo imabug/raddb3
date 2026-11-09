@@ -198,6 +198,16 @@ class Machine extends Model implements HasMedia
         $query->where('modality_id', 19);
     }
 
+    /**
+     * Scope function to exclude test equipment
+     */
+    #[Scope]
+    protected function noTestEquipment(Builder $query): void
+    {
+        // If the modality_id for test equipment is something other than 19
+        // change the value in the where clause appropriately
+        $query->where('modality_id', '<>', 19);
+    }
     /*
      * Mutators
      */
