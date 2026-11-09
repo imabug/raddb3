@@ -40,13 +40,17 @@ class AdminPanelProvider extends PanelProvider
             ->discoverWidgets(in: app_path('Filament/Admin/Widgets'), for: 'App\Filament\Admin\Widgets')
             ->navigationItems([
                 NavigationItem::make('RadDB')
-                ->url('/')
-                ->icon(Heroicon::OutlinedHome)
-                ->sort(1),
+                    ->url('/')
+                    ->icon(Heroicon::OutlinedHome)
+                    ->sort(1),
+                NavigationItem::make('Reports')
+                    ->url('/reports')
+                    ->icon(Heroicon::OutlinedDocument)
+                    ->sort(2),
                 NavigationItem::make('Shielding Requests')
-                ->url('shielding')
-                ->icon(Heroicon::OutlinedShieldCheck)
-                ->sort(3),
+                    ->url('shielding')
+                    ->icon(Heroicon::OutlinedShieldCheck)
+                    ->sort(3),
             ])
             ->widgets([
                 // AccountWidget::class,

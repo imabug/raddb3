@@ -45,10 +45,14 @@ class RaddbPanelProvider extends PanelProvider
                 // FilamentInfoWidget::class,
             ])
             ->navigationItems([
+                NavigationItem::make('Reports')
+                    ->url('/reports')
+                    ->icon(Heroicon::OutlinedDocument)
+                    ->sort(1),
                 NavigationItem::make('Shielding Requests')
-                ->url('/shielding')
-                ->icon(Heroicon::OutlinedShieldCheck)
-                ->sort(1),
+                    ->url('/shielding')
+                    ->icon(Heroicon::OutlinedShieldCheck)
+                    ->sort(2),
             ])
             ->middleware([
                 EncryptCookies::class,
