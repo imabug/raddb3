@@ -41,7 +41,7 @@ class AnnRepDashboard extends BaseDashboard
                                         $yearFilter[$y['years']] = $y['years'];
                                     }
                                 } else {
-                                    $yearFilter = [''];
+                                    $yearFilter = ['' => ''];
                                 }
                         
                                 return $yearFilter;
