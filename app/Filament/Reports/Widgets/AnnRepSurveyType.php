@@ -25,16 +25,16 @@ class AnnRepSurveyType extends TableWidget
                     $surveys = TestDate::without('machine')->with('testType')
                         ->year($reportYear)
                         ->get();
+                    $surveyType = $surveys->sortBy('testType.test_type')->groupBy('testType.test_type');
                     $i = 1;
                     $tot = $surveys->count();
-                    foreach ($surveys->groupBy('testType.test_type') as $type => $s) {
+                    foreach ($surveyType as $type => $s) {
                         $sCount[$i] = [
                             'type' => $type,
                             'count' => $s->count(),
                             'percent' => ($s->count()/$tot)*100,
                         ];
                         $i++;
-                        $tot += $s->count();
                     }
                     $sCount[] = [
                         'type' => 'Total',
@@ -52,6 +52,7 @@ class AnnRepSurveyType extends TableWidget
                 TextColumn::make('percent')
                     ->label('Percent')
                     ->numeric(decimalPlaces: 1)
-            ]);
+            ])
+            ->striped();
     }
 }

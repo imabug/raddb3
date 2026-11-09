@@ -3,12 +3,10 @@
 namespace App\Filament\Reports\Widgets;
 
 use App\Models\Machine;
-use Filament\Actions\BulkActionGroup;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Filament\Widgets\Concerns\InteractsWithPageFilters;
 use Filament\Widgets\TableWidget;
-use Illuminate\Database\Eloquent\Builder;
 
 class AnnRepMachineModality extends TableWidget
 {
@@ -20,9 +18,10 @@ class AnnRepMachineModality extends TableWidget
             ->heading('Machine count by modality')
             ->records(function (): array {
                 $machines = Machine::active()->get();
+                $modMachines = $machines->sortBy('modality.modality')->groupBy('modality.modality');
                 $totMachines = $machines->count();
                 $i = 1;
-                foreach ($machines->groupBy('modality.modality') as $mod => $m) {
+                foreach ($modMachines as $mod => $m) {
                     $modCount[$i] = [
                         'modality' => $mod,
                         'count' => $m->count(),
@@ -46,19 +45,6 @@ class AnnRepMachineModality extends TableWidget
                     ->label('Percent')
                     ->numeric(decimalPlaces: 1),
             ])
-            ->filters([
-                //
-            ])
-            ->headerActions([
-                //
-            ])
-            ->recordActions([
-                //
-            ])
-            ->toolbarActions([
-                BulkActionGroup::make([
-                    //
-                ]),
-            ]);
+            ->striped();
     }
 }

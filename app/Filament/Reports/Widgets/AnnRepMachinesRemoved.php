@@ -23,17 +23,19 @@ class AnnRepMachinesRemoved extends TableWidget
             ->query(function (Builder $query) use($reportYear): Builder {
                 return Machine::query()
                     ->onlyTrashed()
-                    ->whereBetween('deleted_at', [$reportYear . '-01-01', $reportYear . '-12-31']);
+                    ->whereBetween('deleted_at', [$reportYear . '-01-01', $reportYear . '-12-31'])
+                    ->orderBy('deleted_at', 'asc');
             })
             ->columns([
                 TextColumn::make('description')
                     ->label('Description'),
-                TextColumn::make('install_date')
-                    ->label('Install date')
+                TextColumn::make('deleted_at')
+                    ->label('Removal date')
                     ->date('Y-m-d'),
             ])
             ->paginated([10, 20, 'all'])
             ->defaultPaginationPageOption(10)
-            ->extremePaginationLinks();
+            ->extremePaginationLinks()
+            ->striped();
     }
 }

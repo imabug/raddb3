@@ -19,8 +19,9 @@ class AnnRepMachineFacilities extends TableWidget
             ->records(function (): array {
                 $machines = Machine::active()->get();
                 $totMachines = $machines->count();
+                $facMachines = $machines->sortBy('facility.facility')->groupBy('facility.facility');
                 $i = 1;
-                foreach ($machines->groupBy('facility.facility') as $fac => $m) {
+                foreach ($facMachines as $fac => $m) {
                     $facCount[$i] = [
                         'facility' => $fac,
                         'count' => $m->count(),
@@ -43,6 +44,7 @@ class AnnRepMachineFacilities extends TableWidget
                 TextColumn::make('percent')
                     ->label('Percent')
                     ->numeric(decimalPlaces: 1),
-            ]);
+            ])
+            ->striped();
     }
 }
