@@ -66,6 +66,7 @@ class SurveyScheduleViewsTable
                     ->date('Y-m-d')
                     ->sortable(),
             ])
+            ->defaultSort('currSurveyDate', direction: 'asc')
             ->paginated([50, 100, 'all'])
             ->defaultPaginationPageOption(50)
             ->extremePaginationLinks()
