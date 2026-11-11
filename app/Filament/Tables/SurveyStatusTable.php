@@ -73,7 +73,7 @@ class SurveyStatusTable
             ])
             ->defaultGroup('facility.facility')
             ->paginated([10, 50, 100, 'all'])
-            ->defaultPaginationPageOption(10)
+            ->defaultPaginationPageOption(50)
             ->extremePaginationLinks()
             ->headerActions([
                 //
