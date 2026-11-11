@@ -25,7 +25,7 @@ class AnnRepMachineFacilities extends TableWidget
                     $facCount[$i] = [
                         'facility' => $fac,
                         'count' => $m->count(),
-                        'percent' => ($m->count()/$totMachines)*100,
+                        'percent' => ($m->count() / $totMachines) * 100,
                     ];
                     $i++;
                 }

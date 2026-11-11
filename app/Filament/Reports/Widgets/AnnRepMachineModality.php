@@ -25,7 +25,7 @@ class AnnRepMachineModality extends TableWidget
                     $modCount[$i] = [
                         'modality' => $mod,
                         'count' => $m->count(),
-                        'percent' => ($m->count()/$totMachines)*100,
+                        'percent' => ($m->count() / $totMachines) * 100,
                     ];
                     $i++;
                 }

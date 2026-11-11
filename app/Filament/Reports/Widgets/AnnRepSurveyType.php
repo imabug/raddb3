@@ -32,7 +32,7 @@ class AnnRepSurveyType extends TableWidget
                         $sCount[$i] = [
                             'type' => $type,
                             'count' => $s->count(),
-                            'percent' => ($s->count()/$tot)*100,
+                            'percent' => ($s->count() / $tot) * 100,
                         ];
                         $i++;
                     }
@@ -42,7 +42,7 @@ class AnnRepSurveyType extends TableWidget
                         'percent' => 100,
                     ];
                     return $sCount;
-                }
+                },
             )
             ->columns([
                 TextColumn::make('type')
@@ -51,7 +51,7 @@ class AnnRepSurveyType extends TableWidget
                     ->label('Number'),
                 TextColumn::make('percent')
                     ->label('Percent')
-                    ->numeric(decimalPlaces: 1)
+                    ->numeric(decimalPlaces: 1),
             ])
             ->striped();
     }

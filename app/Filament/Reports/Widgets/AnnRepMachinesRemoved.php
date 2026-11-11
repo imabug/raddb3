@@ -20,7 +20,7 @@ class AnnRepMachinesRemoved extends TableWidget
 
         return $table
             ->heading('Removed machines')
-            ->query(function (Builder $query) use($reportYear): Builder {
+            ->query(function (Builder $query) use ($reportYear): Builder {
                 return Machine::query()
                     ->onlyTrashed()
                     ->whereBetween('deleted_at', [$reportYear . '-01-01', $reportYear . '-12-31'])

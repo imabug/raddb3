@@ -21,11 +21,11 @@ class TestEquipCal extends Page implements HasTable
     {
         return $table
             ->lazyLoaded(true)
-            ->query(fn (): Builder => Machine::query()->active()
+            ->query(fn(): Builder => Machine::query()->active()
                 ->testEquipment()
                 ->without([
-                    'facility', 
-                    'location', 
+                    'facility',
+                    'location',
                     'modality',
                 ])
                 ->with([

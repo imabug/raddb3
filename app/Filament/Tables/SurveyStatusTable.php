@@ -31,8 +31,7 @@ class SurveyStatusTable
                             ->limit(1);
                     },
                 ])
-                ->noTestEquipment()
-                // ->where('modality_id', '<>', '19'), // Exclude test equipment (modality_id 19)
+                ->noTestEquipment(),
             )
             ->columns([
                 Stack::make([

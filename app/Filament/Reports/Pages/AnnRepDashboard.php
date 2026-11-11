@@ -18,7 +18,7 @@ class AnnRepDashboard extends BaseDashboard
 
     public function getColumns(): int|array
     {
-         return 2;
+        return 2;
     }
 
     public function filtersForm(Schema $schema): Schema
@@ -35,7 +35,7 @@ class AnnRepDashboard extends BaseDashboard
                                     ->distinct()
                                     ->orderBy('years', 'desc')
                                     ->get();
-                        
+
                                 if (count($years) > 0) {
                                     foreach ($years as $y) {
                                         $yearFilter[$y['years']] = $y['years'];
@@ -43,7 +43,7 @@ class AnnRepDashboard extends BaseDashboard
                                 } else {
                                     $yearFilter = ['' => ''];
                                 }
-                        
+
                                 return $yearFilter;
                             })
                             ->selectablePlaceholder(false),
