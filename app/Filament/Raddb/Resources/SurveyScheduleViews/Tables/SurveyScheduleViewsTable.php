@@ -71,12 +71,6 @@ class SurveyScheduleViewsTable
             ->extremePaginationLinks()
             ->striped(true)
             ->filters([
-                // SelectFilter::make('machine.facility.facility')
-                //     ->label('Facility')
-                //     ->multiple()
-                //     ->options(fn(): array => Facility::query()
-                //         ->pluck('facility', 'id')
-                //         ->all()),
                 Filter::make('surveyDateRange')
                     ->label('Survey date range')
                     ->form([
@@ -96,6 +90,7 @@ class SurveyScheduleViewsTable
                                 fn(Builder $query, $date): Builder => $query->whereDate('currSurveyDate', '<=', $date),
                             );
                     }),
-            ]);
+            ])
+            ->deferFilters(false);
     }
 }
