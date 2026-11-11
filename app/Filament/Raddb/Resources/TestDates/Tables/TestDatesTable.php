@@ -56,6 +56,7 @@ class TestDatesTable
                 TextColumn::make('accession')
                     ->searchable(),
             ])
+            ->defaultSort('test_date', direction: 'asc')
             ->filters([
                 TrashedFilter::make(),
                 Filter::make('pending')
@@ -101,7 +102,7 @@ class TestDatesTable
                     }),
             ])
             ->deferFilters(false)
-            ->paginated([10, 50, 'all'])
+            ->paginated([10, 20, 50, 'all'])
             ->defaultPaginationPageOption(10)
             ->extremePaginationLinks()
             ->striped(true)
