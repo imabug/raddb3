@@ -17,6 +17,7 @@ use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use UnitEnum;
 
 class ManufacturerResource extends Resource
 {
@@ -25,6 +26,7 @@ class ManufacturerResource extends Resource
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedWrenchScrewdriver;
 
     protected static ?string $recordTitleAttribute = 'Manufacturer';
+    protected static string|UnitEnum|null $navigationGroup = 'Tables';
 
     public static function form(Schema $schema): Schema
     {

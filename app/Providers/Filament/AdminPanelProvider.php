@@ -6,6 +6,7 @@ use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
+use Filament\Navigation\NavigationGroup;
 use Filament\Navigation\NavigationItem;
 use Filament\Pages\Dashboard;
 use Filament\Panel;
@@ -39,24 +40,33 @@ class AdminPanelProvider extends PanelProvider
                 Dashboard::class,
             ])
             ->discoverWidgets(in: app_path('Filament/Admin/Widgets'), for: 'App\Filament\Admin\Widgets')
+            ->navigationGroups([
+                NavigationGroup::make()
+                    ->label('Tables'),
+            ])
             ->navigationItems([
                 NavigationItem::make('RadDB')
                     ->url('/')
                     ->icon(Heroicon::OutlinedHome)
+                    ->group('Panels')
                     ->sort(1),
                 NavigationItem::make('Reports')
                     ->url('/reports')
                     ->icon(Heroicon::OutlinedDocument)
+                    ->group('Panels')
                     ->sort(2),
                 NavigationItem::make('Shielding Requests')
                     ->url('shielding')
                     ->icon(Heroicon::OutlinedShieldCheck)
+                    ->group('Panels')
                     ->sort(3),
             ])
             ->widgets([
                 // AccountWidget::class,
                 // FilamentInfoWidget::class,
             ])
+            ->resourceCreatePageRedirect('view')
+            ->resourceEditPageRedirect('view')
             ->middleware([
                 EncryptCookies::class,
                 AddQueuedCookiesToResponse::class,

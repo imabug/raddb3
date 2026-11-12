@@ -42,10 +42,12 @@ class ReportsPanelProvider extends PanelProvider
                 NavigationItem::make('RadDB')
                     ->url('/')
                     ->icon(Heroicon::OutlinedHome)
+                    ->group('Panels')
                     ->sort(1),
                 NavigationItem::make('Shielding Requests')
                     ->url('shielding')
                     ->icon(Heroicon::OutlinedShieldCheck)
+                    ->group('Panels')
                     ->sort(3),
             ])
             ->middleware([

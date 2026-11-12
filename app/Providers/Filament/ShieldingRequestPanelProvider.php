@@ -6,12 +6,12 @@ use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
+use Filament\Navigation\NavigationItem;
 use Filament\Pages\Dashboard;
 use Filament\Panel;
 use Filament\PanelProvider;
 use Filament\Support\Colors\Color;
-use Filament\Widgets\AccountWidget;
-use Filament\Widgets\FilamentInfoWidget;
+use Filament\Support\Icons\Heroicon;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
 use Illuminate\Cookie\Middleware\EncryptCookies;
 use Illuminate\Foundation\Http\Middleware\PreventRequestForgery;
@@ -37,8 +37,18 @@ class ShieldingRequestPanelProvider extends PanelProvider
             ])
             ->discoverWidgets(in: app_path('Filament/ShieldingRequest/Widgets'), for: 'App\Filament\ShieldingRequest\Widgets')
             ->widgets([
-                AccountWidget::class,
-                FilamentInfoWidget::class,
+            ])
+            ->navigationItems([
+                NavigationItem::make('Reports')
+                    ->url('/reports')
+                    ->icon(Heroicon::OutlinedDocument)
+                    ->group('Panels')
+                    ->sort(1),
+                NavigationItem::make('Shielding Requests')
+                    ->url('/shielding')
+                    ->icon(Heroicon::OutlinedShieldCheck)
+                    ->group('Panels')
+                    ->sort(2),
             ])
             ->middleware([
                 EncryptCookies::class,

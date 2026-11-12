@@ -2,12 +2,12 @@
 
 namespace App\Providers\Filament;
 
-use App\Filament\Raddb\Pages\RaddbCharts;
 use App\Filament\Raddb\Pages\RaddbDashboard;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
+use Filament\Navigation\NavigationGroup;
 use Filament\Navigation\NavigationItem;
 use Filament\Panel;
 use Filament\PanelProvider;
@@ -44,14 +44,24 @@ class RaddbPanelProvider extends PanelProvider
                 // AccountWidget::class,
                 // FilamentInfoWidget::class,
             ])
+            ->navigationGroups([
+                NavigationGroup::make()
+                    ->label('Inventory'),
+                NavigationGroup::make()
+                    ->label('Surveys'),
+                NavigationGroup::make()
+                    ->label('Panels'),
+            ])
             ->navigationItems([
                 NavigationItem::make('Reports')
                     ->url('/reports')
                     ->icon(Heroicon::OutlinedDocument)
+                    ->group('Panels')
                     ->sort(1),
                 NavigationItem::make('Shielding Requests')
                     ->url('/shielding')
                     ->icon(Heroicon::OutlinedShieldCheck)
+                    ->group('Panels')
                     ->sort(2),
             ])
             ->middleware([

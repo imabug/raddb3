@@ -4,7 +4,6 @@ namespace App\Filament\Raddb\Resources\SurveyScheduleViews;
 
 use App\Filament\Raddb\Resources\SurveyScheduleViews\Pages\ListSurveyScheduleViews;
 use App\Filament\Raddb\Resources\SurveyScheduleViews\Pages\ViewSurveyScheduleView;
-use App\Filament\Raddb\Resources\SurveyScheduleViews\Schemas\SurveyScheduleViewForm;
 use App\Filament\Raddb\Resources\SurveyScheduleViews\Schemas\SurveyScheduleViewInfolist;
 use App\Filament\Raddb\Resources\SurveyScheduleViews\Tables\SurveyScheduleViewsTable;
 use App\Models\SurveyScheduleView;
@@ -14,6 +13,7 @@ use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
+use UnitEnum;
 
 class SurveyScheduleViewResource extends Resource
 {
@@ -22,6 +22,7 @@ class SurveyScheduleViewResource extends Resource
     protected static string|BackedEnum|null $navigationIcon = Heroicon::CalendarDays;
     protected static ?string $modelLabel = 'Survey Schedule';
     protected static ?string $pluralModelLabel = 'Survey Schedule';
+    protected static string|UnitEnum|null $navigationGroup = 'Surveys';
 
     public static function getEloquentQuery(): Builder
     {
