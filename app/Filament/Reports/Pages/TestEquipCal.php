@@ -3,7 +3,9 @@
 namespace App\Filament\Reports\Pages;
 
 use App\Models\Machine;
+use BackedEnum;
 use Filament\Pages\Page;
+use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Concerns\InteractsWithTable;
 use Filament\Tables\Contracts\HasTable;
@@ -16,6 +18,7 @@ class TestEquipCal extends Page implements HasTable
     use InteractsWithTable;
 
     protected string $view = 'filament.reports.pages.test-equip-cal';
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedWrenchScrewdriver;
 
     public static function table(Table $table): Table
     {
@@ -29,7 +32,7 @@ class TestEquipCal extends Page implements HasTable
                     'modality',
                 ])
                 ->with([
-                    // Get the most recent test date through the testDate relationship
+                    // Get the test dates through the testDate relationship
                     'testDate' => function ($query) {
                         $query->without('machine')
                             ->where('test_type_id', '10')
@@ -40,11 +43,12 @@ class TestEquipCal extends Page implements HasTable
                 TextColumn::make('description')
                     ->label('description'),
                 TextColumn::make('testDate.test_date')
-                    ->label('Calibration date'),
+                    ->label('Calibration date')
+                    ->date('Y-m-d')
+                    ->listWithLineBreaks(true)
+                    ->limitList(1)
+                    ->expandableLimitedList(true),
             ])
-            ->groups([
-                Group::make('description')
-                    ->collapsible(),
-            ]);
+            ->defaultSort('description', direction: 'asc');
     }
 }
