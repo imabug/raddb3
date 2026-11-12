@@ -26,6 +26,7 @@ class ReportsPanelProvider extends PanelProvider
         return $panel
             ->id('reports')
             ->path('reports')
+            ->brandName('MUSC Health RadDB')
             ->colors([
                 'primary' => Color::Amber,
             ])

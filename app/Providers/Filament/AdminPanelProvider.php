@@ -28,6 +28,7 @@ class AdminPanelProvider extends PanelProvider
         return $panel
             ->id('admin')
             ->path('admin')
+            ->brandName('MUSC Health RadDB')
             // ->login()
             ->colors([
                 'primary' => Color::Amber,

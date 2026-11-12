@@ -26,6 +26,7 @@ class ShieldingRequestPanelProvider extends PanelProvider
         return $panel
             ->id('shielding_request')
             ->path('shielding')
+            ->brandName('MUSC Health RadDB')
             ->colors([
                 'primary' => Color::Amber,
             ])
