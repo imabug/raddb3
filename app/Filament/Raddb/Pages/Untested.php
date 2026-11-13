@@ -30,10 +30,7 @@ class Untested extends Page implements HasTable
             ->records(
                 function (): array {
                     // Get the machine_ids that have current surveys
-                    $currSurveys = TestDate::without([
-                            'machine',
-                            'testType',
-                        ]) // Exclude these eager loaded relationships
+                    $currSurveys = TestDate::without(['machine', 'testType',]) // Exclude these eager loaded relationships
                         ->year(date('Y')) // Limit records to the current year
                         ->activeMachines() // Only active machines
                         ->get()
@@ -41,10 +38,9 @@ class Untested extends Page implements HasTable
                         ->toArray();
                     // Get an array of machines that don't have current surveys
                     $untested = Machine::without([
-                            'manufacturer',
-                            'testDate',
-                            'tube',
-                        ]) // Exclude these eager loaded relationships
+                        'manufacturer',
+                        'testDate',
+                        'tube',]) // Exclude these eager loaded relationships
                         ->active() // Only active machines
                         ->noTestEquipment() // Exclude test equipment
                         ->whereNotIn('id', $currSurveys) // Exclude machine IDs in $currSurveys
@@ -52,14 +48,14 @@ class Untested extends Page implements HasTable
                         ->withoutAppends() // Don't include accessor attributes in the results
                         ->toArray();
                     return $untested;
-                }
+                },
             )
             ->columns([
                 Stack::make([
                     TextColumn::make('description'),
                     TextColumn::make('facility.facility'),
                     TextColumn::make('modality.modality'),
-                ])
+                ]),
             ])
             ->contentGrid([
                 'md' => 2,

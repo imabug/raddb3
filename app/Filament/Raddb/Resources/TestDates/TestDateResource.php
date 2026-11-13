@@ -26,7 +26,7 @@ class TestDateResource extends Resource
     protected static string|BackedEnum|null $navigationIcon = Heroicon::CalendarDays;
 
     protected static string|UnitEnum|null $navigationGroup = 'Surveys';
-    
+
     public static function form(Schema $schema): Schema
     {
         return TestDateForm::configure($schema);
