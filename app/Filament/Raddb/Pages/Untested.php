@@ -29,21 +29,27 @@ class Untested extends Page implements HasTable
             ->heading('Untested machines')
             ->records(
                 function (): array {
-                    $currSurveys = TestDate::without(['machine','testType'])
-                        ->year(date('Y'))
-                        ->activeMachines()
+                    // Get the machine_ids that have current surveys
+                    $currSurveys = TestDate::without([
+                            'machine',
+                            'testType',
+                        ]) // Exclude these eager loaded relationships
+                        ->year(date('Y')) // Limit records to the current year
+                        ->activeMachines() // Only active machines
                         ->get()
-                        ->pluck('machine_id')
+                        ->pluck('machine_id') // Only get the machine_id
                         ->toArray();
+                    // Get an array of machines that don't have current surveys
                     $untested = Machine::without([
                             'manufacturer',
                             'testDate',
-                            'tube'])
-                        ->active()
-                        ->noTestEquipment()
+                            'tube',
+                        ]) // Exclude these eager loaded relationships
+                        ->active() // Only active machines
+                        ->noTestEquipment() // Exclude test equipment
+                        ->whereNotIn('id', $currSurveys) // Exclude machine IDs in $currSurveys
                         ->get()
-                        ->withoutAppends()
-                        ->whereNotIn('id', $currSurveys)
+                        ->withoutAppends() // Don't include accessor attributes in the results
                         ->toArray();
                     return $untested;
                 }
