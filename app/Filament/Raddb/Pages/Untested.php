@@ -5,6 +5,7 @@ namespace App\Filament\Raddb\Pages;
 use BackedEnum;
 use App\Models\Machine;
 use App\Models\TestDate;
+use Filament\Actions\Action;
 use Filament\Pages\Page;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Columns\Layout\Stack;
@@ -69,6 +70,8 @@ class Untested extends Page implements HasTable
                 //
             ])
             ->recordActions([
+                Action::make('create')
+                    ->url(fn(): string => route('filament.raddb.resources.test-dates.create')),
             ])
             ->toolbarActions([
             ]);
