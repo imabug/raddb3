@@ -8,9 +8,13 @@ use Filament\Widgets\ChartWidget;
 class MonthlySurveyCount extends ChartWidget
 {
     protected ?string $heading = 'Monthly Survey Counts';
+
     protected ?string $pollingInterval = null;
+
     protected static ?int $sort = 2;
+
     public ?string $filter = '';
+
     protected bool $isCollapsible = true;
 
     public function getDescription(): ?string
@@ -40,7 +44,7 @@ class MonthlySurveyCount extends ChartWidget
     {
         // If $this->filter is empty, set $activeFilter to the current year
         if (empty($this->filter)) {
-            $this->filter = date("Y");
+            $this->filter = date('Y');
         }
 
         // Count the surveys for each month of the selected year
@@ -68,7 +72,7 @@ class MonthlySurveyCount extends ChartWidget
                     'data' => $monthlyCount->flatten(1)->all(),
                 ],
             ],
-            //'labels' => ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+            // 'labels' => ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
             'labels' => $monthlyCount->keys()->all(),
         ];
     }

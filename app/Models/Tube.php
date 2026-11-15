@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Enums\Status;
 use Carbon\Carbon;
+use Database\Factories\TubeFactory;
 use Illuminate\Database\Eloquent\Attributes\Scope;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
@@ -14,8 +15,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Tube extends Model
 {
-    /** @use HasFactory<\Database\Factories\TubeFactory> */
+    /** @use HasFactory<TubeFactory> */
     use HasFactory;
+
     use SoftDeletes;
 
     /**
@@ -58,12 +60,12 @@ class Tube extends Model
     {
         return [
             'tube_status' => Status::class,
-            'created_at'   => 'datetime',
-            'deleted_at'   => 'datetime',
-            'updated_at'   => 'datetime',
-            'manuf_date'   => 'date:Y-m-d',
+            'created_at' => 'datetime',
+            'deleted_at' => 'datetime',
+            'updated_at' => 'datetime',
+            'manuf_date' => 'date:Y-m-d',
             'install_date' => 'date:Y-m-d',
-            'remove_date'  => 'date:Y-m-d',
+            'remove_date' => 'date:Y-m-d',
         ];
     }
 
@@ -113,9 +115,9 @@ class Tube extends Model
         // Calculate the age of the unit based on manuf_date or install_date
         return Attribute::make(
             get: function ($value, $attributes) {
-                if (!is_null($attributes['manuf_date'])) {
+                if (! is_null($attributes['manuf_date'])) {
                     return Carbon::createFromFormat('Y-m-d', $attributes['manuf_date'])->age;
-                } elseif (!is_null($attributes['install_date'])) {
+                } elseif (! is_null($attributes['install_date'])) {
                     return Carbon::createFromFormat('Y-m-d', $attributes['install_date'])->age;
                 }
             },

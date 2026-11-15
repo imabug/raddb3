@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Database\Factories\TestTypeFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -9,8 +10,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class TestType extends Model
 {
-    /** @use HasFactory<\Database\Factories\TestTypeFactory> */
+    /** @use HasFactory<TestTypeFactory> */
     use HasFactory;
+
     use SoftDeletes;
 
     /**
@@ -26,9 +28,9 @@ class TestType extends Model
     protected function casts(): array
     {
         return [
-            'created_at'   => 'datetime',
-            'deleted_at'   => 'datetime',
-            'updated_at'   => 'datetime',
+            'created_at' => 'datetime',
+            'deleted_at' => 'datetime',
+            'updated_at' => 'datetime',
         ];
     }
 

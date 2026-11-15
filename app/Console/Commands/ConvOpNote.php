@@ -24,12 +24,12 @@ class ConvOpNote extends Command
         foreach ($machines as $m) {
             if ($m->opnote->count() > 0) {
                 $m->op_notes = $m->opnote
-                                   ->map(
-                                       function (OpNote $item) {
-                                           return ['note' => $item->note,];
-                                       },
-                                   );
-                $this->info('Opnotes for machine ' . $m->description . ' converted');
+                    ->map(
+                        function (OpNote $item) {
+                            return ['note' => $item->note];
+                        },
+                    );
+                $this->info('Opnotes for machine '.$m->description.' converted');
                 $m->save();
             }
         }

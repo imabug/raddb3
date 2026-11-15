@@ -9,9 +9,13 @@ use Filament\Support\Icons\Heroicon;
 class RaddbCharts extends Page
 {
     protected string $view = 'filament.reports.pages.raddb-charts';
+
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedChartBar;
-    protected static ?string $title = "RadDB Charts";
+
+    protected static ?string $title = 'RadDB Charts';
+
     protected int|string|array $columnSpan = 1;
+
     protected int|string|array $columnStart = 1;
 
     public function getColumns(): int|array

@@ -22,7 +22,7 @@ class AnnRepMachinesNew extends TableWidget
             ->heading('New or moved machines')
             ->query(function (Builder $query) use ($reportYear): Builder {
                 return Machine::query()
-                    ->whereBetween('install_date', [$reportYear . '-01-01', $reportYear . '-12-31'])
+                    ->whereBetween('install_date', [$reportYear.'-01-01', $reportYear.'-12-31'])
                     ->orderBy('install_date', 'asc');
             })
             ->columns([

@@ -4,8 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Attributes\Scope;
 use Illuminate\Database\Eloquent\Attributes\Table;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 #[Table('surveyschedule_view')]
@@ -57,8 +57,6 @@ class SurveyScheduleView extends Model
 
     /**
      * Scope function to return pending surveys (scheduled after the current date).
-     *
-     * @param \Illuminate\Database\Eloquent\Builder $query
      */
     #[Scope]
     protected function pending(Builder $query): void
@@ -68,8 +66,6 @@ class SurveyScheduleView extends Model
 
     /**
      * Scope function to return machines needing surveys.
-     *
-     * @param \Illuminate\Database\Eloquent\Builder $query
      */
     #[Scope]
     protected function surveyNeeded(Builder $query): void

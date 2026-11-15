@@ -42,7 +42,7 @@ class MachinesTable
                         $filterState = $livewire->getTableFilterState('modality');
                         if (
                             $filterState == null
-                            || (is_array($filterState) && $filterState['value'] == "")
+                            || (is_array($filterState) && $filterState['value'] == '')
                         ) {
                             return true;
                         } else {
@@ -56,7 +56,7 @@ class MachinesTable
                         // Don't show the manufacturer column if the manufacturer filter is set
                         $filterState = $livewire->getTableFilterState('manufacturer');
                         if ($filterState == null
-                             || (is_array($filterState) && $filterState['value'] == "")) {
+                             || (is_array($filterState) && $filterState['value'] == '')) {
                             return true;
                         } else {
                             return false;
@@ -94,7 +94,7 @@ class MachinesTable
             ->filters([
                 TrashedFilter::make(),
                 Filter::make('active')
-                    ->query(fn(Builder $query): Builder => $query->where('machine_status', Status::Active))
+                    ->query(fn (Builder $query): Builder => $query->where('machine_status', Status::Active))
                     ->toggle()
                     ->default(),
                 SelectFilter::make('facility')

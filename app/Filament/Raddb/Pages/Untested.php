@@ -2,9 +2,9 @@
 
 namespace App\Filament\Raddb\Pages;
 
-use BackedEnum;
 use App\Models\Machine;
 use App\Models\TestDate;
+use BackedEnum;
 use Filament\Actions\Action;
 use Filament\Pages\Page;
 use Filament\Support\Icons\Heroicon;
@@ -20,7 +20,9 @@ class Untested extends Page implements HasTable
     use InteractsWithTable;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedClipboardDocumentList;
+
     protected static string|UnitEnum|null $navigationGroup = 'Surveys';
+
     protected string $view = 'filament.raddb.pages.untested';
 
     public static function table(Table $table): Table
@@ -31,7 +33,7 @@ class Untested extends Page implements HasTable
             ->records(
                 function (): array {
                     // Get the machine_ids that have current surveys
-                    $currSurveys = TestDate::without(['machine', 'testType',]) // Exclude these eager loaded relationships
+                    $currSurveys = TestDate::without(['machine', 'testType']) // Exclude these eager loaded relationships
                         ->year(date('Y')) // Limit records to the current year
                         ->activeMachines() // Only active machines
                         ->get()
@@ -41,13 +43,14 @@ class Untested extends Page implements HasTable
                     $untested = Machine::without([
                         'manufacturer',
                         'testDate',
-                        'tube',]) // Exclude these eager loaded relationships
+                        'tube', ]) // Exclude these eager loaded relationships
                         ->active() // Only active machines
                         ->noTestEquipment() // Exclude test equipment
                         ->whereNotIn('id', $currSurveys) // Exclude machine IDs in $currSurveys
                         ->get()
                         ->withoutAppends() // Don't include accessor attributes in the results
                         ->toArray();
+
                     return $untested;
                 },
             )
@@ -71,7 +74,7 @@ class Untested extends Page implements HasTable
             ])
             ->recordActions([
                 Action::make('create')
-                    ->url(fn(): string => route('filament.raddb.resources.test-dates.create')),
+                    ->url(fn (): string => route('filament.raddb.resources.test-dates.create')),
             ])
             ->toolbarActions([
             ]);

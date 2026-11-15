@@ -8,8 +8,11 @@ use Filament\Widgets\ChartWidget;
 class YearlySurveyCount extends ChartWidget
 {
     protected ?string $heading = 'Yearly Survey Count';
+
     protected ?string $pollingInterval = null;
+
     protected static ?int $sort = 1;
+
     protected bool $isCollapsible = true;
 
     public function getDescription(): ?string

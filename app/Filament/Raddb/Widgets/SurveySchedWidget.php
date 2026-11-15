@@ -15,6 +15,6 @@ class SurveySchedWidget extends TableWidget
     public function table(Table $table): Table
     {
         return SurveyScheduleViewsTable::configure($table)
-            ->query(fn(): Builder => SurveyScheduleView::query()->orderBy('prevSurveyDate', 'asc'));
+            ->query(fn (): Builder => SurveyScheduleView::query()->orderBy('prevSurveyDate', 'asc'));
     }
 }

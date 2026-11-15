@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Enums\Status;
 use Carbon\CarbonImmutable;
+use Database\Factories\MachineFactory;
 use Illuminate\Database\Eloquent\Attributes\Scope;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
@@ -19,10 +20,11 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class Machine extends Model implements HasMedia
 {
-    /** @use HasFactory<\Database\Factories\MachineFactory> */
+    /** @use HasFactory<MachineFactory> */
     use HasFactory;
-    use SoftDeletes;
+
     use InteractsWithMedia;
+    use SoftDeletes;
 
     /**
      * Eager loaded relationships
@@ -75,13 +77,13 @@ class Machine extends Model implements HasMedia
     {
         return [
             'machine_status' => Status::class,
-            'op_notes'     => 'array',
-            'created_at'   => 'datetime',
-            'deleted_at'   => 'datetime',
-            'updated_at'   => 'datetime',
-            'manuf_date'   => 'date:Y-m-d',
+            'op_notes' => 'array',
+            'created_at' => 'datetime',
+            'deleted_at' => 'datetime',
+            'updated_at' => 'datetime',
+            'manuf_date' => 'date:Y-m-d',
             'install_date' => 'date:Y-m-d',
-            'remove_date'  => 'date:Y-m-d',
+            'remove_date' => 'date:Y-m-d',
         ];
     }
 
@@ -220,9 +222,9 @@ class Machine extends Model implements HasMedia
         // Calculate the age of the unit based on manuf_date or install_date
         return Attribute::make(
             get: function ($value, $attributes) {
-                if (!is_null($attributes['manuf_date'])) {
+                if (! is_null($attributes['manuf_date'])) {
                     return CarbonImmutable::createFromFormat('Y-m-d', $attributes['manuf_date'])->age;
-                } elseif (!is_null($attributes['install_date'])) {
+                } elseif (! is_null($attributes['install_date'])) {
                     return CarbonImmutable::createFromFormat('Y-m-d', $attributes['install_date'])->age;
                 }
             },
@@ -239,10 +241,10 @@ class Machine extends Model implements HasMedia
             get: function ($value, $attributes) {
                 $today = CarbonImmutable::today();
                 $testDate = TestDate::without('machine')
-                        ->where('machine_id', $attributes['id'])
-                        ->latest()
-                        ->first()
-                        ->test_date;
+                    ->where('machine_id', $attributes['id'])
+                    ->latest()
+                    ->first()
+                    ->test_date;
                 $days = $testDate->diff($today)->format('%a');
                 if ($days < 335) {
                     $status = ($testDate > $today) ? Status::Scheduled : Status::Current;
@@ -255,6 +257,7 @@ class Machine extends Model implements HasMedia
                 } else {
                     $status = Status::NeedInfo;
                 }
+
                 return $status;
             },
         );

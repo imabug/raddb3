@@ -46,7 +46,7 @@ class TestDatesTable
                 TextColumn::make('machine.description')
                     ->searchable()
                     ->url(
-                        fn(Model $record): string => route('filament.raddb.resources.machines.view', ['record' => $record->machine_id]),
+                        fn (Model $record): string => route('filament.raddb.resources.machines.view', ['record' => $record->machine_id]),
                     ),
                 TextColumn::make('testType.test_type')
                     ->searchable(),
@@ -61,23 +61,23 @@ class TestDatesTable
                 TrashedFilter::make(),
                 Filter::make('pending')
                     ->label('Pending')
-                    ->query(fn(Builder $query): Builder => $query->activeMachines()->pending())
+                    ->query(fn (Builder $query): Builder => $query->activeMachines()->pending())
                     ->toggle()
                     ->default(),
                 Filter::make('activeMachines')
                     ->label('Active machines')
-                    ->query(fn(Builder $query): Builder => $query->activeMachines())
+                    ->query(fn (Builder $query): Builder => $query->activeMachines())
                     ->toggle(),
                 // TODO: Toggle prevYear/currYear filters depending on the state of the other filter
                 // i.e. if prevYear is toggled on, toggling currYear on should toggle prevYear off but
                 // leave prevYear if it's already off.
                 Filter::make('prevYear')
                     ->label('Previous year')
-                    ->query(fn(Builder $query): Builder => $query->year(date('Y') - 1))
+                    ->query(fn (Builder $query): Builder => $query->year(date('Y') - 1))
                     ->toggle(),
                 Filter::make('currYear')
                     ->label('Current year')
-                    ->query(fn(Builder $query): Builder => $query->year(date('Y')))
+                    ->query(fn (Builder $query): Builder => $query->year(date('Y')))
                     ->toggle(),
                 SelectFilter::make('testType')
                     ->relationship('testType', 'test_type'),
@@ -93,11 +93,11 @@ class TestDatesTable
                         return $query
                             ->when(
                                 $data['surveyStart'],
-                                fn(Builder $query, $date): Builder => $query->whereDate('test_date', '>=', $date),
+                                fn (Builder $query, $date): Builder => $query->whereDate('test_date', '>=', $date),
                             )
                             ->when(
                                 $data['surveyEnd'],
-                                fn(Builder $query, $date): Builder => $query->whereDate('test_date', '<=', $date),
+                                fn (Builder $query, $date): Builder => $query->whereDate('test_date', '<=', $date),
                             );
                     }),
             ])

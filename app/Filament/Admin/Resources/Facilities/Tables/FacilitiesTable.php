@@ -39,7 +39,7 @@ class FacilitiesTable
             ->defaultSort('facility', 'asc')
             ->groups([
                 Group::make('city')
-                ->collapsible(),
+                    ->collapsible(),
             ])
             ->filters([
                 TrashedFilter::make(),

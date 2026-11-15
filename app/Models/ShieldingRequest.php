@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Enums\Status;
+use Database\Factories\ShieldingRequestFactory;
 use Illuminate\Database\Eloquent\Attributes\Scope;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -12,8 +13,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class ShieldingRequest extends Model
 {
-    /** @use HasFactory<\Database\Factories\ShieldingRequestFactory> */
+    /** @use HasFactory<ShieldingRequestFactory> */
     use HasFactory;
+
     use SoftDeletes;
 
     /**

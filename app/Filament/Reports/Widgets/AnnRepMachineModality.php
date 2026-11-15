@@ -34,6 +34,7 @@ class AnnRepMachineModality extends TableWidget
                     'count' => $totMachines,
                     'percent' => 100,
                 ];
+
                 return $modCount;
             })
             ->columns([

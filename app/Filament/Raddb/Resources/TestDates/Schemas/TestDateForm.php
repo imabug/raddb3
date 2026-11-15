@@ -4,8 +4,8 @@ namespace App\Filament\Raddb\Resources\TestDates\Schemas;
 
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\Select;
-use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
 use Illuminate\Database\Eloquent\Builder;
 
@@ -20,7 +20,7 @@ class TestDateForm
                     ->relationship(
                         name: 'machine',
                         titleAttribute: 'description',
-                        modifyQueryUsing: fn(Builder $query) => $query->active(),
+                        modifyQueryUsing: fn (Builder $query) => $query->active(),
                     )
                     ->searchable()
                     ->noSearchResultsMessage('No machines found')

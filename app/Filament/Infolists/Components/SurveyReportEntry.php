@@ -2,8 +2,6 @@
 
 namespace App\Filament\Infolists\Components;
 
-use Closure;
-use App\Models\TestDate;
 use Filament\Infolists\Components\Entry;
 
 class SurveyReportEntry extends Entry

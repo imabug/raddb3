@@ -7,6 +7,7 @@ use Filament\Pages\Dashboard as BaseDashboard;
 class RaddbDashboard extends BaseDashboard
 {
     protected int|string|array $columnSpan = 'full';
+
     protected static ?string $title = 'Radiological Equipment Database';
 
     /**

@@ -2,7 +2,6 @@
 
 namespace App\Filament\Admin\Resources\Manufacturers\Schemas;
 
-use App\Models\Manufacturer;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Schemas\Schema;
 

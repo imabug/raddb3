@@ -8,8 +8,11 @@ use Filament\Widgets\ChartWidget;
 class ModalityMachineCount extends ChartWidget
 {
     protected ?string $heading = 'Machine count by modality';
+
     protected ?string $pollingInterval = null;
+
     protected static ?int $sort = 4;
+
     protected bool $isCollapsible = true;
 
     public function getDescription(): ?string
@@ -22,8 +25,8 @@ class ModalityMachineCount extends ChartWidget
         return [
             'plugins' => [
                 'colors' => [
-                    'enabled' => "true",
-                    'forceOverride' => "true",
+                    'enabled' => 'true',
+                    'forceOverride' => 'true',
                 ],
             ],
         ];
@@ -32,8 +35,8 @@ class ModalityMachineCount extends ChartWidget
     protected function getData(): array
     {
         $machines = Machine::get()
-                    ->countBy('modality.modality')
-                    ->sortDesc();
+            ->countBy('modality.modality')
+            ->sortDesc();
 
         return [
             'datasets' => [

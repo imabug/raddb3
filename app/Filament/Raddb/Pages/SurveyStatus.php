@@ -16,7 +16,9 @@ class SurveyStatus extends Page implements HasTable
     use InteractsWithTable;
 
     protected string $view = 'filament.raddb.pages.survey-status';
+
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedClipboardDocumentList;
+
     protected static string|UnitEnum|null $navigationGroup = 'Surveys';
 
     public static function table(Table $table): Table

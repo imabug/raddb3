@@ -18,6 +18,7 @@ class User extends Authenticatable
 {
     /** @use HasFactory<UserFactory> */
     use HasFactory;
+
     use Notifiable;
 
     /**
@@ -30,8 +31,8 @@ class User extends Authenticatable
         return [
             // 'email_verified_at' => 'datetime',
             // 'password' => 'hashed',
-            'created_at'   => 'datetime',
-            'updated_at'   => 'datetime',
+            'created_at' => 'datetime',
+            'updated_at' => 'datetime',
             'role' => Role::class,
         ];
     }

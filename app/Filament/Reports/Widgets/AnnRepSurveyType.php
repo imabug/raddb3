@@ -41,6 +41,7 @@ class AnnRepSurveyType extends TableWidget
                         'count' => $tot,
                         'percent' => 100,
                     ];
+
                     return $sCount;
                 },
             )

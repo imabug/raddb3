@@ -34,6 +34,7 @@ class AnnRepMachineFacilities extends TableWidget
                     'count' => $totMachines,
                     'percent' => 100,
                 ];
+
                 return $facCount;
             })
             ->columns([

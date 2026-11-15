@@ -6,7 +6,7 @@ use Filament\Support\Contracts\HasDescription;
 use Filament\Support\Contracts\HasLabel;
 use Illuminate\Contracts\Support\Htmlable;
 
-enum USState: string implements HasLabel, HasDescription
+enum USState: string implements HasDescription, HasLabel
 {
     case AK = 'AK';
     case AL = 'AL';

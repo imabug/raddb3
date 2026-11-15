@@ -10,7 +10,6 @@ class CreateMachine extends CreateRecord
 {
     protected static string $resource = MachineResource::class;
 
-
     protected function preserveFormDataWhenCreatingAnother(array $data): array
     {
         return Arr::only(

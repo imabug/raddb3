@@ -2,7 +2,6 @@
 
 namespace App\Filament\Admin\Resources\Locations\Schemas;
 
-use App\Models\Location;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Schemas\Schema;
 

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Database\Factories\ModalityFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -9,8 +10,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Modality extends Model
 {
-    /** @use HasFactory<\Database\Factories\ModalityFactory> */
+    /** @use HasFactory<ModalityFactory> */
     use HasFactory;
+
     use SoftDeletes;
 
     /**
@@ -26,9 +28,9 @@ class Modality extends Model
     protected function casts(): array
     {
         return [
-            'created_at'   => 'datetime',
-            'deleted_at'   => 'datetime',
-            'updated_at'   => 'datetime',
+            'created_at' => 'datetime',
+            'deleted_at' => 'datetime',
+            'updated_at' => 'datetime',
         ];
     }
 

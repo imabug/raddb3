@@ -13,9 +13,13 @@ class SurveyCategoryCount extends ChartWidget
      */
 
     protected ?string $heading = 'Survey Categories';
+
     protected ?string $pollingInterval = null;
+
     protected static ?int $sort = 3;
+
     public ?string $filter = '';
+
     protected bool $isCollapsible = true;
 
     public function getDescription(): ?string
@@ -28,8 +32,8 @@ class SurveyCategoryCount extends ChartWidget
         return [
             'plugins' => [
                 'colors' => [
-                    'enabled' => "true",
-                    'forceOverride' => "true",
+                    'enabled' => 'true',
+                    'forceOverride' => 'true',
                 ],
             ],
         ];
@@ -59,7 +63,7 @@ class SurveyCategoryCount extends ChartWidget
     {
         // If $this->filter is empty, set $activeFilter to the current year
         if (empty($this->filter)) {
-            $this->filter = date("Y");
+            $this->filter = date('Y');
         }
 
         /*

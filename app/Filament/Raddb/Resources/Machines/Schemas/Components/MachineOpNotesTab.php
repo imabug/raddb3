@@ -19,15 +19,15 @@ class MachineOpNotesTab
     public static function make(): Tab
     {
         return Tab::make('Operational Notes')
-                ->schema([
-                    RepeatableEntry::make('op_notes')
-                        ->hiddenLabel()
-                        ->schema([
-                            TextEntry::make('note')
-                                ->hiddenLabel(),
-                        ])
-                        ->grid(2),
-                ])
-                ->columnSpanFull();
+            ->schema([
+                RepeatableEntry::make('op_notes')
+                    ->hiddenLabel()
+                    ->schema([
+                        TextEntry::make('note')
+                            ->hiddenLabel(),
+                    ])
+                    ->grid(2),
+            ])
+            ->columnSpanFull();
     }
 }

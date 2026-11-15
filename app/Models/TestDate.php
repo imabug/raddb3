@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Enums\Status;
+use Database\Factories\TestDateFactory;
 use Illuminate\Database\Eloquent\Attributes\Scope;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -17,10 +18,11 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class TestDate extends Model implements HasMedia
 {
-    /** @use HasFactory<\Database\Factories\TestDateFactory> */
+    /** @use HasFactory<TestDateFactory> */
     use HasFactory;
-    use SoftDeletes;
+
     use InteractsWithMedia;
+    use SoftDeletes;
 
     /**
      * Eager loaded relationships
@@ -51,10 +53,10 @@ class TestDate extends Model implements HasMedia
     protected function casts(): array
     {
         return [
-            'test_date'  => 'datetime',
-            'created_at'   => 'datetime',
-            'deleted_at'   => 'datetime',
-            'updated_at'   => 'datetime',
+            'test_date' => 'datetime',
+            'created_at' => 'datetime',
+            'deleted_at' => 'datetime',
+            'updated_at' => 'datetime',
         ];
     }
 
@@ -94,7 +96,6 @@ class TestDate extends Model implements HasMedia
 
     /**
      * Scope function to return the test date year
-     *
      */
     #[Scope]
     protected function year(Builder $query, int $y): void
@@ -104,8 +105,6 @@ class TestDate extends Model implements HasMedia
 
     /**
      * Scope function to return pending test dates (scheduled after the current date).
-     *
-     * @param \Illuminate\Database\Eloquent\Builder $query
      */
     #[Scope]
     protected function pending(Builder $query): void
@@ -116,8 +115,7 @@ class TestDate extends Model implements HasMedia
     /**
      * Scope function to return the n most recent routine annual survey test dates.
      *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     * @param int                                   $n
+     * @param  int  $n
      */
     #[Scope]
     protected function recent(Builder $query, $n): void
@@ -129,9 +127,6 @@ class TestDate extends Model implements HasMedia
 
     /**
      * Scope function to return surveys for active machines.
-     *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     *
      */
     #[Scope]
     protected function activeMachines(Builder $query): void

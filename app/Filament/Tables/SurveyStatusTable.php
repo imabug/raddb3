@@ -19,26 +19,26 @@ class SurveyStatusTable
         return $table
             ->lazyLoaded()
             ->query(
-                fn(): Builder => Machine::query()
-                ->active()
-                ->without(['manufacturer', 'tube'])
-                ->with([
-                    // Get the most recent test date through the testDate relationship
-                    'testDate' => function ($query) {
-                        $query->where('test_type_id', '1')
-                            ->orWhere('test_type_id', '2')
-                            ->latest('test_date')
-                            ->limit(1);
-                    },
-                ])
-                ->noTestEquipment(),
+                fn (): Builder => Machine::query()
+                    ->active()
+                    ->without(['manufacturer', 'tube'])
+                    ->with([
+                        // Get the most recent test date through the testDate relationship
+                        'testDate' => function ($query) {
+                            $query->where('test_type_id', '1')
+                                ->orWhere('test_type_id', '2')
+                                ->latest('test_date')
+                                ->limit(1);
+                        },
+                    ])
+                    ->noTestEquipment(),
             )
             ->columns([
                 Stack::make([
                     TextColumn::make('description')
                         ->searchable()
                         ->url(
-                            fn(Model $record): string => route('filament.raddb.resources.machines.view', ['record' => $record->id]),
+                            fn (Model $record): string => route('filament.raddb.resources.machines.view', ['record' => $record->id]),
                         ),
                     TextColumn::make('location.location')
                         ->sortable(),
@@ -49,8 +49,8 @@ class SurveyStatusTable
                     TextColumn::make('testDate.test_date')
                         ->date('Y-m-d')
                         ->badge()
-                        ->color(fn(Model $record): string|array => $record->surveyStatus->getColor())
-                        ->tooltip(fn(Model $record): string|array => $record->surveyStatus->getDescription()),
+                        ->color(fn (Model $record): string|array => $record->surveyStatus->getColor())
+                        ->tooltip(fn (Model $record): string|array => $record->surveyStatus->getDescription()),
                 ]),
             ])
             ->contentGrid([

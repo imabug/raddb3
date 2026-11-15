@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Enums\Status;
+use Database\Factories\OpNoteFactory;
 use Illuminate\Database\Eloquent\Attributes\Scope;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -12,8 +13,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class OpNote extends Model
 {
-    /** @use HasFactory<\Database\Factories\OpNoteFactory> */
+    /** @use HasFactory<OpNoteFactory> */
     use HasFactory;
+
     use SoftDeletes;
 
     /**
@@ -32,9 +34,9 @@ class OpNote extends Model
     protected function casts(): array
     {
         return [
-            'created_at'   => 'datetime',
-            'deleted_at'   => 'datetime',
-            'updated_at'   => 'datetime',
+            'created_at' => 'datetime',
+            'deleted_at' => 'datetime',
+            'updated_at' => 'datetime',
         ];
     }
 
