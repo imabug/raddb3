@@ -68,7 +68,7 @@ class MachineController extends Controller
         $machine->save();
 
         // Get the tubes associated with $machine
-        $tubes = $machine->tube->where('tube_status', Status::Active);
+        $tubes = $machine->tube->where('tube_status', Status::Active)->get();
         foreach ($tubes as $t) {
             $t->tube_status = Status::Removed;
             $t->remove_date = date('Y-m-d');
