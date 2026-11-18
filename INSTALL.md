@@ -4,7 +4,7 @@ Clone the repository
 
 Install the PHP stuff
 
-`cd raddb-filament; composer install`
+`cd raddb3; composer install`
 
 Install the nodejs stuff
 
