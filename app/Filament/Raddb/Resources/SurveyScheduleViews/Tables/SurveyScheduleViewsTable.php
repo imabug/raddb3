@@ -8,6 +8,7 @@ use Filament\Forms\Components\DatePicker;
 use Filament\Support\Enums\IconPosition;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Enums\PaginationMode;
 use Filament\Tables\Filters\Filter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
@@ -67,7 +68,7 @@ class SurveyScheduleViewsTable
                     ->sortable(),
             ])
             ->defaultSort('prevSurveyDate', direction: 'asc')
-            ->paginated([50, 100, 'all'])
+            ->paginated([50, 100, 150])
             ->defaultPaginationPageOption(50)
             ->extremePaginationLinks()
             ->striped(true)
