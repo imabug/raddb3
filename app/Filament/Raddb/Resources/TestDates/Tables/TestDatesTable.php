@@ -2,14 +2,14 @@
 
 namespace App\Filament\Raddb\Resources\TestDates\Tables;
 
-use App\Filament\Actions\TableEditAction;
-use App\Filament\Actions\TableViewAction;
 use App\Models\TestDate;
 use BackedEnum;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
+use Filament\Actions\EditAction;
 use Filament\Actions\ForceDeleteBulkAction;
 use Filament\Actions\RestoreBulkAction;
+use Filament\Actions\ViewAction;
 use Filament\Forms\Components\DatePicker;
 use Filament\Support\Enums\IconPosition;
 use Filament\Support\Icons\Heroicon;
@@ -107,8 +107,10 @@ class TestDatesTable
             ->extremePaginationLinks()
             ->striped(true)
             ->recordActions([
-                TableViewAction::make(),
-                TableEditAction::make(),
+                ViewAction::make()
+                    ->iconButton(),
+                EditAction::make()
+                    ->iconButton(),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([

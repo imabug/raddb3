@@ -2,13 +2,13 @@
 
 namespace App\Filament\Admin\Resources\Users\Tables;
 
-use App\Filament\Actions\TableDeleteAction;
-use App\Filament\Actions\TableEditAction;
-use App\Filament\Actions\TableViewAction;
 use Filament\Actions\BulkActionGroup;
+use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
+use Filament\Actions\EditAction;
 use Filament\Actions\ForceDeleteBulkAction;
 use Filament\Actions\RestoreBulkAction;
+use Filament\Actions\ViewAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
@@ -40,9 +40,12 @@ class UsersTable
             ->striped(true)
             ->lazyLoaded(true)
             ->recordActions([
-                TableViewAction::make(),
-                TableEditAction::make(),
-                TableDeleteAction::make(),
+                ViewAction::make()
+                    ->iconButton(),
+                EditAction::make()
+                    ->iconButton(),
+                DeleteAction::make()
+                    ->iconButton(),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([
