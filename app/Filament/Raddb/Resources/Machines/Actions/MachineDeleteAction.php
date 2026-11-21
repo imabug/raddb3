@@ -21,7 +21,7 @@ class MachineDeleteAction
     {
         return DeleteAction::make()
             ->before(function ($record) {
-                // Set the machine status before saving
+                // Set the machine status before deleting
                 $record->machine_status = Status::Removed;
                 $record->remove_date = now();
                 $record->save();
