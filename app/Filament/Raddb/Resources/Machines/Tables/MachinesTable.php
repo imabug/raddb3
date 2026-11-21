@@ -4,6 +4,7 @@ namespace App\Filament\Raddb\Resources\Machines\Tables;
 
 use App\Enums\Status;
 use App\Filament\Raddb\Resources\Machines\Actions\MachineDeleteAction;
+use App\Filament\Raddb\Resources\Machines\Actions\MachineRestoreAction;
 use Filament\Actions\ActionGroup;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
@@ -102,6 +103,7 @@ class MachinesTable
                     ViewAction::make(),
                     EditAction::make(),
                     MachineDeleteAction::configure(),
+                    MachineRestoreAction::configure(),
                 ]),
             ])
             ->toolbarActions([
