@@ -3,11 +3,13 @@
 namespace Database\Factories;
 
 use App\Models\Machine;
+use Illuminate\Database\Eloquent\Factories\Attributes\UseModel;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
  * @extends Factory<Machine>
  */
+#[UseModel(Machine::class)]
 class MachineFactory extends Factory
 {
     /**
@@ -18,7 +20,7 @@ class MachineFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'description' => fake()->word(),
         ];
     }
 }

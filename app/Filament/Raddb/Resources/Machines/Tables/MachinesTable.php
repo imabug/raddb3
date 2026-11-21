@@ -3,8 +3,9 @@
 namespace App\Filament\Raddb\Resources\Machines\Tables;
 
 use App\Enums\Status;
+use App\Filament\Raddb\Resources\Machines\Actions\MachineDeleteAction;
+use Filament\Actions\ActionGroup;
 use Filament\Actions\BulkActionGroup;
-use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Actions\ForceDeleteBulkAction;
@@ -34,9 +35,7 @@ class MachinesTable
                     ->sortable()
                     ->searchable(),
                 TextColumn::make('location.location')
-                    ->wrap()
-                    ->searchable()
-                    ->sortable(),
+                    ->wrap(),
                 TextColumn::make('modality.modality')
                     ->visible(function ($livewire) {
                         // Don't show the modality column if the modality filter is set
@@ -50,7 +49,6 @@ class MachinesTable
                             return false;
                         }
                     })
-                    ->searchable()
                     ->sortable(),
                 TextColumn::make('manufacturer.manufacturer')
                     ->visible(function ($livewire) {
@@ -64,24 +62,14 @@ class MachinesTable
                         }
                     })
                     ->wrap()
-                    ->searchable()
                     ->sortable(),
                 TextColumn::make('model')
                     ->wrap()
                     ->searchable(),
-                TextColumn::make('serial_number')
-                    ->searchable(),
-                TextColumn::make('vend_site_id')
-                    ->searchable(),
-                TextColumn::make('room')
-                    ->searchable(),
-                TextColumn::make('install_date')
-                    ->date()
+                TextColumn::make('serial_number'),
+                TextColumn::make('room'),
+                TextColumn::make('age')
                     ->sortable(),
-                TextColumn::make('manuf_date')
-                    ->date()
-                    ->sortable(),
-                TextColumn::make('age'),
             ])
             ->groups([
                 Group::make('facility.facility')
@@ -110,12 +98,11 @@ class MachinesTable
             ->defaultPaginationPageOption(50)
             ->extremePaginationLinks()
             ->recordActions([
-                ViewAction::make()
-                    ->iconButton(),
-                EditAction::make()
-                    ->iconButton(),
-                DeleteAction::make()
-                    ->iconButton(),
+                ActionGroup::make([
+                    ViewAction::make(),
+                    EditAction::make(),
+                    MachineDeleteAction::configure(),
+                ]),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([

@@ -6,6 +6,7 @@ use App\Enums\Status;
 use Carbon\CarbonImmutable;
 use Database\Factories\MachineFactory;
 use Illuminate\Database\Eloquent\Attributes\Scope;
+use Illuminate\Database\Eloquent\Attributes\UseFactory;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -18,6 +19,7 @@ use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
+#[UseFactory(MachineFactory::class)]
 class Machine extends Model implements HasMedia
 {
     /** @use HasFactory<MachineFactory> */
