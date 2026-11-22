@@ -4,10 +4,9 @@ namespace App\Filament\Raddb\Resources\Machines\Resources\Tubes\Tables;
 
 use App\Filament\Actions\TableEditAction;
 use App\Filament\Actions\TableViewAction;
+use App\Filament\Raddb\Resources\Machines\Resources\Tubes\Actions\TubeDeleteAction;
+use App\Filament\Raddb\Resources\Machines\Resources\Tubes\Actions\TubeRestoreAction;
 use Filament\Actions\BulkActionGroup;
-use Filament\Actions\DeleteBulkAction;
-use Filament\Actions\ForceDeleteBulkAction;
-use Filament\Actions\RestoreBulkAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
@@ -61,12 +60,13 @@ class TubesTable
             ->recordActions([
                 TableViewAction::make(),
                 TableEditAction::make(),
+                TubeDeleteAction::configure(),
+                TubeRestoreAction::configure(),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([
-                    DeleteBulkAction::make(),
-                    ForceDeleteBulkAction::make(),
-                    RestoreBulkAction::make(),
+                    TubeDeleteAction::configureBulk(),
+                    TubeRestoreAction::configureBulk(),
                 ]),
             ]);
     }
