@@ -8,6 +8,7 @@ use Filament\Actions\BulkAction;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Notifications\Notification;
+use Illuminate\Database\Eloquent\Collection;
 
 class TubeDeleteAction
 {
@@ -38,6 +39,15 @@ class TubeDeleteAction
 
     public static function configureBulk(): BulkAction
     {
-        return DeleteBulkAction::make();
+        return DeleteBulkAction::make()
+            ->before(function (Collection $records) {
+                // Update tube_status and remove_date before removing tubes
+                foreach ($records as $r) {
+                    $r->tube_status = Status::Removed;
+                    $r->remove_date = now();
+                    $r->save();
+                }
+            })
+            ->successNotificationTitle('Tubes deleted');
     }
 }

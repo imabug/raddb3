@@ -8,6 +8,7 @@ use Filament\Actions\BulkAction;
 use Filament\Actions\RestoreAction;
 use Filament\Actions\RestoreBulkAction;
 use Filament\Notifications\Notification;
+use Illuminate\Database\Eloquent\Collection;
 
 class TubeRestoreAction
 {
@@ -38,6 +39,15 @@ class TubeRestoreAction
 
     public static function configureBulk(): BulkAction
     {
-        return RestoreBulkAction::make();
+        return RestoreBulkAction::make()
+            ->before(function (Collection $records) {
+                // Update tube_status and remove_date before restoring
+                foreach ($records as $r) {
+                    $r->tube_status = Status::Active;
+                    $r->remove_date = null;
+                    $r->save();
+                }
+            })
+            ->successNotificationTitle('Tubes restored.');
     }
 }
