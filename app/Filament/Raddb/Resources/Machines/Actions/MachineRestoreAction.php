@@ -32,7 +32,7 @@ class MachineRestoreAction
                 $record->remove_date = null;
                 $record->save();
             })
-            ->successNotification(function ($record) {
+            ->successNotification(function ($record): Notification {
                 return Notification::make()
                     ->success()
                     ->title('Machine restored')
