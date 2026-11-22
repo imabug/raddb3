@@ -5,7 +5,10 @@ namespace App\Filament\Raddb\Resources\Machines\Actions;
 use App\Enums\Status;
 use App\Models\Tube;
 use Filament\Actions\Action;
+use Filament\Actions\BulkAction;
 use Filament\Actions\DeleteAction;
+use Filament\Actions\DeleteBulkAction;
+use Filament\Notifications\Notification;
 
 class MachineDeleteAction
 {
@@ -37,6 +40,17 @@ class MachineDeleteAction
                     $t->save();
                     $t->delete();
                 }
+            })
+            ->successNotification(function ($record): Notification {
+                return Notification::make()
+                    ->success()
+                    ->title('Machine deleted')
+                    ->body($record->description.' has been deleted.');
             });
+    }
+
+    public static function configureBulk(): BulkAction
+    {
+        return DeleteBulkAction::make();
     }
 }
