@@ -7,10 +7,7 @@ use App\Filament\Raddb\Resources\Machines\Actions\MachineDeleteAction;
 use App\Filament\Raddb\Resources\Machines\Actions\MachineRestoreAction;
 use Filament\Actions\ActionGroup;
 use Filament\Actions\BulkActionGroup;
-use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
-use Filament\Actions\ForceDeleteBulkAction;
-use Filament\Actions\RestoreBulkAction;
 use Filament\Actions\ViewAction;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
@@ -108,9 +105,8 @@ class MachinesTable
             ])
             ->toolbarActions([
                 BulkActionGroup::make([
-                    DeleteBulkAction::make(),
-                    ForceDeleteBulkAction::make(),
-                    RestoreBulkAction::make(),
+                    MachineDeleteAction::configureBulk(),
+                    MachineRestoreAction::configureBulk(),
                 ]),
             ]);
     }
