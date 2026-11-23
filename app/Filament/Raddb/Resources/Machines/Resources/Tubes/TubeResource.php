@@ -9,7 +9,7 @@ use App\Filament\Raddb\Resources\Machines\Resources\Tubes\Pages\ListTube;
 use App\Filament\Raddb\Resources\Machines\Resources\Tubes\Pages\ViewTube;
 use App\Filament\Raddb\Resources\Machines\Resources\Tubes\Schemas\TubeForm;
 use App\Filament\Raddb\Resources\Machines\Resources\Tubes\Schemas\TubeInfolist;
-use App\Filament\Raddb\Resources\Machines\Resources\Tubes\Tables\TubesTable;
+use App\Filament\Raddb\Resources\Machines\Resources\Tubes\Tables\TubeTable;
 use App\Models\Tube;
 use BackedEnum;
 use Filament\Resources\Resource;
@@ -39,7 +39,7 @@ class TubeResource extends Resource
 
     public static function table(Table $table): Table
     {
-        return TubesTable::configure($table);
+        return TubeTable::configure($table);
     }
 
     public static function getRelations(): array

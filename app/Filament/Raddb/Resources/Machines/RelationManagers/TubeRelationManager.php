@@ -3,7 +3,7 @@
 namespace App\Filament\Raddb\Resources\Machines\RelationManagers;
 
 use App\Filament\Raddb\Resources\Machines\Resources\Tubes\Schemas\TubeForm;
-use App\Filament\Raddb\Resources\Machines\Resources\Tubes\Tables\TubesTable;
+use App\Filament\Raddb\Resources\Machines\Resources\Tubes\Tables\TubeTable;
 use App\Filament\Raddb\Resources\Machines\Resources\Tubes\TubeResource;
 use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Schemas\Schema;
@@ -22,6 +22,6 @@ class TubeRelationManager extends RelationManager
 
     public function table(Table $table): Table
     {
-        return TubesTable::configure($table);
+        return TubeTable::configure($table);
     }
 }
