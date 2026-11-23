@@ -2,9 +2,9 @@
 
 namespace App\Filament\Raddb\Resources\Machines\Resources\Tubes\Pages;
 
+use App\Filament\Raddb\Resources\Machines\Resources\Tubes\Actions\TubeDeleteAction;
+use App\Filament\Raddb\Resources\Machines\Resources\Tubes\Actions\TubeRestoreAction;
 use App\Filament\Raddb\Resources\Machines\Resources\Tubes\TubeResource;
-use Filament\Actions\DeleteAction;
-use Filament\Actions\RestoreAction;
 use Filament\Actions\ViewAction;
 use Filament\Resources\Pages\EditRecord;
 
@@ -16,8 +16,8 @@ class EditTube extends EditRecord
     {
         return [
             ViewAction::make(),
-            DeleteAction::make(),
-            RestoreAction::make(),
+            TubeDeleteAction::configure(),
+            TubeRestoreAction::configure(),
         ];
     }
 }
