@@ -6,6 +6,7 @@ use App\Filament\Raddb\Resources\Machines\Pages\CreateMachine;
 use App\Filament\Raddb\Resources\Machines\Pages\EditMachine;
 use App\Filament\Raddb\Resources\Machines\Pages\ListMachines;
 use App\Filament\Raddb\Resources\Machines\Pages\ViewMachine;
+use App\Filament\Raddb\Resources\Machines\Resources\Tubes\TubeResource;
 use App\Filament\Raddb\Resources\Machines\Schemas\MachineForm;
 use App\Filament\Raddb\Resources\Machines\Schemas\MachineInfolist;
 use App\Filament\Raddb\Resources\Machines\Tables\MachinesTable;
@@ -28,6 +29,8 @@ class MachineResource extends Resource
     protected static ?string $recordTitleAttribute = 'description';
 
     protected static string|UnitEnum|null $navigationGroup = 'Inventory';
+
+    protected static ?string $relatedResource = TubeResource::class;
 
     public static function form(Schema $schema): Schema
     {
