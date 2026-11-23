@@ -2,9 +2,9 @@
 
 namespace App\Filament\Raddb\Resources\Machines\Pages;
 
+use App\Filament\Raddb\Resources\Machines\Actions\MachineDeleteAction;
+use App\Filament\Raddb\Resources\Machines\Actions\MachineRestoreAction;
 use App\Filament\Raddb\Resources\Machines\MachineResource;
-use Filament\Actions\DeleteAction;
-use Filament\Actions\RestoreAction;
 use Filament\Actions\ViewAction;
 use Filament\Resources\Pages\EditRecord;
 
@@ -16,8 +16,8 @@ class EditMachine extends EditRecord
     {
         return [
             ViewAction::make(),
-            DeleteAction::make(),
-            RestoreAction::make(),
+            MachineDeleteAction::configure(),
+            MachineRestoreAction::configure(),
         ];
     }
 }
