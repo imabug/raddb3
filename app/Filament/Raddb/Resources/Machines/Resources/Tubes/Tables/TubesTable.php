@@ -4,7 +4,9 @@ namespace App\Filament\Raddb\Resources\Machines\Resources\Tubes\Tables;
 
 use App\Filament\Raddb\Resources\Machines\Resources\Tubes\Actions\TubeDeleteAction;
 use App\Filament\Raddb\Resources\Machines\Resources\Tubes\Actions\TubeRestoreAction;
+use Filament\Actions\ActionGroup;
 use Filament\Actions\BulkActionGroup;
+use Filament\Actions\CreateAction;
 use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
 use Filament\Tables\Columns\TextColumn;
@@ -47,11 +49,17 @@ class TubesTable
             ->filters([
                 TrashedFilter::make(),
             ])
+            ->deferFilters(false)
+            ->headerActions([
+                CreateAction::make(),
+            ])
             ->recordActions([
-                ViewAction::make(),
-                EditAction::make(),
-                TubeDeleteAction::configure(),
-                TubeRestoreAction::configure(),
+                ActionGroup::make([
+                    ViewAction::make(),
+                    EditAction::make(),
+                    TubeDeleteAction::configure(),
+                    TubeRestoreAction::configure(),
+                ]),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([
