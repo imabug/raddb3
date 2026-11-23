@@ -24,6 +24,5 @@ This application will track
 * For testing purposes, run ```php artisan serve``` and point your web browser at ```http://localhost:8000```
 * For production, configure a web server virtual host using the ```public``` directory as the DocumentRoot
 
-This project is developed in PHP using the [Laravel framework](https://laravel.com/).
+This is an artisinal hand crafted project developed in PHP using the [Laravel framework](https://laravel.com/) and [FilamentPHP](https://filamentphp.com).
 
-[![StyleCI](https://styleci.io/repos/66408419/shield?branch=master)](https://styleci.io/repos/66408419)
