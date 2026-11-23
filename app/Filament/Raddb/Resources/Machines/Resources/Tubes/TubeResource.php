@@ -5,6 +5,7 @@ namespace App\Filament\Raddb\Resources\Machines\Resources\Tubes;
 use App\Filament\Raddb\Resources\Machines\MachineResource;
 use App\Filament\Raddb\Resources\Machines\Resources\Tubes\Pages\CreateTube;
 use App\Filament\Raddb\Resources\Machines\Resources\Tubes\Pages\EditTube;
+use App\Filament\Raddb\Resources\Machines\Resources\Tubes\Pages\ListTube;
 use App\Filament\Raddb\Resources\Machines\Resources\Tubes\Pages\ViewTube;
 use App\Filament\Raddb\Resources\Machines\Resources\Tubes\Schemas\TubeForm;
 use App\Filament\Raddb\Resources\Machines\Resources\Tubes\Schemas\TubeInfolist;
@@ -51,6 +52,7 @@ class TubeResource extends Resource
     public static function getPages(): array
     {
         return [
+            'index' => ListTube::route('/'),
             'create' => CreateTube::route('/create'),
             'view' => ViewTube::route('/{record}'),
             'edit' => EditTube::route('/{record}/edit'),
