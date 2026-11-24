@@ -2,8 +2,10 @@
 
 namespace App\Filament\Raddb\Resources\TestDates\Tables;
 
+use App\Filament\Raddb\Resources\TestDates\Actions\AddReportAction;
 use App\Models\TestDate;
 use BackedEnum;
+use Filament\Actions\ActionGroup;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
@@ -101,15 +103,16 @@ class TestDatesTable
                     }),
             ])
             ->deferFilters(false)
-            ->paginated([10, 20, 50, 'all'])
+            ->paginated([10, 20, 50])
             ->defaultPaginationPageOption(10)
             ->extremePaginationLinks()
             ->striped(true)
             ->recordActions([
-                ViewAction::make()
-                    ->iconButton(),
-                EditAction::make()
-                    ->iconButton(),
+                ActionGroup::make([
+                    ViewAction::make(),
+                    EditAction::make(),
+                    AddReportAction::make(),
+                ]),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([
