@@ -21,6 +21,7 @@ This application will track
 * Run ```composer install``` to install the Laravel framework and associated software bits
 * Edit ```.env.example``` and customize database server section for local settings. Save as ```.env```
 * Run ```php artisan key:generate``` to generate an application key
+* Run the migrations and database seeders: ```php artisan migrate; php artisan db:seed```
 * For testing purposes, run ```php artisan serve``` and point your web browser at ```http://localhost:8000```
 * For production, configure a web server virtual host using the ```public``` directory as the DocumentRoot
 
