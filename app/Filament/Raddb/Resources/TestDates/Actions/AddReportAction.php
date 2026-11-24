@@ -2,7 +2,7 @@
 
 namespace App\Filament\Raddb\Resources\TestDates\Actions;
 
-use App\Filament\Schemas\AddReportForm;
+use App\Filament\Raddb\Resources\TestDates\Schemas\AddReportForm;
 use Filament\Actions\Action;
 use Filament\Support\Icons\Heroicon;
 
@@ -24,6 +24,8 @@ class AddReportAction
             ->label('Add report')
             ->color('info')
             ->schema(AddReportForm::make())
-            ->action();
+            ->action(function () {
+                return null;
+            });
     }
 }
