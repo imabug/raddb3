@@ -33,6 +33,7 @@ class MachineInfoSchema
                         )
                         ->required(),
                     Textarea::make('description')
+                        ->string()
                         ->maxLength(255)
                         ->rows(1)
                         ->default(null),
@@ -47,11 +48,13 @@ class MachineInfoSchema
                             Status::Removed->value => Status::Removed->name,
                         ])
                         ->default(Status::Active)
+                        ->enum(Status::class)
                         ->required(),
                     DatePicker::make('install_date')
                         ->label('Install date')
                         ->format('Y-m-d')
                         ->displayFormat('Y-m-d')
+                        ->minDate(fn (Get $get): Get => $get('manuf_date'))
                         ->default(null)
                         ->live(),
                     Textarea::make('notes')

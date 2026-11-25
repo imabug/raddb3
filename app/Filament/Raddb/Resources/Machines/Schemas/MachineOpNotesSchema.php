@@ -12,7 +12,9 @@ class MachineOpNotesSchema
         return [
             Repeater::make('op_notes')
                 ->schema([
-                    TextInput::make('note'),
+                    TextInput::make('note')
+                        ->string()
+                        ->length(255),
                 ]),
         ];
     }

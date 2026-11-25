@@ -33,7 +33,7 @@ class TestDateForm
                         name: 'testType',
                         titleAttribute: 'test_type',
                     )
-                    ->default(1) // Would prefer to not hardcode this
+                    ->default(1) // Routine Compliance. Would prefer to not hardcode this
                     ->required(),
                 DateTimePicker::make('test_date')
                     ->label('Survey date')
@@ -46,6 +46,8 @@ class TestDateForm
                     ->maxLength(50)
                     ->default(null),
                 Textarea::make('notes')
+                    ->string()
+                    ->maxLength(16 * 1024)
                     ->default(null)
                     ->columnSpanFull(),
             ]);
