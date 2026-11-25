@@ -19,13 +19,9 @@ class AddReportAction
     public static function make(): Action
     {
         return Action::make('addReport')
-            ->iconButton()
             ->icon(Heroicon::OutlinedDocumentText)
             ->label('Add report')
             ->color('info')
-            ->schema(AddReportForm::make())
-            ->action(function () {
-                return null;
-            });
+            ->schema(AddReportForm::make());
     }
 }
