@@ -3,6 +3,7 @@
 namespace App\Filament\Raddb\Resources\TestDates\Pages;
 
 use App\Filament\Raddb\Resources\TestDates\TestDateResource;
+use Filament\Actions\DeleteAction;
 use Filament\Actions\EditAction;
 use Filament\Resources\Pages\ViewRecord;
 
@@ -14,6 +15,8 @@ class ViewTestDate extends ViewRecord
     {
         return [
             EditAction::make(),
+            DeleteAction::make()
+                ->label('Cancel'),
         ];
     }
 }
