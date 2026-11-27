@@ -2,6 +2,8 @@
 
 namespace App\Filament\Raddb\Resources\Machines\Pages;
 
+use App\Filament\Raddb\Resources\Machines\Actions\MachineDeleteAction;
+use App\Filament\Raddb\Resources\Machines\Actions\MachineRestoreAction;
 use App\Filament\Raddb\Resources\Machines\MachineResource;
 use App\Filament\Raddb\Resources\Machines\Resources\Tubes\TubeResource;
 use Filament\Actions\EditAction;
@@ -17,6 +19,8 @@ class ViewMachine extends ViewRecord
     {
         return [
             EditAction::make(),
+            MachineDeleteAction::configure(),
+            MachineRestoreAction::configure(),
         ];
     }
 }
