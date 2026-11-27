@@ -7,6 +7,7 @@ use App\Models\TestDate;
 use BackedEnum;
 use Filament\Actions\ActionGroup;
 use Filament\Actions\BulkActionGroup;
+use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Actions\RestoreBulkAction;
@@ -33,16 +34,22 @@ class TestDatesTable
                     ->label('Survey ID')
                     ->icon(function ($state): ?BackedEnum {
                         // Display an icon if a survey report is available
-                        $t = TestDate::find($state)->hasMedia('survey_reports');
-
-                        return $t ? Heroicon::DocumentText : null;
+                        $t = TestDate::find($state);
+                        if (is_null($t)) {
+                            return null;
+                        } else {
+                            return $t->hasMedia('survey_reports') ? Heroicon::DocumentText : null;
+                        }
                     })
                     ->iconPosition(IconPosition::After)
                     ->url(function ($state) {
                         // Link to the survey report if available
                         $t = TestDate::find($state);
-
-                        return $t->hasMedia('survey_reports') ? $t->getFirstMediaUrl('survey_reports') : null;
+                        if (is_null($t)) {
+                            return null;
+                        } else {
+                            return $t->hasMedia('survey_reports') ? $t->getFirstMediaUrl('survey_reports') : null;
+                        }
                     }),
                 TextColumn::make('machine.description')
                     ->searchable()
@@ -112,6 +119,8 @@ class TestDatesTable
                     ViewAction::make(),
                     EditAction::make(),
                     AddReportAction::make(),
+                    DeleteAction::make()
+                        ->label('Cancel'),
                 ]),
             ])
             ->toolbarActions([
