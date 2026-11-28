@@ -19,8 +19,8 @@ return new class extends Migration
          * Should find a better way to do this.
          */
         DB::statement('
-CREATE VIEW lastyear_view (machine_id, survey_id, test_date) AS
-SELECT machine_id, id as survey_id, test_date
+CREATE VIEW lastyear_view (machine_id, survey_id, test_date, deleted_at) AS
+SELECT machine_id, id as survey_id, test_date, deleted_at
 FROM test_dates
 WHERE test_date
 BETWEEN MAKEDATE(YEAR(CURDATE())-1, 1) AND MAKEDATE(YEAR(CURDATE()), 1)
@@ -29,8 +29,8 @@ AND (test_type_id=1 OR test_type_id=2)
 ');
 
         DB::statement('
-CREATE VIEW thisyear_view (machine_id, survey_id, test_date) AS
-SELECT machine_id, id as survey_id, test_date
+CREATE VIEW thisyear_view (machine_id, survey_id, test_date, deleted_at) AS
+SELECT machine_id, id as survey_id, test_date, deleted_at
 FROM test_dates
 WHERE test_date BETWEEN
 MAKEDATE(YEAR(CURDATE()), 1) AND MAKEDATE(YEAR(CURDATE())+1, 1)

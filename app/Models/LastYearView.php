@@ -5,10 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Attributes\Table;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 #[Table('lastyear_view', key: 'survey_id', incrementing: false)]
 class LastYearView extends Model
 {
+    use SoftDeletes;
+
     /**
      * Attribute casting
      */
